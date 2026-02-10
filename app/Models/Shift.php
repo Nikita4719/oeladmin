@@ -10,6 +10,7 @@ class Shift extends Model
     // use HasFactory;
     protected $table = "shift";
     protected $primaryKey = 'shift_id';
+    public $timestamps = false;
     protected $fillable = [
 
         'shift_name',
@@ -17,4 +18,8 @@ class Shift extends Model
         'location',
         'is_active'
     ];
+     public function country()
+    {
+        return $this->belongsTo(\App\Models\AppSettings::class, 'country_id', 'id');
+    }
 }

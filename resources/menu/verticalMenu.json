@@ -136,14 +136,14 @@
                     "permission":"country.view"
                 },
                 {
-                    "url": "/admin/province",
-                    "name": "Province",
+                    "url": "/admin/shift",
+                    "name": "Shift",
                     "slug": "admin-province",
                     "permission":"province.view"
                 },
                 {
-                    "url": "/admin/visa-type",
-                    "name": "Visa Type",
+                    "url": "/admin/material-ctl",
+                    "name": "Material Ctl",
                     "slug": "admin-visa-type",
                     "permission":"visa_type.view"
                 },

@@ -10,7 +10,7 @@ use App\Models\{
     WorkCenter,
     MasterService,
     Program,
-    Province,
+    Shift,
     SubService,
     VasService,
     VisaDocument,
@@ -374,7 +374,8 @@ class OtherMasterDataController extends Controller
 
 
 
-    // country
+    // app-settings
+
 
     // INDEX (List)
     // LIST
@@ -465,108 +466,104 @@ class OtherMasterDataController extends Controller
     }
 
 
-    //  province
-    public function province(Request $request)
+    //  Shift
+
+    // Show Shift list
+    public function shift_index()
     {
-        $province = Province::with('country')->when($request->name, function ($query) use ($request) {
-            $query->where('name', 'like', '%' . $request->name . '%');
-        })
-            ->when($request->country_id, function ($query) use ($request) {
-                $query->where('country_id', 'like', '%' . $request->country_id . '%');
-            })
-            ->paginate(12);
-        $country = Country::where('is_active', 1)->get();
-        return view('admin.othermaster.province.index', compact('province', 'country'));
-    }
-    public function province_create()
-    {
-        $country = Country::where('is_active', 1)->get();
-        return view('admin.othermaster.province.create', compact('country'));
-    }
-    public function province_store(Request $request)
-    {
-        $request->validate([
-            'name' => 'required|max:233',
-            'country_id' => 'required'
-        ]);
-        $input = $request->except('_token');
-        Province::create($input);
-        return redirect()->route('province')
-            ->with('success', 'Province created successfully.');
-    }
-    public function province_edit($id)
-    {
-        $province = Province::find($id);
-        $country = Country::where('is_active', 1)->get();
-        return view('admin.othermaster.province.edit', compact('province', 'country'));
-    }
-    public function province_update(Request $request, $id)
-    {
-        $input = $request->except('_token');
-        $province = Province::find($id);
-        $province->update($input);
-        return redirect()->route('province')
-            ->with('success', 'Province updated successfully');
-    }
-    public function province_delete(Request $request)
-    {
-        $province = Province::find($request->id);
-        if ($province) {
-            $province->delete();
-            return redirect()->route('province')
-                ->with('success', 'province deleted successfully');
-        }
-        return redirect()->route('province')
-            ->with('error', 'province not found');
+        $shift = Shift::with('country')->paginate(10);
+        $country = AppSettings::all();
+
+        return view('admin.othermaster.shift.index', compact('shift', 'country'));
     }
 
-    //  visa type
-    public function visa_type(Request $request)
+    // Filter shifts
+    public function shift_filter(Request $request)
     {
-        $visa_type = VisaType::when($request->name, function ($query) use ($request) {
-            $query->where('name', 'like', '%' . $request->name . '%');
-        })
-            ->paginate(12);
-        return view('admin.othermaster.visa-type.index', compact('visa_type'));
+        $query = Shift::with('country');
+
+        if ($request->name) {
+            $query->where('shift_name', 'like', "%{$request->name}%");
+        }
+
+        if ($request->country_id) {
+            $query->where('country_id', $request->country_id);
+        }
+
+        $shift = $query->paginate(10);
+        $country = AppSettings::all();
+
+        return view('admin.othermaster.shift.index', compact('shift', 'country'));
     }
-    public function visa_type_create()
+
+    // Create Shift form
+    public function shift_create()
     {
-        return view('admin.othermaster.visa-type.create');
+        $country = AppSettings::all();
+        return view('admin.othermaster.shift.create', compact('country'));
     }
-    public function visa_type_store(Request $request)
+
+    // Store new Shift
+    public function shift_store(Request $request)
+    {
+        // Validate fields that actually exist in your model
+        $request->validate([
+            'shift_name' => 'required|string|max:255',
+            'shift_description' => 'nullable|string|max:1000',
+            'location' => 'nullable|string|max:255',
+            'is_active' => 'nullable|boolean',
+        ]);
+
+        // Save Shift
+        Shift::create([
+            'shift_name' => $request->shift_name,
+            'shift_description' => $request->shift_description,
+            'location' => $request->location,
+            'is_active' => $request->has('is_active') ? 1 : 0,
+        ]);
+
+        return redirect()->route('shift')->with('success', 'Shift created successfully.');
+    }
+    public function shift_edit($id)
+    {
+        $shift = Shift::findOrFail($id);
+        $country = AppSettings::all(); // assuming AppSettings has country data
+
+        return view('admin.othermaster.shift.edit', compact('shift', 'country'));
+    }
+
+    // Update Shift
+    public function shift_update(Request $request, $id)
     {
         $request->validate([
-            'name' => 'required|max:233',
+            'shift_name' => 'required|string|max:255',
+            'shift_description' => 'nullable|string|max:1000',
+            'location' => 'nullable|string|max:255',
+            
         ]);
-        $input = $request->except('_token');
-        VisaType::create($input);
-        return redirect()->route('visa-type')
-            ->with('success', 'Visa Type created successfully.');
+
+        $shift = Shift::findOrFail($id);
+
+        $shift->update([
+            'shift_name' => $request->shift_name,
+            'shift_description' => $request->shift_description,
+            'location' => $request->location,
+            'is_active' => $request->has('is_active') ? 1 : 0,
+        ]);
+
+        return redirect()->route('shift')->with('success', 'Shift updated successfully.');
     }
-    public function visa_type_edit($id)
+
+
+    // Delete Shift
+    public function shift_destroy($id)
     {
-        $visa_type = VisaType::find($id);
-        return view('admin.othermaster.visa-type.edit', compact('visa_type'));
+        $shift = Shift::findOrFail($id);
+        $shift->delete();
+
+        return redirect()->route('shift')->with('success', 'Shift deleted successfully.');
     }
-    public function visa_type_update(Request $request, $id)
-    {
-        $input = $request->except('_token');
-        $visa_type = VisaType::find($id);
-        $visa_type->update($input);
-        return redirect()->route('visa-type')
-            ->with('success', 'Visa Type updated successfully');
-    }
-    public function visa_type_delete(Request $request)
-    {
-        if ($visa_type = VisaType::find($request->id)) {
-            $visa_type->delete();
-            return redirect()->route('visa-type')
-                ->with('success', 'Visa Type deleted successfully');
-        } else {
-            return redirect()->route('visa-type')
-                ->with('error', 'Visa Type not found');
-        }
-    }
+
 
     //    faq
     public function faq(Request $request)

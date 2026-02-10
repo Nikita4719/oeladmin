@@ -503,10 +503,7 @@
             Route::post('work-center/{id}/update', [OtherMasterDataController::class, 'work_center_update'])
                 ->name('work-center.update');
 
-            Route::delete(
-                'work-center/{id}',
-                [OtherMasterDataController::class, 'work_center_destroy']
-            )
+            Route::delete('work-center/{id}', [OtherMasterDataController::class, 'work_center_destroy'])
                 ->name('work-center.destroy');
 
 
@@ -525,15 +522,24 @@
 
 
 
-            // provience
-            Route::get('province', [OtherMasterDataController::class, 'province'])->name('province');
-            Route::get('province-filter', [OtherMasterDataController::class, 'province'])->name('province-filter');
-            Route::get('create-province', [OtherMasterDataController::class, 'province_create'])->name('create-province');
-            Route::get('edit-province/{id?}', [OtherMasterDataController::class, 'province_edit'])->name('edit-province');
-            Route::get('delete-province/{id?}', [OtherMasterDataController::class, 'province_delete'])->name('delete-province');
-            Route::post('update-province/{id?}', [OtherMasterDataController::class, 'province_update'])->name('update-province');
-            Route::post('store-province', [OtherMasterDataController::class, 'province_store'])->name('store-province');
-            Route::get('delete-province/{id?}', [OtherMasterDataController::class, 'province_delete'])->name('delete-province');
+            // Shift
+
+
+
+            Route::get('shift', [OtherMasterDataController::class, 'shift_index'])->name('shift');
+            Route::get('shift-filter', [OtherMasterDataController::class, 'shift_filter'])->name('shift-filter');
+
+            Route::get('shift/create', [OtherMasterDataController::class, 'shift_create'])->name('create-shift');
+           Route::post('/shift/store', [OtherMasterDataController::class, 'shift_store'])->name('store-shift');
+
+
+            Route::get('shift/edit/{id}', [OtherMasterDataController::class, 'shift_edit'])->name('edit-shift');
+            Route::post('shift/update/{id}', [OtherMasterDataController::class, 'shift_update'])->name('update-shift');
+
+            Route::get('shift/delete/{id}', [OtherMasterDataController::class, 'shift_destroy'])->name('delete-shift');
+
+
+
             // visa-type
             Route::get('visa-type', [OtherMasterDataController::class, 'visa_type'])->name('visa-type');
             Route::get('visa-type-filter', [OtherMasterDataController::class, 'visa_type'])->name('visa-type-filter');
