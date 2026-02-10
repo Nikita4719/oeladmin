@@ -1,0 +1,34 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+
+class FacebookLeadController extends Controller
+{
+    public function verify(Request $request)
+    {
+        $verifyToken = env('FACEBOOK_VERIFY_TOKEN', 'overseaseducationlane');
+
+        $mode = $request->query('hub.mode');
+        $token = $request->query('hub.verify_token');
+        $challenge = $request->query('hub.challenge');
+
+        Log::info('FB Verify Request', $request->query());
+
+        if ($mode === 'subscribe' && $token === $verifyToken) {
+            // Return challenge as plain text with 200
+            return response($challenge, 200)->header('Content-Type', 'text/plain');
+        }
+
+        return response('Forbidden', 403);
+    }
+
+    public function webhook(Request $request)
+    {
+        // handle incoming lead POSTs here
+        Log::info('FB Webhook POST', $request->all());
+        return response('OK', 200);
+    }
+}

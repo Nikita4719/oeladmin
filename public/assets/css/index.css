@@ -1,0 +1,950 @@
+.whycanadapara.owl-carousel .owl-item img {
+  width: auto;
+  padding: 16px 0px 0px !important;
+}
+
+.dashp {
+  height: 10px !important;
+  background: red;
+  width: 20px !important;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__arrow b {
+  border-color: #fff transparent transparent transparent;}.whycanadapara
+  
+.carousel-control-next {
+  z-index: 9;
+  width: 109px;
+}
+
+.carousel-control-prev {
+  z-index: 9;
+  width: 109px;
+}
+
+/* Optional custom styling */
+.owl-carousel .owl-item img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+
+.formcontent {
+  padding: 30px 30px;
+}
+
+.rs-newsletter.orange-color .newsletter-wrap {
+  background: #21a7d0;
+}
+
+.crlimg {
+  padding: 0px;
+  width: 100%;
+  margin: 0px;
+}
+
+
+
+.btmpoint {
+  color: #000;
+  padding-bottom: 14px;
+}
+
+.Chooseheading {
+  padding-top: 10px;
+  color: #000 !important;
+  font-weight: 400;
+  font-size: 23px;
+  text-align: center;
+}
+
+.girldiv {
+  background: #FDF7F7;
+  margin: 30px 30px;
+  padding: 30px 30px;
+  border-radius: 10px;
+}
+
+.girlback {
+  background-image: url(bkgroundgirl.png);
+  background-size: cover;
+  background-position: right;
+}
+
+.frmpd {
+  margin: 6px 0px;
+  padding: 0px 11px;
+}
+
+.sndpara {
+  margin: 34px 0px;
+}
+
+
+.contentfixbanner {
+  position: relative;
+  top: -480px;
+}
+
+.headingfixbanner {
+  position: relative;
+  top: -80px;
+}
+
+
+.bluebackgrouns {
+  background-image: url(blueback.png);
+  background-size: cover;
+  margin-top: 20px;
+
+}
+
+.backgroundmap {
+  background-image: url(map.png);
+  background-size: cover;
+
+}
+
+.whycanada {
+  text-align: center;
+  /*padding: 20px 0px;*/
+  color: white !important;
+  font-weight: 400;
+  font-size: 30px;
+  padding-bottom: 16px;
+    padding-top: 56px
+}
+
+.bhoomika {
+  margin-top: 50px !important;
+}
+
+a.current {
+  color: blue !important;
+}
+
+body .modal-backdrop {
+  opacity: 0.8 !important;
+}
+
+.p-md-5 {
+  padding: 0rem !important;
+}
+
+.modal-header {
+  border-bottom: 0px solid #dee2e6;
+}
+
+/*#emailHelp {*/
+/*  margin-top: -23px;*/
+/*  margin-left: 35px;*/
+/*}*/
+
+.full-width-header.header {
+  position: fixed;
+  width: 100%;
+  z-index: 9;
+}
+
+
+.close {
+  position: absolute;
+  left: 193%;
+  top: 13px;
+  color: black;
+  float: right;
+  z-index: 999999999999 !important;
+}
+
+@media screen and (max-width: 600px) {
+  .img-fluid {
+    display: none;
+  }
+
+  .close {
+    position: relative;
+    left: 0%;
+    top: 30px;
+    color: black;
+  }
+
+  .h-100 {
+    height: 88% !important;
+  }
+
+  .careertree {
+    display: none;
+  }
+
+  .tree-img {
+    margin-top: -22px;
+  }
+
+  #full_name-error {
+    color: red;
+    position: absolute;
+    top: 234px !important;
+    left: 58px !important;
+  }
+
+  #exampleInputEmail1-error {
+    color: red;
+    position: absolute;
+    top: 291px;
+    left: 57px;
+  }
+
+  #mobile_number-error {
+    color: red;
+    position: absolute;
+    top: 383px;
+    left: 57px;
+  }
+
+  select#exampleFormControlSelect1 {
+    padding: 0px 0px !important;
+    margin-left: 34px;
+  }
+
+  select#exampleFormControlSelect1 {
+    width: 89%;
+  }
+}
+
+.btn.btn-primary.btn-lg {
+  background-color: #070758 !important;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #070758 !important;
+  border-color: #fff;
+}
+
+.btn.btn-primary.btn-lg:hover {
+  color: #000;
+  background-color: #fff !important;
+  border-color: blue;
+}
+
+.myspan {
+  background: #000;
+  padding: 3px 10px;
+  border-radius: 20px;
+  color: white;
+  margin-left: -16px;
+}
+
+@media (min-width: 401px) and (max-width: 1380px) {
+  #mobile_number-error {
+    color: red;
+    position: absolute;
+    top: 354px;
+    left: 75px;
+  }
+
+  #exampleInputEmail1-error {
+    color: red;
+    position: absolute;
+    top: 263px;
+    left: 75px;
+  }
+
+  #full_name-error {
+    color: red;
+    position: absolute;
+    top: 204px;
+    left: 75px;
+  }
+
+  #exampleFormControlSelect1 {
+    margin-left: 34px;
+    width: 90%;
+    padding: 0px 10px !important;
+    border: 1px solid #ced4da !important;
+  }
+
+  select#exampleFormControlSelect1 {
+    width: 92%;
+  }
+}
+
+.flex-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+
+/*          ankitcss*/
+
+.topfrm {
+  position: relative;
+  top: -970px !important;
+  background: #F4F7F9;
+  padding: 20px 63px;
+}
+
+
+
+
+@media screen and (min-device-width: 300px) and (max-device-width: 768px) {
+  .topfrm {
+    position: relative;
+    top: 0px !important;
+    background: #F4F7F9;
+    padding: 20px 63px;
+  }
+}
+
+@media screen and (min-device-width: 300px) and (max-device-width: 768px) {
+  .headingfixbanner {
+    display: none;
+  }
+
+  .headingfixbanner {
+    display: none;
+  }
+
+  .content_left {
+    display: none;
+  }
+
+  .contentfixbanner {
+    display: none;
+  }
+
+}
+
+.dash {
+  list-style: none;
+  width: 22px;
+  height: 3px;
+  background: #1086f3;
+  display: inline-table;
+  position: relative;
+  top: -4px;
+  right: 7px;
+}
+
+
+.content_left {
+  position: relative !important;
+  top: -479px !important;
+}
+
+.formpara {
+  margin-top: 0px;
+}
+
+.bluebk {
+
+  background-image: url(Group.png);
+}
+
+.frmpd {}
+
+
+.desktop_menu {
+  display: block;
+}
+
+.mobile_menu {
+  display: none;
+}
+
+.mobile_menu .mobile-menu {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.flexible_items {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.flexible_items li {
+  margin: 0 !important;
+}
+
+.desktop_menu {
+  flex: 1;
+}
+
+.rs-menu-area {
+  padding-left: 30px;
+}
+
+@media only screen and (max-width: 991px) {
+  .desktop_menu {
+    display: none;
+  }
+
+  .mobile_menu {
+    display: block;
+  }
+
+  .rs-menu-toggle {
+    margin-right: 15px;
+  }
+}
+
+.hitcounter {}
+
+.contheight-most {
+  height: 150px;
+  min-height: 1px;
+}
+
+.owl-prev:after,
+.owl-next:after {
+  content: "" !important;
+  vertical-align: middle !important;
+}
+
+.rs-carousel.nav-style2 .owl-nav .owl-prev:before {
+  content: "/" !important;
+  padding: 0 5px 0 5px;
+  position: relative;
+  top: 1px;
+}
+
+.rr {
+  width: 78px;
+  height: 74px;
+  position: relative;
+  animation: shake 4s infinite;
+  top: -3px;
+}
+
+@keyframes shake {
+  0% {
+    transform: translate(12px, 12px) rotate(0deg);
+  }
+
+  25% {
+    transform: translate(1px, -2px) rotate(20deg);
+  }
+
+  50% {
+    transform: translate(1px, 2px) rotate(-20deg);
+  }
+
+  100% {
+    transform: translate(12px, 12px) rotate(0deg);
+  }
+}
+
+/*landingcss*/
+.full-width-header .rs-header .topbar-area {
+  background: rgb(255, 255, 255) none repeat scroll 0% 0%;
+  height: 50px;
+}
+
+.cntr {
+  text-align: center !important;
+  margin-top: 30px !important;
+}
+
+.cnt {
+  margin-top: 111px;
+}
+
+.boxcmnt {
+  background: white;
+  padding: 10px;
+  box-shadow: 3px 0px 11px 3px #80808026;
+  border-radius: 10px;
+}
+
+.backgroup {
+  background-image: url(backgroup.png);
+  height: auto;
+  padding: 90px 0px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-top: 2px solid #dfe5e8b0;
+}
+
+.flex-container {
+  display: flex;
+}
+
+.flex-container>div {
+  width: auto;
+  margin: 10px;
+  text-align: center;
+  line-height: 75px;
+  font-size: 11px;
+  padding: 0px 12px;
+}
+
+.rs-footer .footer-top {
+  padding: 61px 0 30px;
+}
+
+.from-control {
+  border: 1px solid #d1d4d5 !important;
+  box-shadow: 0 0 1px #eee;
+}
+
+.bdr {
+  background-image: linear-gradient(to right, #0452b8, #38d0da);
+  height: 6px;
+}
+
+@media only screen and (max-width: 991px) {
+  .full-width-header .rs-header .topbar-area {
+    display: block;
+  }
+
+  @media only screen and (max-width: 991px) {
+    .pp {
+      text-align: center;
+      margin-top: 70px !important;
+      font-size: 23px;
+      line-height: 1;
+    }
+  }
+}
+
+.frm {
+  position: absolute;
+  top: 195px;
+  right: 200px;
+}
+
+@media screen and (min-device-width: 300px) and (max-device-width: 768px) {
+  .frm {
+    position: inherit;
+    top: 0px;
+    z-index: 9;
+    right: 20px;
+  }
+}
+
+
+
+@media screen and (min-device-width: 300px) and (max-device-width: 768px) {
+  #rs-header {
+
+    position: fixed;
+    width: 100%;
+  }
+}
+
+
+@media screen and (min-device-width: 300px) and (max-device-width: 768px) {
+  .flex-container {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+@media screen and (min-device-width: 300px) and (max-device-width: 768px) {
+  .carousel {
+    display: none;
+
+  }
+
+  .dnone {
+    display: none;
+
+  }
+
+  .bannergirl {
+    display: none;
+  }
+
+  .snddiv {
+    display: none;
+
+  }
+
+  .treeSectins {
+    position: relative !important;
+    z-index: 8 !important;
+
+    bottom: 0 !important;
+    top: 57px !important;
+  }
+
+
+
+
+}
+
+
+
+.bannergirl {
+  position: relative;
+  top: -37px;
+  border: 0px;
+}
+
+.bannerbutton {
+  position: relative;
+  top: 111px;
+  border: 0px;
+}
+
+.flex-container {
+  display: flex;
+  flex-wrap: nowrap;
+
+
+}
+
+.flex-container>div {
+  width: 100%;
+  margin: 10px;
+  text-align: center;
+  line-height: 75px;
+  font-size: 30px;
+  margin-bottom: 40px
+}
+
+.whycanadapara {
+  font-size: 14px;
+  color: white;
+  line-height: 20px;
+  margin-top: 26px;
+
+}
+
+.footerp {
+  font-size: 14px;
+  color: white;
+  margin: 0px;
+
+}
+
+.whyimg>img {
+  height: 150px !important;
+  width: 150px !important;
+}
+
+.univerheading {
+  margin-top: 50px;
+  font-size: 35px;
+}
+
+.pinkback {
+  background: #fff7f0;
+}
+
+.card {
+  margin-top: 20px;
+  box-shadow: 1px 3px 5px 4px #80808057;
+}
+
+.unipd {
+  padding: 0px 25px;
+}
+
+.unihd {
+  text-align: left;
+  font-size: 16px;
+}
+
+.bluediv {
+  color: #fff !important;
+}
+
+.bluepara {
+  color: white;
+}
+
+
+.bluecard {
+  background: #1086f3;
+}
+
+.deslist {
+  text-align: left;
+}
+
+.findourheading {
+  font-size: 31px;
+  color: #1086f3;
+}
+
+.Indianstudentheading {
+  margin: 50px 0px;
+  font-size: 41px;
+  color: #1086f3;
+  line-height: 1.2;
+}
+
+.customcard {
+  padding: 16px 16px;
+  background: #8080800f;
+  max-height: 665px;
+}
+
+.cmcheck {
+  color: white;
+  font-size: 15px;
+}
+
+.checklist {
+  color: white;
+}
+
+.number {
+  color: white !important;
+  text-align: center;
+}
+
+/*.slick-slide .inner {
+margin: 0 15px;
+}*/
+
+.logoleading {
+  color: #21a7d0 !important;
+  text-align: center;
+}
+
+.slick-track {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  overflow: visible !important;
+}
+
+.slick-list {
+  padding: 0 !important;
+  overflow: visible !important;
+}
+
+.slick-slide {
+  height: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.slick-slide .inner {
+  margin: 0 15px;
+}
+
+.marquee_rtl,
+.marquee {
+  transform: scale(0.8, 0.8);
+  margin-top: 0px;
+}
+
+.hide {
+  display: none !important;
+}
+
+.carousel_logoimage {
+  height: 50px !important;
+}
+
+.logobkl {
+  background-image: url(logobkl.png);
+  background-size: cover;
+  padding: 9px 13px;
+  background-repeat: no-repeat;
+  width: 96%;
+  border-radius: 50px;
+  margin: 0px 29px;
+
+}
+
+.crlimg {
+  margin: -4px -1px;
+}
+
+.snddiv {
+  padding: 30px 0px;
+}
+
+.aus {
+  margin-right: 16px;
+  position: relative;
+  right: -24px;
+  top: 11px;
+  color: white !important;
+}
+
+.ausleft {
+    margin-left: 4px;
+    position: relative;
+    left: -12px;
+    text-align: center;
+    top: 5px;
+    color: white !important;
+    width: 100%
+}
+
+
+@media (min-width: 300px) and (max-width: 800px) {
+  .ausleft {
+
+    margin-right: 16px;
+    position: relative;
+    left: 11px;
+    top: 5px;
+    color: white !important;
+  }
+
+  @media (min-width: 300px) and (max-width: 800px) {
+    .bannerbutton {
+
+      display: none;
+    }
+
+    .bluebackgrouns {
+      margin-top: 58px;
+    }
+
+  }
+
+   .aus {
+    margin-right: 16px;
+    position: relative;
+    left: 11px;
+    top: 5px;
+    color: white !important;
+  }
+
+  .crlimg {
+    margin: -11px -4px;
+  }
+
+}
+
+.form-group.col-md-12.mb-0.bannerbutton {
+  text-align: center;
+}
+
+.newsletter-wrap {
+  background: #21a7d0;
+  padding: 10px 10px;
+  border-radius: 6px;
+  margin-top: 30px;
+  position: relative;
+  top: 10px;
+}
+
+.footerclr {
+  color: white !important;
+}
+
+.weare {
+  color: #1086f3 !important;
+  margin-top: 48px;
+  text-align: center;
+  font-weight: 400;
+  font-size: 30px;
+}
+
+.mainlogodiv {
+  background-image: url(map.png);
+  background-size: cover;
+  padding: 48px 0px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+
+.carouselExample {
+  position: relative;
+}
+
+.treeSectins {
+  position: absolute;
+  z-index: 8;
+  transform: translate(-50%, 0%);
+  left: 50%;
+  bottom: 0;
+  width: 100%;
+  top: 127px;
+}
+
+.BannerFOrm {
+  height: 100%;
+  width: 100%;
+  background: #F4F7F9;
+}
+
+.dropbtn {
+  background-color: #1086F3;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+span#select2-inputGroupSelect04-container {
+    background: #1086f3;
+    color: white;
+    height: 36px; line-height: 36px;
+    font-size: 21px;
+}
+
+.dropbtn:hover,
+.dropbtn:focus {
+  background-color: #2980B9;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  overflow: auto;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown a:hover {
+  background-color: #ddd;
+}
+
+.show {
+  display: block;
+}
+
+#myDropdown {
+  height: 250px;
+  width: 100%;
+  overflow-x: hidden;
+  scrollbar-width: thin;
+}
+
+.bdrblue {
+  border-bottom: 1px solid #07529885;
+}
+
+.footerdiv {
+  background: linear-gradient(31deg, rgb(2, 0, 36) 0%, rgba(9, 9, 121, 0.56) 35%, rgba(0, 212, 255, 0) 100%);
+  height: 173px;
+  position: absolute;
+  top: -171px;
+  z-index: 9;
+  width: 100%;
+}
+
+
+.select2-container--default .select2-selection--single .select2-selection__arrow{  height: 36px !important;}
+.select2-container--default .select2-selection--single .select2-selection__arrow b{ color: red;}
+.select2-dropdown{ top: 9px;}

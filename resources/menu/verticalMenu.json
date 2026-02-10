@@ -1,0 +1,245 @@
+{
+    "menu": [
+        {
+            "url": "/dashboard",
+            "name": "Dashboard",
+            "icon": "menu-icon tf-icons la la-dashboard",
+            "slug": "dashboard",
+            "permission":"dashboard.view"
+        },
+      
+    
+        {
+            "name": "Manage Leads",
+            "icon": "menu-icon tf-icons la la-user-secret",
+            "slug": "admin",
+            "permission":["leads_dashboard.view","add_leads.view","bulk_upload.view","pending_lead.view","assigned_lead.view","latest_updated_leads.view","oel_360.view","leads_lists.view"],
+            "submenu": [
+                {
+                    "url": "/admin/leads-dashboard",
+                    "name": "Leads Dashboard",
+                    "slug": "admin-leads-dashboard",
+                    "permission":"leads_dashboard.view"
+                },
+                {
+                    "url": "/admin/add-leads",
+                    "name": "Add Leads",
+                    "slug": "admin-add-leads",
+                    "permission":"add_leads.view"
+                },
+                {
+                    "url": "/admin/leads-lists",
+                    "name": "Leads List",
+                    "slug": "admin-leads-lists",
+                    "permission":"leads_lists.view"
+                },
+                {
+                    "url": "/admin/bulk-upload",
+                    "name": "Bulk Upload",
+                    "slug": "admin-bulk-upload",
+                    "permission":"bulk_upload.view"
+                },
+                {
+                    "url": "/admin/pending-lead",
+                    "name": "Pending Lead",
+                    "slug": "admin-pending-lead",
+                    "permission":"pending_lead.view"
+                }
+               
+                
+            ]
+        },
+       
+        {
+            "url": "/revert-to-admin",
+            "name": "Back to Admin login",
+            "icon": "menu-icon tf-icons fa fa-user-secret",
+            "slug": "impersonate",
+            "permission":"impersonate.view"
+        },
+        
+        {
+            "name": "Student",
+            "icon": "menu-icon tf-icons fas fa-user-graduate",
+            "slug": "student",
+            "permission":["student.view","student_registration_fees.view","student_apply_question.view","student_assistance.view","student_assistance.view","student_enquiry_log.view","popular_student_guide.view","find_program_log.view"],
+            "submenu": [
+                {
+                    "url": "/admin/student-list",
+                    "name": "Student List",
+                    "slug": "admin-student-list",
+                    "permission":"student.view"
+                },
+                
+                {
+                    "url": "/admin/student-apply-question",
+                    "name": "Student Apply Questions",
+                    "slug": "admin-student-apply-question",
+                    "permission":"student_apply_question.view"
+                },
+                {
+                    "url": "/admin/student-assistance",
+                    "name": "Student Assistance",
+                    "slug": "admin-student-assistance",
+                    "permission":"student_assistance.view"
+                }
+               
+                
+                 
+            ]
+        },
+        
+       
+        {
+            "url": "/apply-program",
+            "name": "Apply Program",
+            "icon": "menu-icon tf-icons fa-solid fa-circle-check",
+            "slug": "apply-program",
+            "permission":"apply_program.view"
+        },
+        {
+            "url": "/student/applied-program",
+            "name": "Applied Programs",
+            "icon": "menu-icon tf-icons lab la-product-hunt",
+            "slug": "applied-program",
+            "permission":"applied_program.view"
+        },
+                {
+            "name": "Master",
+            "icon": "menu-icon tf-icons las la-tachometer-alt",
+            "slug": "other-master-data",
+            "permission":["specializations.view","source.view","interested.view","country.view","province.view","visa_type.view"
+            ,"faq.view","education_lane.view","manage_blogs.view","vas_services.view","master_service.view","visa_documents_type.view","visa_sub_document_type.view" ,"lead_quality.view"],
+            "submenu": [
+                {
+                    "url": "/admin/rack-master",
+                    "name": "Rack master",
+                    "slug": "admin-specializations",
+                    "permission":"specializations.view"
+                },
+                {
+                    "url": "/admin/material-master",
+                    "name": "Material Master",
+                    "slug": "admin-source",
+                    "permission":"source.view"
+                },
+                {
+                    "url": "/admin/interested",
+                    "name": "Interested",
+                    "slug": "admin-interested",
+                    "permission":"interested.view"
+                },
+                {
+                    "url": "/admin/country",
+                    "name": "Country",
+                    "slug": "admin-country",
+                    "permission":"country.view"
+                },
+                {
+                    "url": "/admin/province",
+                    "name": "Province",
+                    "slug": "admin-province",
+                    "permission":"province.view"
+                },
+                {
+                    "url": "/admin/visa-type",
+                    "name": "Visa Type",
+                    "slug": "admin-visa-type",
+                    "permission":"visa_type.view"
+                },
+                {
+                    "url": "/admin/visa-document-type",
+                    "name": "Visa Document Type",
+                    "slug": "admin-visa-document-type",
+                    "permission":"visa_documents_type.view"
+                },
+                {
+                    "url": "/admin/visa-sub-document-type",
+                    "name": "Visa SubDocument Type",
+                    "slug": "admin-visa-sub-document-type",
+                    "permission":"visa_sub_document_type.view"
+                },
+                {
+                    "url": "/admin/faqs",
+                    "name": "FAQs",
+                    "slug": "admin-faq",
+                    "permission":"faq.view"
+                },
+                {
+                    "url": "/admin/vas-services",
+                    "name": "Vas Services",
+                    "slug": "admin-vas-services",
+                    "permission":"vas_services.view"
+                },
+                {
+                    "url": "/admin/education-lane",
+                    "name": "Education Lane (Home Page)",
+                    "slug": "admin-education-lane",
+                    "permission":"education_lane.view"
+                },
+                {
+                    "url": "/admin/master-service",
+                    "name": "Master Service",
+                    "slug": "admin-master-service",
+                    "permission":"master_service.view"
+                },
+                {
+                    "url": "/admin/sub-service",
+                    "name": "Sub Service",
+                    "slug": "admin-sub-service",
+                    "permission":"sub_service.view"
+                },
+                {
+                    "url": "/admin/lead_quality",
+                    "name": "Lead Quality",
+                    "slug": "admin-lead-quality",
+                    "permission":"lead_quality.view"
+                }
+            ]
+            },
+
+        {
+            "url": "/student/my-profile",
+            "name": "My Profile",
+            "icon": "menu-icon tf-icons la la-user",
+            "slug": "my-profile",
+            "permission":"my_profile.view"
+        },
+        {
+            "url": "/student/edit-profile",
+            "name": "Edit Profile",
+            "icon": "menu-icon tf-icons la la-user",
+            "slug": "edit-profile",
+            "permission":"my_profile.update"
+        },
+       
+     
+        {
+            "url": "admin/apply-oel-360",
+            "name": "oel 360",
+            "icon": "menu-icon tf-icons las la-tachometer-alt",
+            "slug": "admin-apply-oel-360",
+            "permission":"oel_apply.view"
+        },
+        {
+            "name": "Admin-Management",
+            "icon": "menu-icon tf-icons la la-users",
+            "slug": "admin-management",
+            "permission":["admin_user.view","role_permissions.view"],
+            "submenu": [
+                {
+                    "url": "/admin-management/users",
+                    "name": "Admin User",
+                    "slug": "admin-management-users",
+                    "permission":"admin_user.view"
+                },
+                {
+                    "url": "/admin-management/roles-permissions",
+                    "name": "Roles Permissions",
+                    "slug": "admin-management-roles-permissions",
+                    "permission": "role_permissions.view"
+                }
+            ]
+        }
+    ]
+  }
