@@ -18,6 +18,7 @@
         AccountingController,
         DataOperatorController
     };
+
     use Illuminate\Support\Facades\Route;
     use Maatwebsite\Excel\Row;
     use App\Http\Controllers\ReportController;
@@ -81,6 +82,11 @@
     Route::get('travelmedical', function () {
         return view('frontend.global.travelmedical');
     });
+
+    Route::middleware(['auth'])->group(function () {
+        Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    });
+
     Route::get('accommodation', function () {
         return view('frontend.global.acommodation');
     });
@@ -482,25 +488,43 @@
 
 
             // interested
-            Route::get('interested', [OtherMasterDataController::class, 'interested'])->name('interested');
-            Route::get('interested-filter', [OtherMasterDataController::class, 'interested'])->name('interested-filter');
-            Route::get('create-interested', [OtherMasterDataController::class, 'interested_create'])->name('create-interested');
-            Route::get('edit-interested/{id?}', [OtherMasterDataController::class, 'interested_edit'])->name('edit-interested');
-            Route::get('delete-interested/{id?}', [OtherMasterDataController::class, 'interested_delete'])->name('delete-interested');
-            Route::post('update-interested/{id?}', [OtherMasterDataController::class, 'interested_update'])->name('update-interested');
-            Route::post('store-interested', [OtherMasterDataController::class, 'interested_store'])->name('store-interested');
-            Route::get('delete-interested/{id?}', [OtherMasterDataController::class, 'interested_delete'])->name('delete-interested');
+            Route::get('work-center', [OtherMasterDataController::class, 'work_center'])
+                ->name('work-center.index');
+
+            Route::get('work-center/create', [OtherMasterDataController::class, 'work_center_create'])
+                ->name('work-center.create');
+
+            Route::post('work-center/store', [OtherMasterDataController::class, 'work_center_store'])
+                ->name('work-center.store');
+
+            Route::get('work-center/{id}/edit', [OtherMasterDataController::class, 'work_center_edit'])
+                ->name('work-center.edit');
+
+            Route::post('work-center/{id}/update', [OtherMasterDataController::class, 'work_center_update'])
+                ->name('work-center.update');
+
+            Route::delete(
+                'work-center/{id}',
+                [OtherMasterDataController::class, 'work_center_destroy']
+            )
+                ->name('work-center.destroy');
+
+
 
             // country
-            Route::get('country', [OtherMasterDataController::class, 'country'])->name('country');
-            Route::get('country-filter', [OtherMasterDataController::class, 'country'])->name('country-filter');
-            Route::get('create-country', [OtherMasterDataController::class, 'country_create'])->name('create-country');
-            Route::get('edit-country/{id?}', [OtherMasterDataController::class, 'country_edit'])->name('edit-country');
-            Route::get('delete-country/{id?}', [OtherMasterDataController::class, 'country_delete'])->name('delete-country');
-            Route::post('update-country/{id?}', [OtherMasterDataController::class, 'country_update'])->name('update-country');
-            Route::post('store-country', [OtherMasterDataController::class, 'country_store'])->name('store-country');
-            Route::get('delete-country/{id?}', [OtherMasterDataController::class, 'country_delete'])->name('delete-country');
-            Route::post("update-country-status", [OtherMasterDataController::class, 'updateCountryStatus'])->name('activeInactiveCountry');
+
+
+            // LIST
+            Route::get('app-settings', [OtherMasterDataController::class, 'app_settings_index'])->name('appsettings.index');
+            Route::get('app-settings/create', [OtherMasterDataController::class, 'app_settings_create'])->name('appsettings.create');
+            Route::post('app-settings/store', [OtherMasterDataController::class, 'app_settings_store'])->name('appsettings.store');
+            Route::get('app-settings/{id}/edit', [OtherMasterDataController::class, 'app_settings_edit'])->name('appsettings.edit');
+            Route::put('app-settings/{id}/update', [OtherMasterDataController::class, 'app_settings_update'])->name('appsettings.update');
+            Route::delete('app-settings/{id}/delete', [OtherMasterDataController::class, 'app_settings_destroy'])->name('appsettings.destroy');
+
+
+
+
             // provience
             Route::get('province', [OtherMasterDataController::class, 'province'])->name('province');
             Route::get('province-filter', [OtherMasterDataController::class, 'province'])->name('province-filter');

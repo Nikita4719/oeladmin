@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Models\{
-    Country,
+    AppSettings,
     EducationLane,
     Faq,
-    Intrested,
+    WorkCenter,
     MasterService,
     Program,
     Province,
@@ -21,6 +22,7 @@ use App\Models\{
 };
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
 use Validator;
 use DB;
 
@@ -128,86 +130,86 @@ class OtherMasterDataController extends Controller
 
 
     // source
-   public function index(Request $request)
-{
-    $materials = MaterialMaster::when($request->code, function ($query) use ($request) {
-        $query->where('code', 'like', '%' . $request->code . '%');
-    })->paginate(12);
+    public function index(Request $request)
+    {
+        $materials = MaterialMaster::when($request->code, function ($query) use ($request) {
+            $query->where('code', 'like', '%' . $request->code . '%');
+        })->paginate(12);
 
-    return view('admin.othermaster.material-master.index', compact('materials'));
-}
+        return view('admin.othermaster.material-master.index', compact('materials'));
+    }
 
-public function create()
-{
-    // next material_id for display only
-    $nextId = \DB::table('material_master')->max('material_id') + 1;
+    public function create()
+    {
+        // next material_id for display only
+        $nextId = \DB::table('material_master')->max('material_id') + 1;
 
-    return view('admin.othermaster.material-master.create', compact('nextId'));
-}
-
-
-public function store(Request $request)
-{
-    $request->validate([
-        'code' => 'required|max:50|unique:material_master,code',
-        'description' => 'required',
-        'od' => 'required|numeric',
-        'thickness' => 'required|numeric',
-        'length_mtr' => 'required|numeric',
-        'kg_per_meter' => 'required|numeric',
-        'grade' => 'required',
-        'material_group' => 'required',
-        'is_active' => 'required'
-    ]);
-
-    // ignore material_id, DB will auto increment
-    MaterialMaster::create($request->except('material_id'));
-
-    return redirect()->route('material-master.index')
-                     ->with('success', 'Material added successfully');
-}
+        return view('admin.othermaster.material-master.create', compact('nextId'));
+    }
 
 
-public function edit($id)
-{
-    $material = MaterialMaster::findOrFail($id);
-    return view('admin.othermaster.material-master.edit', compact('material'));
-}
+    public function store(Request $request)
+    {
+        $request->validate([
+            'code' => 'required|max:50|unique:material_master,code',
+            'description' => 'required',
+            'od' => 'required|numeric',
+            'thickness' => 'required|numeric',
+            'length_mtr' => 'required|numeric',
+            'kg_per_meter' => 'required|numeric',
+            'grade' => 'required',
+            'material_group' => 'required',
+            'is_active' => 'required'
+        ]);
+
+        // ignore material_id, DB will auto increment
+        MaterialMaster::create($request->except('material_id'));
+
+        return redirect()->route('material-master.index')
+            ->with('success', 'Material added successfully');
+    }
 
 
-public function update(Request $request, $id)
-{
-    $request->validate([
-        'code' => 'required|max:50',
-        'description' => 'required',
-        'od' => 'required|numeric',
-        'thickness' => 'required|numeric',
-        'length_mtr' => 'required|numeric',
-        'kg_per_meter' => 'required|numeric',
-        'grade' => 'required',
-        'material_group' => 'required',
-        'is_active' => 'required'
-    ]);
-
-    $material = MaterialMaster::findOrFail($id);
-
-    // auto-increment id, don't update material_id
-    $material->update($request->all());
-
-    return redirect()->route('material-master.index')
-                     ->with('success', 'Material updated successfully');
-}
+    public function edit($id)
+    {
+        $material = MaterialMaster::findOrFail($id);
+        return view('admin.othermaster.material-master.edit', compact('material'));
+    }
 
 
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'code' => 'required|max:50',
+            'description' => 'required',
+            'od' => 'required|numeric',
+            'thickness' => 'required|numeric',
+            'length_mtr' => 'required|numeric',
+            'kg_per_meter' => 'required|numeric',
+            'grade' => 'required',
+            'material_group' => 'required',
+            'is_active' => 'required'
+        ]);
 
-public function destroy($id)
-{
-    $material = MaterialMaster::findOrFail($id);
-    $material->delete();
+        $material = MaterialMaster::findOrFail($id);
 
-    return redirect()->route('material-master.index')
-                     ->with('success', 'Material deleted successfully');
-}
+        // auto-increment id, don't update material_id
+        $material->update($request->all());
+
+        return redirect()->route('material-master.index')
+            ->with('success', 'Material updated successfully');
+    }
+
+
+
+    public function destroy($id)
+    {
+        $material = MaterialMaster::findOrFail($id);
+        $material->delete();
+
+        return redirect()->route('material-master.index')
+            ->with('success', 'Material deleted successfully');
+    }
 
 
     // lead quality
@@ -280,126 +282,188 @@ public function destroy($id)
 
 
     // interested
-    public function interested(Request $request)
+    public function work_center(Request $request)
     {
-        $interested = Intrested::when($request->name, function ($query) use ($request) {
-            $query->where('name', 'like', '%' . $request->name . '%');
+        $workCenters = WorkCenter::when($request->work_center_name, function ($query) use ($request) {
+            $query->where('work_center_name', 'like', '%' . $request->work_center_name . '%');
         })
-            ->when($request->status, function ($query) use ($request) {
-                $query->where('status', $request->status);
+            ->when($request->filled('is_active'), function ($query) use ($request) {
+                $query->where('is_active', $request->is_active);
             })
             ->paginate(12);
-        return view('admin.othermaster.interested.index', compact('interested'));
+
+        return view('admin.othermaster.work-center.index', compact('workCenters'));
     }
 
-    public function interested_create()
+
+    // CREATE FORM
+    public function work_center_create()
     {
-        return view('admin.othermaster.interested.create');
+        return view('admin.othermaster.work-center.create');
     }
-    public function interested_store(Request $request)
+
+    // STORE
+    public function work_center_store(Request $request)
     {
         $request->validate([
-            'name' => 'required|max:233',
-            'status' => 'required'
+            'work_center_name' => 'required|max:255',
+            'is_active'        => 'required'
         ]);
-        $input = $request->except('_token');
-        $input['created_by'] = auth()->user()->id;
-        $input['updated_by'] = auth()->user()->id;
-        Intrested::create($input);
-        return redirect()->route('interested')
-            ->with('success', 'Interested created successfully.');
-    }
-    public function interested_edit($id)
-    {
-        $interested = Intrested::find($id);
-        return view('admin.othermaster.interested.edit', compact('interested'));
+
+        $input = $request->only([
+            'work_center_name',
+            'work_center_description',
+            'location',
+            'is_active'
+        ]);
+
+        WorkCenter::create($input);
+
+        return redirect()->route('work-center.index')
+            ->with('success', 'Work Center created successfully.');
     }
 
-    public function interested_update(Request $request, $id)
+
+    // EDIT FORM
+    public function work_center_edit($id)
+    {
+        $workCenter = WorkCenter::findOrFail($id);
+
+        return view('admin.othermaster.work-center.edit', compact('workCenter'));
+    }
+
+    // UPDATE
+
+
+    public function work_center_update(Request $request, $id)
     {
         $request->validate([
-            'name' => 'required',
-            'status' => 'required'
+            'work_center_name' => [
+                'required',
+                Rule::unique('work_center', 'work_center_name')
+                    ->ignore($id, 'work_center_id'),
+            ],
+            'is_active' => 'required'
         ]);
-        $interested = Intrested::find($id);
-        $interested->name = $request->name;
-        $interested->status = $request->status;
-        $interested->save();
-        return redirect()->route('interested')
-            ->with('success', 'Intrested updated successfully');
+
+        $workCenter = WorkCenter::findOrFail($id);
+
+        $workCenter->update(
+            $request->only([
+                'work_center_name',
+                'work_center_description',
+                'location',
+                'is_active'
+            ])
+        );
+
+        return redirect()->route('work-center.index')
+            ->with('success', 'Work Center updated successfully.');
     }
 
-    public function interested_delete(Request $request)
+
+
+    // DELETE 
+    public function work_center_destroy($id)
     {
-        $interested = Intrested::find($request->id);
-        $interested->delete();
-        return redirect()->route('interested')
-            ->with('success', 'interested deleted successfully');
+        WorkCenter::findOrFail($id)->delete();
+        return redirect()->route('work-center.index')
+            ->with('success', 'Work Center deleted successfully');
     }
+
+
 
 
     // country
 
-    public function country(Request $request)
+    // INDEX (List)
+    // LIST
+    public function app_settings_index()
     {
-        $country = Country::when($request->name, function ($query) use ($request) {
-            $query->where('name', 'like', '%' . $request->name . '%');
-        })
-            ->when($request->status, function ($query) use ($request) {
-                $query->where('status', $request->status);
-            })
-            ->paginate(12);
-        return view('admin.othermaster.country.index', compact('country'));
-    }
-    public function country_create()
-    {
-        return view('admin.othermaster.country.create');
-    }
-    public function country_store(Request $request)
-    {
-        $request->validate([
-            'name' => 'required|max:233',
-            'country_code' => 'required|numeric|max:2552'
-        ]);
-        $input = $request->except('_token');
-        $input['slug'] = Str::slug($request->name);
-        Country::create($input);
-        return redirect()->route('country')
-            ->with('success', 'country created successfully.');
-    }
-    public function country_edit($id)
-    {
-        $country = Country::find($id);
-        return view('admin.othermaster.country.edit', compact('country'));
-    }
-    public function country_update(Request $request, $id)
-    {
-        $input = $request->except('_token');
-        $input['slug'] = Str::slug($request->name);
-        $country = Country::find($id);
-        $country->update($input);
-        return redirect()->route('country')
-            ->with('success', 'Country updated successfully');
-    }
-    public function country_delete(Request $request)
-    {
-        $country = Country::find($request->id);
-        if ($country) {
-            $country->delete();
-            return redirect()->route('country')
-                ->with('success', 'country deleted successfully');
-        } else {
-            return redirect()->route('country')
-                ->with('error', 'country not found');
-        }
+        $settings = AppSettings::orderBy('setting_id', 'desc')->paginate(10);
+        return view('admin.othermaster.app-settings.index', compact('settings'));
     }
 
-    public function updateCountryStatus(Request $request)
+
+    // CREATE FORM
+    public function app_settings_create()
     {
-        //   dd($request->all());
-        DB::table('country')->where('id', $request->id)->update(['is_active' => $request->status]);
-        return response()->json(['message' => 'Status updated successfully']);
+        return view('admin.othermaster.app-settings.create');
     }
+
+    // STORE
+    public function app_settings_store(Request $request)
+    {
+        $request->validate([
+            'Vendor_Code' => 'required',
+            'Referral_Person_Name' => 'required',
+            'Mob_No' => 'required',
+        ]);
+
+        $data = $request->only([
+            'Vendor_Code',
+            'Referral_Person_Name',
+            'Mob_No',
+            'Address',
+            'description'
+        ]);
+
+        if ($request->hasFile('logo_path')) {
+            $file = $request->file('logo_path');
+            $filename = time() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('uploads/appsettings'), $filename);
+            $data['logo_path'] = $filename;
+        }
+
+        AppSettings::create($data);
+
+        return redirect()->route('appsettings.index')
+            ->with('success', 'App settings added successfully');
+    }
+
+    // EDIT FORM
+    public function app_settings_edit($id)
+    {
+        $setting = AppSettings::findOrFail($id);
+        return view('admin.othermaster.app-settings.edit', compact('setting'));
+    }
+
+    // UPDATE
+    public function app_settings_update(Request $request, $id)
+    {
+        $setting = AppSettings::findOrFail($id);
+
+        $data = $request->only([
+            'Vendor_Code',
+            'Referral_Person_Name',
+            'Mob_No',
+            'Address',
+            'description'
+        ]);
+
+        if ($request->hasFile('logo_path')) {
+            $file = $request->file('logo_path');
+            $filename = time() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('uploads/appsettings'), $filename);
+            $data['logo_path'] = $filename;
+        }
+
+        $setting->update($data);
+
+        return redirect()->route('appsettings.index')
+            ->with('success', 'App settings updated successfully');
+    }
+
+    // DELETE
+    public function app_settings_destroy($id)
+    {
+        $setting = AppSettings::findOrFail($id);
+        $setting->delete();
+
+        return redirect()->route('appsettings.index')
+            ->with('success', 'App settings deleted successfully');
+    }
+
 
     //  province
     public function province(Request $request)

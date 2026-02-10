@@ -124,14 +124,14 @@
                     "permission":"source.view"
                 },
                 {
-                    "url": "/admin/interested",
-                    "name": "Interested",
+                    "url": "/admin/work-center",
+                    "name": "Work Center",
                     "slug": "admin-interested",
                     "permission":"interested.view"
                 },
                 {
-                    "url": "/admin/country",
-                    "name": "Country",
+                    "url": "/admin/app-settings",
+                    "name": "App Settings",
                     "slug": "admin-country",
                     "permission":"country.view"
                 },
