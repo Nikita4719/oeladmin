@@ -40,48 +40,44 @@
 
                     <div class="row g-3">
 
-                        {{-- Customer ID --}}
-                        <div class="col-md-4">
-                            <div class="form-floating">
-                                <input type="text" name="customer_id"
-                                    class="form-control @error('customer_id') is-invalid @enderror"
-                                    placeholder="Customer ID"
-                                    value="{{ old('customer_id') }}"
-                                    oninput="this.value = this.value.replace(/[^0-9]/g, '')">
-                                <label>Customer ID</label>
-                            </div>
-                            @error('customer_id')
-                                <span class="text-danger">{{ $message }}</span>
-                            @enderror
-                        </div>
 
-                        {{-- Material ID --}}
+
+                       
                         <div class="col-md-4">
                             <div class="form-floating">
-                                <input type="text" name="material_id"
-                                    class="form-control @error('material_id') is-invalid @enderror"
-                                    placeholder="Material ID"
-                                    value="{{ old('material_id') }}"
-                                    oninput="this.value = this.value.replace(/[^0-9]/g, '')">
-                                <label>Material ID</label>
+
+
+                             
+
+                                <select name="material_id" id="material_id" class="form-select @error('material_id') is-invalid @enderror">
+                                    <option value="">Select Material </option>
+
+                                    @foreach($allMaterials as $material)
+                                    
+                                    <option value="{{ $material->material_id }}" {{ old('material_id') == $material->material_id ? 'selected' : '' }}>{{ $material->description }}</option>
+                                    @endforeach
+                                </select>
                             </div>
                             @error('material_id')
-                                <span class="text-danger">{{ $message }}</span>
+                            <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
 
                         {{-- Material CTL ID --}}
                         <div class="col-md-4">
                             <div class="form-floating">
-                                <input type="text" name="material_ctl_id"
-                                    class="form-control @error('material_ctl_id') is-invalid @enderror"
-                                    placeholder="Material CTL ID"
-                                    value="{{ old('material_ctl_id') }}"
-                                    oninput="this.value = this.value.replace(/[^0-9]/g, '')">
-                                <label>Material CTL ID</label>
+
+                               
+
+                                <select name="material_ctl_id" id="material_ctl_id" class="form-select @error('material_ctl_id') is-invalid @enderror">
+                                    <option value="">Select Material CTL</option>
+                                    @foreach($material_ctls as $material_ctl)
+                                    <option value="{{ $material_ctl->material_ctl_id }}">{{ $material_ctl->ctl_mat_description }}</option>
+                                    @endforeach
+                                </select>
                             </div>
                             @error('material_ctl_id')
-                                <span class="text-danger">{{ $message }}</span>
+                            <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
 
@@ -95,7 +91,7 @@
                                 <label>Min Maintain Buffer Qty</label>
                             </div>
                             @error('min_maintain_buffer_qty')
-                                <span class="text-danger">{{ $message }}</span>
+                            <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
 
@@ -109,7 +105,7 @@
                                 <label>Max Maintain Buffer Qty</label>
                             </div>
                             @error('max_maintain_buffer_qty')
-                                <span class="text-danger">{{ $message }}</span>
+                            <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
 
@@ -123,7 +119,7 @@
                                 <label>Available Buffer Qty</label>
                             </div>
                             @error('available_buffer_qty')
-                                <span class="text-danger">{{ $message }}</span>
+                            <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
 
@@ -140,12 +136,12 @@
                                 <label>Buffer Status</label>
                             </div>
                             @error('buffer_status')
-                                <span class="text-danger">{{ $message }}</span>
+                            <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
 
                         {{-- Comments --}}
-                        <div class="col-md-8">
+                        <div class="col-md-12">
                             <div class="form-floating">
                                 <textarea name="comments"
                                     class="form-control @error('comments') is-invalid @enderror"
@@ -154,7 +150,7 @@
                                 <label>Comments</label>
                             </div>
                             @error('comments')
-                                <span class="text-danger">{{ $message }}</span>
+                            <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
 

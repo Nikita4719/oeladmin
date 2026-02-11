@@ -36,52 +36,52 @@
 
                     <!-- Row 1 -->
                     <div class="row mb-3">
-                        <div class="col-md-4">
-                            <label class="form-label">Customer ID</label>
-                            <input type="text" name="customer_id"
-                                class="form-control @error('customer_id') is-invalid @enderror"
-                                value="{{ old('customer_id') }}"
-                                oninput="this.value = this.value.replace(/[^0-9]/g, '')">
-                            @error('customer_id') 
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
+
 
                         <div class="col-md-4">
                             <label class="form-label">Material ID</label>
-                            <input type="text" name="material_id"
-                                class="form-control @error('material_id') is-invalid @enderror"
-                                value="{{ old('material_id') }}"
-                                oninput="this.value = this.value.replace(/[^0-9]/g, '')">
-                            @error('material_id') 
-                                <div class="invalid-feedback">{{ $message }}</div>
+
+
+                            <select name="material_id" id="material_id" class="form-select @error('material_id') is-invalid @enderror">
+
+                                @foreach($allMaterials as $material)
+                                <option value="{{ $material->material_id }}" {{ old('material_id') == $material->material_id ? 'selected' : '' }}>{{ $material->description }}</option>
+                                @endforeach
+                            </select>
+
+                            @error('material_id')
+                            <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
 
                         <div class="col-md-4">
                             <label class="form-label">Material CTL ID</label>
-                            <input type="text" name="material_ctl_id"
-                                class="form-control @error('material_ctl_id') is-invalid @enderror"
-                                value="{{ old('material_ctl_id') }}"
-                                oninput="this.value = this.value.replace(/[^0-9]/g, '')">
-                            @error('material_ctl_id') 
-                                <div class="invalid-feedback">{{ $message }}</div>
+                            <select name="material_ctl_id" id="material_ctl_id" class="form-select @error('material_ctl_id') is-invalid @enderror">
+                                <option value="">Select Material CTL</option>
+                                @foreach($material_ctls as $material_ctl)
+                                <option value="{{ $material_ctl->material_ctl_id }}">{{ $material_ctl->ctl_mat_description }}</option>
+                                @endforeach
+                            </select>
+
+                            @error('material_ctl_id')
+                            <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
-                    </div>
-
-                    <!-- Row 2 -->
-                    <div class="row mb-3">
                         <div class="col-md-4">
                             <label class="form-label">Min Maintain Buffer Qty</label>
                             <input type="number" name="min_maintain_buffer_qty"
                                 class="form-control @error('min_maintain_buffer_qty') is-invalid @enderror"
                                 value="{{ old('min_maintain_buffer_qty') }}"
                                 oninput="this.value = this.value.replace(/[^0-9]/g, '')">
-                            @error('min_maintain_buffer_qty') 
-                                <div class="invalid-feedback">{{ $message }}</div>
+                            @error('min_maintain_buffer_qty')
+                            <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
+                    </div>
+
+                    <!-- Row 2 -->
+                    <div class="row mb-3">
+
 
                         <div class="col-md-4">
                             <label class="form-label">Max Maintain Buffer Qty</label>
@@ -89,8 +89,8 @@
                                 class="form-control @error('max_maintain_buffer_qty') is-invalid @enderror"
                                 value="{{ old('max_maintain_buffer_qty') }}"
                                 oninput="this.value = this.value.replace(/[^0-9]/g, '')">
-                            @error('max_maintain_buffer_qty') 
-                                <div class="invalid-feedback">{{ $message }}</div>
+                            @error('max_maintain_buffer_qty')
+                            <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
 
@@ -100,14 +100,11 @@
                                 class="form-control @error('available_buffer_qty') is-invalid @enderror"
                                 value="{{ old('available_buffer_qty') }}"
                                 oninput="this.value = this.value.replace(/[^0-9]/g, '')">
-                            @error('available_buffer_qty') 
-                                <div class="invalid-feedback">{{ $message }}</div>
+                            @error('available_buffer_qty')
+                            <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
-                    </div>
 
-                    <!-- Row 3 -->
-                    <div class="row mb-3">
                         <div class="col-md-4">
                             <label class="form-label">Buffer Status</label>
                             <select name="buffer_status"
@@ -117,18 +114,23 @@
                                 <option value="LOW" {{ old('buffer_status') == 'LOW' ? 'selected' : '' }}>LOW</option>
                                 <option value="CRITICAL" {{ old('buffer_status') == 'CRITICAL' ? 'selected' : '' }}>CRITICAL</option>
                             </select>
-                            @error('buffer_status') 
-                                <div class="invalid-feedback">{{ $message }}</div>
+                            @error('buffer_status')
+                            <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
+                    </div>
 
-                        <div class="col-md-8">
+                    <!-- Row 3 -->
+                    <div class="row mb-3">
+
+
+                        <div class="col-md-12">
                             <label class="form-label">Comments</label>
                             <textarea name="comments"
                                 class="form-control @error('comments') is-invalid @enderror"
                                 rows="3">{{ old('comments') }}</textarea>
-                            @error('comments') 
-                                <div class="invalid-feedback">{{ $message }}</div>
+                            @error('comments')
+                            <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
                     </div>

@@ -510,172 +510,7 @@ class OtherMasterDataController extends Controller
         return redirect()->route('shift')->with('success', 'Shift deleted successfully.');
     }
 
-
-    //    faq
-    public function faq(Request $request)
-    {
-        $faq = Faq::when($request->faq_question, function ($query) use ($request) {
-            $query->where('faq_question', 'like', '%' . $request->faq_question . '%');
-        })
-            ->paginate(12);
-        return view('admin.othermaster.faq.index', compact('faq'));
-    }
-    public function faq_create()
-    {
-        return view('admin.othermaster.faq.create');
-    }
-    public function faq_store(Request $request)
-    {
-        $request->validate([
-            'faq_question' => 'required',
-            'faq_answer' => 'required',
-            'status' => 'required'
-        ]);
-        $input = $request->except('_token');
-        Faq::create($input);
-        return redirect()->route('faq')
-            ->with('success', 'Faq created successfully.');
-    }
-    public function faq_edit($id)
-    {
-        $faq = Faq::find($id);
-        return view('admin.othermaster.faq.edit', compact('faq'));
-    }
-    public function faq_update(Request $request, $id)
-    {
-        $input = $request->except('_token');
-        $faq = Faq::find($id);
-        $faq->update($input);
-        return redirect()->route('faq')
-            ->with('success', 'faq updated successfully');
-    }
-    public function faq_delete(Request $request)
-    {
-        if (Faq::find($request->id)) {
-            $faq = Faq::find($request->id);
-            $faq->delete();
-            return redirect()->route('faq')
-                ->with('success', 'Faq deleted successfully');
-        } else {
-            return redirect()->route('faq')
-                ->with('error', 'Faq not found');
-        }
-    }
-    //    vas service
-    public function vas_service(Request $request)
-    {
-        $vas_service = VasService::when($request->title, function ($query) use ($request) {
-            $query->where('title', 'like', '%' . $request->title . '%');
-        })
-            ->paginate(12);
-        return view('admin.othermaster.vas-services.index', compact('vas_service'));
-    }
-    public function vas_service_create()
-    {
-        return view('admin.othermaster.vas-services.create');
-    }
-    public function vas_service_store(Request $request)
-    {
-        $request->validate([
-            'title' => 'required',
-            'icon_file' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'content' => 'required',
-            'order' => 'required',
-        ]);
-        $input = $request->except('_token');
-        if ($request->hasFile('icon_file')) {
-            $image = $request->file('icon_file');
-            $name = time() . '.' . $image->getClientOriginalExtension();
-            $destinationPath = public_path('/imagesapi');
-            $image->move($destinationPath, $name);
-            $input['icon_file'] = $name;
-        }
-        VasService::create($input);
-        return redirect()->route('vas-service')
-            ->with('success', 'Vas Services created successfully.');
-    }
-    public function vas_service_edit($id)
-    {
-        $vas_service = VasService::findOrFail($id);
-        return view('admin.othermaster.vas-services.edit', compact('vas_service'));
-    }
-    public function vas_service_update(Request $request, $id)
-    {
-        $input = $request->except('_token');
-        $vas_service = VasService::find($id);
-        if ($request->hasFile('icon_file')) {
-            $image = $request->file('icon_file');
-            $name = time() . '.' . $image->getClientOriginalExtension();
-            $destinationPath = public_path('/imagesapi');
-            $image->move($destinationPath, $name);
-            $input['icon_file'] = $name;
-        }
-        $vas_service->update($input);
-        return redirect()->route('vas-service')
-            ->with('success', 'Vas Services updated successfully.');
-    }
-    public function vas_service_delete(Request $request)
-    {
-        $vas_service = VasService::find($request->id);
-        if ($vas_service) {
-            $vas_service->delete();
-            return redirect()->route('vas-service')
-                ->with('success', 'Vas Services deleted successfully');
-        } else {
-            return redirect()->route('vas-service')
-                ->with('success', 'Vas Services not found');
-        }
-    }
-
-
-    public function education_lane(Request $request)
-    {
-        $education_lane = EducationLane::when($request->name, function ($query) use ($request) {
-            $query->where('name', 'like', '%' . $request->name . '%');
-        })
-            ->paginate(12);
-        return view('admin.othermaster.education-lane.index', compact('education_lane'));
-    }
-    public function education_lane_create()
-    {
-        return view('admin.othermaster.education-lane.create');
-    }
-    public function education_lane_store(Request $request)
-    {
-        $request->validate([
-            'name' => 'required',
-            'details' => 'required',
-        ]);
-        $input = $request->except('_token');
-        EducationLane::create($input);
-        return redirect()->route('education-lane')
-            ->with('success', 'Education lane created successfully.');
-    }
-    public function education_lane_edit($id)
-    {
-        $education_lane = EducationLane::find($id);
-        return view('admin.othermaster.education-lane.edit', compact('education_lane'));
-    }
-    public function education_lane_update(Request $request, $id)
-    {
-        $input = $request->except('_token');
-        $education_lane = EducationLane::find($id);
-        $education_lane->update($input);
-        return redirect()->route('education-lane')
-            ->with('success', 'Education updated successfully');
-    }
-    public function education_lane_delete(Request $request)
-    {
-        $education_lane = EducationLane::find($request->id);
-        if ($education_lane) {
-            $education_lane->delete();
-            return redirect()->route('education-lane')
-                ->with('success', 'Education lane deleted successfully');
-        } else {
-            return redirect()->route('education-lane')
-                ->with('error', 'Education lane not found');
-        }
-    }
+   
 
     //  Material ctl by Nikita
     public function material_ctl(Request $request)
@@ -698,14 +533,13 @@ class OtherMasterDataController extends Controller
     public function material_ctl_create()
     {
 
-        $materials=MaterialMaster::all();
-    
+        $materials = MaterialMaster::all();
+
         return view('admin.othermaster.material-ctl.create', compact('materials'));
-   
     }
     public function material_ctl_store(Request $request)
     {
-        
+
         $request->validate([
             'material_id' => 'required|integer|max:200',
 
@@ -717,7 +551,7 @@ class OtherMasterDataController extends Controller
     }
     public function material_ctl_edit($id)
     {
-            $allMaterials=MaterialMaster::all();
+        $allMaterials = MaterialMaster::all();
         $materials = MaterialCtl::findOrFail($id);
 
         return view('admin.othermaster.material-ctl.edit', compact('materials', 'allMaterials'));
@@ -762,7 +596,9 @@ class OtherMasterDataController extends Controller
     // CREATE PAGE
     public function customer_ctl_create()
     {
-        return view('admin.othermaster.customer-ctl.create');
+        $allMaterials = MaterialMaster::all();
+        $material_ctls = MaterialCtl::all();
+        return view('admin.othermaster.customer-ctl.create', compact('allMaterials', 'material_ctls'));
     }
 
 
@@ -792,7 +628,10 @@ class OtherMasterDataController extends Controller
     {
         $customer_ctl = CustomerCtl::findOrFail($id);
 
-        return view('admin.othermaster.customer-ctl.edit', compact('customer_ctl'));
+        $allMaterials = MaterialMaster::all();
+        $material_ctls = MaterialCtl::all();
+
+        return view('admin.othermaster.customer-ctl.edit', compact('customer_ctl', 'allMaterials', 'material_ctls'));
     }
 
 
@@ -827,12 +666,4 @@ class OtherMasterDataController extends Controller
         return redirect()->route('customer-ctl')
             ->with('success', 'Customer CTL deleted successfully.');
     }
-
-
-
-
-
-
-
-
 }
