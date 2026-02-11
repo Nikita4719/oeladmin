@@ -106,8 +106,8 @@
                             <form action="{{ route('work-center.destroy', $item->work_center_id) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">
-                                    Delete
+                                <button type="submit" class="btn btn-warning" onclick="return confirm('Are you sure?')">
+                                 <i class="fa-solid fa-trash"></i>
                                 </button>
                             </form>
 

@@ -89,16 +89,16 @@
                             {{-- Edit Button --}}
                             <td>
                                 <a href="{{ route('rack-master.edit', $rack->rack_id) }}" class="btn btn-info btn-sm">
-                                    <i class="fa-solid fa-pen"></i> Edit
+                                    <i class="fa-solid fa-pen"></i>
                                 </a>
                             </td>
 
                             {{-- Delete Button (using your GET route) --}}
                             <td>
                                 <a href="{{ route('rack-master.delete', $rack->rack_id) }}"
-                                   class="btn btn-danger btn-sm"
+                                   class="btn btn-warning"
                                    onclick="return confirm('Are you sure you want to delete this rack?')">
-                                    <i class="fa-solid fa-trash"></i> Delete
+                                    <i class="fa-solid fa-trash"></i> 
                                 </a>
                             </td>
                         </tr>
