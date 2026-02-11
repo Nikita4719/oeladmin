@@ -206,9 +206,7 @@
                             <div class="form-floating">
                                <select class="form-control" name="program"  placeholder="Source">
                                   <option value="">-- Highest Level Program --</option>
-                                  @foreach ($progLabel as $item)
-                                    <option value="{{$item->id}}">{{$item->name}}</option>
-                                  @endforeach
+                                 
                                </select>
                                <label for="lead-source" class="form-label">Highest Level Of Program</label>
                             </div>
@@ -217,9 +215,7 @@
                             <div class="form-floating">
                                <select class="form-control" name="subject"  placeholder="Source">
                                        <option value="">-- Subjects  --</option>
-                                    @foreach ($subjects as $item)
-                                        <option class="option" value="{{$item->id}}"  {{ $item->id == $studentData-> name ? 'selected' : '' }}>{{$item->name}}</option>
-                                    @endforeach
+                                  
                                </select>
                                <label for="lead-source" class="form-label">Subjects</label>
                             </div>
@@ -262,9 +258,7 @@
                             <div class="form-floating">
                                 <select class="form-control" name="interested" id="interested" >
                                     <option value="">-- Interested --</option>
-                                    @foreach ($interested as $item)
-                                        <option value="{{ $item->id }}"  {{ $item->id == $studentData->interested ? 'selected' : '' }}>{{ $item->name }}</option>
-                                    @endforeach
+                                   
                                 </select>
                                 <label for="interested" class="form-label">Interested</label>
                             </div>
@@ -273,9 +267,7 @@
                             <div class="form-floating">
                                <select class="form-control" name="preferred_program_label"  >
                                   <option value="">--Preferred Program Level  --</option>
-                                    @foreach ($preproLabel as $item)
-                                        <option value="{{$item->id}}" {{ $item->id == $studentData->preferred_program_label ? 'selected' : '' }}>{{$item->name}}</option>
-                                    @endforeach
+                                  
                                </select>
                                <label for="lead-source" class="form-label">  Preferred Program Level  </label>
                             </div>

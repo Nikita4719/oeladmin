@@ -486,19 +486,15 @@ class LeadsManageCotroller extends Controller
 
         $user = auth()->user();
         $castes = Caste::where("status", 1)->get();
-          $subjects = Program::where('is_approved', 1)
-        ->select('id', 'name')
-        ->orderBy('name', 'asc') // or 'desc'
-        ->take(20)
-        ->get();
+        
         $countries = Country::where('is_active', 1)->get();
         $lead_status = MasterLeadStatus::where("status", 1)->orderBy('name', 'ASC')->get();
         $source = Source::where("status", 1)->orderBy('name', 'ASC')->get();
         // $progLabel = EducationLevel::All();
-        $progLabel = ProgramLevel::All();
-        $preproLabel = Fieldsofstudytype::All();
-        $interested = Intrested::WHERE('is_deleted', '0')->get();
-        return view('admin.leads.add_lead', compact('preproLabel', 'castes', 'interested', 'subjects', 'countries', 'lead_status', 'source', 'progLabel'));
+       
+      
+       
+        return view('admin.leads.add_lead', compact( 'castes',   'countries', 'lead_status', 'source',));
     }
 
     public function edit_lead_data(Request $request, $id)
@@ -506,20 +502,14 @@ class LeadsManageCotroller extends Controller
 
         $user = auth()->user();
         $castes = Caste::where("status", 1)->get();
-          $subjects = Program::where('is_approved', 1)
-        ->select('id', 'name')
-        ->orderBy('name', 'asc') // or 'desc'
-        ->take(20)
-        ->get();
+        
         $countries = Country::where('is_active', 1)->get();
         $lead_status = MasterLeadStatus::where("status", 1)->orderBy('name', 'ASC')->get();
         $source = Source::where("status", 1)->orderBy('name', 'ASC')->get();
-        $progLabel = EducationLevel::All();
-        $preproLabel = Fieldsofstudytype::All();
-        $interested = Intrested::WHERE('is_deleted', '0')->get();
+      
         $studentData = StudentByAgent::where('id', $id)->first();
         // dd($studentData->phone_number);
-        return view('admin.leads.edit_lead', compact('studentData', 'preproLabel', 'castes', 'interested', 'subjects', 'countries', 'lead_status', 'source', 'progLabel'));
+        return view('admin.leads.edit_lead', compact('studentData',  'castes',   'countries', 'lead_status', 'source', ));
     }
 
 
