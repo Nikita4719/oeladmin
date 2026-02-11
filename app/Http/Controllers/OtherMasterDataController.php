@@ -34,6 +34,8 @@ class OtherMasterDataController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    // Rackmaster by Nikita
     public function rack_master(Request $request)
     {
         $query = RackMaster::query();
@@ -63,7 +65,7 @@ class OtherMasterDataController extends Controller
     public function rack_master_store(Request $request)
     {
         $request->validate([
-            'rack_code' => 'required|max:50',
+            'rack_code' => 'required|integer|max:50',
             'location'  => 'required|max:100',
             'capacity'  => 'required|numeric',
             'rack_type' => 'required|max:50',
@@ -97,7 +99,7 @@ class OtherMasterDataController extends Controller
     public function rack_master_update(Request $request, $id)
     {
         $request->validate([
-            'rack_code' => 'required|max:50',
+            'rack_code' => 'required|integer|max:50',
             'location'  => 'required|max:100',
             'capacity'  => 'required|numeric',
             'rack_type' => 'required|max:50',
@@ -130,7 +132,7 @@ class OtherMasterDataController extends Controller
     }
 
 
-    // source
+    // materialmaster by Nikita
     public function index(Request $request)
     {
         $materials = MaterialMaster::when($request->code, function ($query) use ($request) {
@@ -152,7 +154,7 @@ class OtherMasterDataController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'code' => 'required|max:50|unique:material_master,code',
+            'code' => 'required|integer|max:50|unique:material_master,code',
             'description' => 'required',
             'od' => 'required|numeric',
             'thickness' => 'required|numeric',
@@ -181,7 +183,7 @@ class OtherMasterDataController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'code' => 'required|max:50',
+            'code' => 'required||integer|max:50',
             'description' => 'required',
             'od' => 'required|numeric',
             'thickness' => 'required|numeric',
@@ -220,7 +222,7 @@ class OtherMasterDataController extends Controller
 
 
 
-    // interested
+    // workcenter by Nikita
     public function work_center(Request $request)
     {
         $workCenters = WorkCenter::when($request->work_center_name, function ($query) use ($request) {
@@ -313,7 +315,7 @@ class OtherMasterDataController extends Controller
 
 
 
-    // app-settings
+    // app-settings by Nikita
 
 
     // INDEX (List)
@@ -335,7 +337,7 @@ class OtherMasterDataController extends Controller
     public function app_settings_store(Request $request)
     {
         $request->validate([
-            'Vendor_Code' => 'required',
+            'Vendor_Code' => 'required|integer|max:100',
             'Referral_Person_Name' => 'required',
             'Mob_No' => 'required',
         ]);
@@ -371,6 +373,11 @@ class OtherMasterDataController extends Controller
     // UPDATE
     public function app_settings_update(Request $request, $id)
     {
+        $request->validate([
+            'Vendor_Code' => 'required|integer|max:100',
+            'Referral_Person_Name' => 'required',
+            'Mob_No' => 'required',
+        ]);
         $setting = AppSettings::findOrFail($id);
 
         $data = $request->only([
@@ -405,7 +412,7 @@ class OtherMasterDataController extends Controller
     }
 
 
-    //  Shift
+    //  Shift by NIkita
 
     // Show Shift list
     public function shift_index()
@@ -504,13 +511,173 @@ class OtherMasterDataController extends Controller
     }
 
 
+    //    faq
+    public function faq(Request $request)
+    {
+        $faq = Faq::when($request->faq_question, function ($query) use ($request) {
+            $query->where('faq_question', 'like', '%' . $request->faq_question . '%');
+        })
+            ->paginate(12);
+        return view('admin.othermaster.faq.index', compact('faq'));
+    }
+    public function faq_create()
+    {
+        return view('admin.othermaster.faq.create');
+    }
+    public function faq_store(Request $request)
+    {
+        $request->validate([
+            'faq_question' => 'required',
+            'faq_answer' => 'required',
+            'status' => 'required'
+        ]);
+        $input = $request->except('_token');
+        Faq::create($input);
+        return redirect()->route('faq')
+            ->with('success', 'Faq created successfully.');
+    }
+    public function faq_edit($id)
+    {
+        $faq = Faq::find($id);
+        return view('admin.othermaster.faq.edit', compact('faq'));
+    }
+    public function faq_update(Request $request, $id)
+    {
+        $input = $request->except('_token');
+        $faq = Faq::find($id);
+        $faq->update($input);
+        return redirect()->route('faq')
+            ->with('success', 'faq updated successfully');
+    }
+    public function faq_delete(Request $request)
+    {
+        if (Faq::find($request->id)) {
+            $faq = Faq::find($request->id);
+            $faq->delete();
+            return redirect()->route('faq')
+                ->with('success', 'Faq deleted successfully');
+        } else {
+            return redirect()->route('faq')
+                ->with('error', 'Faq not found');
+        }
+    }
+    //    vas service
+    public function vas_service(Request $request)
+    {
+        $vas_service = VasService::when($request->title, function ($query) use ($request) {
+            $query->where('title', 'like', '%' . $request->title . '%');
+        })
+            ->paginate(12);
+        return view('admin.othermaster.vas-services.index', compact('vas_service'));
+    }
+    public function vas_service_create()
+    {
+        return view('admin.othermaster.vas-services.create');
+    }
+    public function vas_service_store(Request $request)
+    {
+        $request->validate([
+            'title' => 'required',
+            'icon_file' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'content' => 'required',
+            'order' => 'required',
+        ]);
+        $input = $request->except('_token');
+        if ($request->hasFile('icon_file')) {
+            $image = $request->file('icon_file');
+            $name = time() . '.' . $image->getClientOriginalExtension();
+            $destinationPath = public_path('/imagesapi');
+            $image->move($destinationPath, $name);
+            $input['icon_file'] = $name;
+        }
+        VasService::create($input);
+        return redirect()->route('vas-service')
+            ->with('success', 'Vas Services created successfully.');
+    }
+    public function vas_service_edit($id)
+    {
+        $vas_service = VasService::findOrFail($id);
+        return view('admin.othermaster.vas-services.edit', compact('vas_service'));
+    }
+    public function vas_service_update(Request $request, $id)
+    {
+        $input = $request->except('_token');
+        $vas_service = VasService::find($id);
+        if ($request->hasFile('icon_file')) {
+            $image = $request->file('icon_file');
+            $name = time() . '.' . $image->getClientOriginalExtension();
+            $destinationPath = public_path('/imagesapi');
+            $image->move($destinationPath, $name);
+            $input['icon_file'] = $name;
+        }
+        $vas_service->update($input);
+        return redirect()->route('vas-service')
+            ->with('success', 'Vas Services updated successfully.');
+    }
+    public function vas_service_delete(Request $request)
+    {
+        $vas_service = VasService::find($request->id);
+        if ($vas_service) {
+            $vas_service->delete();
+            return redirect()->route('vas-service')
+                ->with('success', 'Vas Services deleted successfully');
+        } else {
+            return redirect()->route('vas-service')
+                ->with('success', 'Vas Services not found');
+        }
+    }
 
 
+    public function education_lane(Request $request)
+    {
+        $education_lane = EducationLane::when($request->name, function ($query) use ($request) {
+            $query->where('name', 'like', '%' . $request->name . '%');
+        })
+            ->paginate(12);
+        return view('admin.othermaster.education-lane.index', compact('education_lane'));
+    }
+    public function education_lane_create()
+    {
+        return view('admin.othermaster.education-lane.create');
+    }
+    public function education_lane_store(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'details' => 'required',
+        ]);
+        $input = $request->except('_token');
+        EducationLane::create($input);
+        return redirect()->route('education-lane')
+            ->with('success', 'Education lane created successfully.');
+    }
+    public function education_lane_edit($id)
+    {
+        $education_lane = EducationLane::find($id);
+        return view('admin.othermaster.education-lane.edit', compact('education_lane'));
+    }
+    public function education_lane_update(Request $request, $id)
+    {
+        $input = $request->except('_token');
+        $education_lane = EducationLane::find($id);
+        $education_lane->update($input);
+        return redirect()->route('education-lane')
+            ->with('success', 'Education updated successfully');
+    }
+    public function education_lane_delete(Request $request)
+    {
+        $education_lane = EducationLane::find($request->id);
+        if ($education_lane) {
+            $education_lane->delete();
+            return redirect()->route('education-lane')
+                ->with('success', 'Education lane deleted successfully');
+        } else {
+            return redirect()->route('education-lane')
+                ->with('error', 'Education lane not found');
+        }
+    }
 
-
-
-
-    //  Material ctl
+    //  Material ctl by Nikita
     public function material_ctl(Request $request)
     {
         $materials = MaterialCtl::when($request->material_id, function ($query) use ($request) {
@@ -540,7 +707,7 @@ class OtherMasterDataController extends Controller
     {
         
         $request->validate([
-            'material_id' => 'required|max:200',
+            'material_id' => 'required|integer|max:200',
 
         ]);
         $input = $request->except('_token');
@@ -558,6 +725,10 @@ class OtherMasterDataController extends Controller
 
     public function material_ctl_update(Request $request, $id)
     {
+        $request->validate([
+            'material_id' => 'required|integer|max:200',
+
+        ]);
         $input = $request->except('_token');
         $material_ctl = MaterialCtl::find($id);
         $material_ctl->update($input);
@@ -574,7 +745,7 @@ class OtherMasterDataController extends Controller
     }
 
 
-    //    customer ctl
+    //    customer ctl by Nikita
     public function customer_ctl(Request $request)
     {
         $customer_ctl = CustomerCtl::when($request->customer_ctl_id, function ($query) use ($request) {
@@ -599,12 +770,12 @@ class OtherMasterDataController extends Controller
     public function customer_ctl_store(Request $request)
     {
         $request->validate([
-            'customer_id' => 'required',
-            'material_id' => 'required',
-            'material_ctl_id' => 'required',
-            'min_maintain_buffer_qty' => 'required',
-            'max_maintain_buffer_qty' => 'required',
-            'available_buffer_qty' => 'required',
+            'customer_id' => 'required|integer|max:200',
+            'material_id' => 'required|integer|max:200',
+            'material_ctl_id' => 'required|integer|max:200',
+            'min_maintain_buffer_qty' => 'required|integer',
+            'max_maintain_buffer_qty' => 'required|integer',
+            'available_buffer_qty' => 'required|integer',
             'buffer_status' => 'required',
             'is_active' => 'required'
         ]);
@@ -628,6 +799,16 @@ class OtherMasterDataController extends Controller
     // UPDATE
     public function customer_ctl_update(Request $request, $id)
     {
+        $request->validate([
+            'customer_id' => 'required|integer|max:200',
+            'material_id' => 'required|integer|max:200',
+            'material_ctl_id' => 'required|integer|max:200',
+            'min_maintain_buffer_qty' => 'required|integer',
+            'max_maintain_buffer_qty' => 'required|integer',
+            'available_buffer_qty' => 'required|integer',
+            'buffer_status' => 'required',
+            'is_active' => 'required'
+        ]);
         $customer_ctl = CustomerCtl::findOrFail($id);
 
         $customer_ctl->update($request->all());

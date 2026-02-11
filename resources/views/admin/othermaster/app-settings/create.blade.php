@@ -10,70 +10,113 @@
             </div>
 
             <div class="card-body">
-                <div class="wizard">
-                    <div class="tab-content">
-                        <div class="tab-pane fade show active">
 
-                            <div class="mb-4 title-section-adss">
-                                <h3>Add App Settings</h3>
-                            </div>
-
-                            @if (session('success'))
-                                <div class="alert alert-success">
-                                    {{ session('success') }}
-                                </div>
-                            @endif
-
-                          
-                            <form class="row"
-                                  action="{{ route('appsettings.store') }}"
-                                  method="POST"
-                                  enctype="multipart/form-data">
-                                @csrf
-
-                                <div class="col-md-12 input-group-adss">
-                                    <label>Vendor Code <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" name="Vendor_Code">
-                                </div>
-
-                                <div class="col-md-12 input-group-adss">
-                                    <label>Referral Person Name</label>
-                                    <input type="text" class="form-control" name="Referral_Person_Name">
-                                </div>
-
-                                <div class="col-md-12 input-group-adss">
-                                    <label>Mobile No</label>
-                                    <input type="text" class="form-control" name="Mob_No">
-                                </div>
-
-                                <div class="col-md-12 input-group-adss">
-                                    <label>Address</label>
-                                    <textarea class="form-control" name="Address"></textarea>
-                                </div>
-
-                                <div class="col-md-12 input-group-adss">
-                                    <label>Logo</label>
-                                    <input type="file" class="form-control" name="logo_path">
-                                </div>
-
-                                <div class="col-md-12 input-group-adss">
-                                    <label>Description</label>
-                                    <textarea class="form-control" name="description"></textarea>
-                                </div>
-
-                                <div class="col-md-12 d-flex justify-content-center mt-3">
-                                    <button type="submit" class="btn btn-info w-25">
-                                        Submit
-                                    </button>
-                                </div>
-
-                            </form>
-
-                        </div>
-                    </div>
+                <div class="mb-4">
+                    <h5 class="fw-bold">Add App Settings</h5>
                 </div>
-            </div>
 
+                @if (session('success'))
+                    <div class="alert alert-success">
+                        {{ session('success') }}
+                    </div>
+                @endif
+
+                <form action="{{ route('appsettings.store') }}"
+                      method="POST"
+                      enctype="multipart/form-data">
+                    @csrf
+
+                    <div class="row">
+
+                        {{-- Vendor Code --}}
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">
+                                Vendor Code <span class="text-danger">*</span>
+                            </label>
+                            <input type="text"
+                                   class="form-control @error('Vendor_Code') is-invalid @enderror"
+                                   name="Vendor_Code"
+                                   value="{{ old('Vendor_Code') }}"
+                                   oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+                            @error('Vendor_Code')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        {{-- Mobile No --}}
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Mobile No</label>
+                            <input type="text"
+                                   class="form-control @error('Mob_No') is-invalid @enderror"
+                                   name="Mob_No"
+                                   value="{{ old('Mob_No') }}"
+                                   maxlength="10"
+                                   oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+                            @error('Mob_No')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        {{-- Referral Person Name --}}
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Referral Person Name</label>
+                            <input type="text"
+                                   class="form-control @error('Referral_Person_Name') is-invalid @enderror"
+                                   name="Referral_Person_Name"
+                                   value="{{ old('Referral_Person_Name') }}">
+                            @error('Referral_Person_Name')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        {{-- Logo --}}
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Logo</label>
+                            <input type="file"
+                                   class="form-control @error('logo_path') is-invalid @enderror"
+                                   name="logo_path">
+                            @error('logo_path')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        {{-- Address --}}
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Address</label>
+                            <textarea class="form-control @error('Address') is-invalid @enderror"
+                                      name="Address"
+                                      rows="3">{{ old('Address') }}</textarea>
+                            @error('Address')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        {{-- Description --}}
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Description</label>
+                            <textarea class="form-control @error('description') is-invalid @enderror"
+                                      name="description"
+                                      rows="3">{{ old('description') }}</textarea>
+                            @error('description')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                    </div>
+
+                    {{-- Submit Button --}}
+                    <div class="text-center mt-4">
+                        <button type="submit" class="btn btn-info px-5">
+                            Submit
+                        </button>
+                        <button type="reset" class="btn btn-secondary ms-2 px-4">
+                            Reset
+                        </button>
+                    </div>
+
+                </form>
+
+            </div>
         </div>
     </div>
 </div>

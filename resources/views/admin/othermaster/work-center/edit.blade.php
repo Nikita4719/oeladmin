@@ -10,66 +10,92 @@
             </div>
 
             <div class="card-body">
+
                 @if (session('success'))
                     <div class="alert alert-success">
                         {{ session('success') }}
                     </div>
                 @endif
 
-                <form class="row"
-                      action="{{ route('work-center.update', $workCenter->work_center_id) }}"
-                      method="POST">
-
+                <form action="{{ route('work-center.update', $workCenter->work_center_id) }}" method="POST">
                     @csrf
+                    @method('POST') {{-- agar PUT use karna ho to @method('PUT') karo --}}
 
-                    {{-- Work Center Name --}}
-                    <div class="col-md-12 input-group-adss">
-                        <label>Work Center Name <span class="text-danger">*</span></label>
-                        <input type="text"
-                               class="form-control"
-                               name="work_center_name"
-                               value="{{ old('work_center_name', $workCenter->work_center_name) }}">
-                        @error('work_center_name')
-                            <div class="text-danger">{{ $message }}</div>
-                        @enderror
+                    <div class="row">
+
+                        {{-- Work Center Name --}}
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">
+                                Work Center Name <span class="text-danger">*</span>
+                            </label>
+                            <input type="text"
+                                   class="form-control @error('work_center_name') is-invalid @enderror"
+                                   name="work_center_name"
+                                   value="{{ old('work_center_name', $workCenter->work_center_name) }}">
+                            @error('work_center_name')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        {{-- Location --}}
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Location</label>
+                            <input type="text"
+                                   class="form-control @error('location') is-invalid @enderror"
+                                   name="location"
+                                   value="{{ old('location', $workCenter->location) }}">
+                            @error('location')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        {{-- Description --}}
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Description</label>
+                            <textarea class="form-control @error('work_center_description') is-invalid @enderror"
+                                      name="work_center_description"
+                                      rows="3">{{ old('work_center_description', $workCenter->work_center_description) }}</textarea>
+                            @error('work_center_description')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        {{-- Status --}}
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">
+                                Status <span class="text-danger">*</span>
+                            </label>
+                            <select class="form-control @error('is_active') is-invalid @enderror"
+                                    name="is_active">
+                                <option value="1"
+                                    {{ old('is_active', $workCenter->is_active) == 1 ? 'selected' : '' }}>
+                                    Active
+                                </option>
+                                <option value="0"
+                                    {{ old('is_active', $workCenter->is_active) == 0 ? 'selected' : '' }}>
+                                    Inactive
+                                </option>
+                            </select>
+                            @error('is_active')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
                     </div>
 
-                    {{-- Description --}}
-                    <div class="col-md-12 input-group-adss">
-                        <label>Description</label>
-                        <textarea class="form-control"
-                                  name="work_center_description">{{ old('work_center_description', $workCenter->work_center_description) }}</textarea>
-                    </div>
-
-                    {{-- Location --}}
-                    <div class="col-md-12 input-group-adss">
-                        <label>Location</label>
-                        <input type="text"
-                               class="form-control"
-                               name="location"
-                               value="{{ old('location', $workCenter->location) }}">
-                    </div>
-
-                    {{-- Status --}}
-                    <div class="col-md-12 input-group-adss">
-                        <label>Status <span class="text-danger">*</span></label>
-                        <select class="form-control" name="is_active">
-                            <option value="1" {{ $workCenter->is_active == 1 ? 'selected' : '' }}>Active</option>
-                            <option value="0" {{ $workCenter->is_active == 0 ? 'selected' : '' }}>Inactive</option>
-                        </select>
-                        @error('is_active')
-                            <div class="text-danger">{{ $message }}</div>
-                        @enderror
-                    </div>
-
-                    {{-- Submit --}}
-                    <div class="col-md-12 d-flex justify-content-center mt-3">
-                        <button type="submit" class="btn btn-info w-25">Update</button>
+                    {{-- Buttons --}}
+                    <div class="text-center mt-4">
+                        <button type="submit" class="btn btn-info px-5">
+                            Update
+                        </button>
+                        <a href="{{ route('work-center.index') }}" class="btn btn-secondary ms-2 px-4">
+                            Cancel
+                        </a>
                     </div>
 
                 </form>
-            </div>
 
+            </div>
         </div>
     </div>
 </div>

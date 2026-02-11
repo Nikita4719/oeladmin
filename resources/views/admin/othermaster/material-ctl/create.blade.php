@@ -51,7 +51,8 @@
 
                         <div class="col-md-4 mb-3">
                             <div class="form-floating">
-                                <input type="text" name="ctl_mat_no" value="{{ old('ctl_mat_no') }}" class="form-control @error('ctl_mat_no') is-invalid @enderror" placeholder="CTL Material No">
+                                <input type="text" name="ctl_mat_no" value="{{ old('ctl_mat_no') }}" class="form-control @error('ctl_mat_no') is-invalid @enderror" placeholder="CTL Material No"
+                                oninput="this.value = this.value.replace(/[^0-9]/g, '')">
                                 <label>CTL Material No</label>
                                 @error('ctl_mat_no')<span class="text-danger">{{ $message }}</span>@enderror
                             </div>
@@ -67,7 +68,8 @@
 
                         <div class="col-md-4 mb-3">
                             <div class="form-floating">
-                                <input type="text" name="kg_per_meter" value="{{ old('kg_per_meter') }}" class="form-control @error('kg_per_meter') is-invalid @enderror" placeholder="KG per Meter">
+                                <input type="text" name="kg_per_meter" value="{{ old('kg_per_meter') }}" class="form-control @error('kg_per_meter') is-invalid @enderror" placeholder="KG per Meter"
+                                oninput="this.value = this.value.replace(/[^0-9]/g, '')">
                                 <label>KG per Meter</label>
                                 @error('kg_per_meter')<span class="text-danger">{{ $message }}</span>@enderror
                             </div>
@@ -83,7 +85,8 @@
 
                         <div class="col-md-4 mb-3">
                             <div class="form-floating">
-                                <input type="text" name="od" value="{{ old('od') }}" class="form-control @error('od') is-invalid @enderror" placeholder="OD">
+                                <input type="text" name="od" value="{{ old('od') }}" class="form-control @error('od') is-invalid @enderror" placeholder="OD"
+                                oninput="this.value = this.value.replace(/[^0-9]/g, '')">
                                 <label>OD</label>
                                 @error('od')<span class="text-danger">{{ $message }}</span>@enderror
                             </div>
@@ -91,7 +94,8 @@
 
                         <div class="col-md-4 mb-3">
                             <div class="form-floating">
-                                <input type="text" name="thickness" value="{{ old('thickness') }}" class="form-control @error('thickness') is-invalid @enderror" placeholder="Thickness">
+                                <input type="text" name="thickness" value="{{ old('thickness') }}" class="form-control @error('thickness') is-invalid @enderror" placeholder="Thickness"
+                                oninput="this.value = this.value.replace(/[^0-9]/g, '')">
                                 <label>Thickness</label>
                                 @error('thickness')<span class="text-danger">{{ $message }}</span>@enderror
                             </div>
@@ -99,7 +103,8 @@
 
                         <div class="col-md-4 mb-3">
                             <div class="form-floating">
-                                <input type="text" name="length_mtr" value="{{ old('length_mtr') }}" class="form-control @error('length_mtr') is-invalid @enderror" placeholder="Length (mtr)">
+                                <input type="text" name="length_mtr" value="{{ old('length_mtr') }}" class="form-control @error('length_mtr') is-invalid @enderror" placeholder="Length (mtr)"
+                                oninput="this.value = this.value.replace(/[^0-9]/g, '')">
                                 <label>Length (mtr)</label>
                                 @error('length_mtr')<span class="text-danger">{{ $message }}</span>@enderror
                             </div>
@@ -107,7 +112,8 @@
 
                         <div class="col-md-4 mb-3">
                             <div class="form-floating">
-                                <input type="text" name="nos_of_ctl_per_ml" value="{{ old('nos_of_ctl_per_ml') }}" class="form-control @error('nos_of_ctl_per_ml') is-invalid @enderror" placeholder="No of CTL per ML">
+                                <input type="text" name="nos_of_ctl_per_ml" value="{{ old('nos_of_ctl_per_ml') }}" class="form-control @error('nos_of_ctl_per_ml') is-invalid @enderror" placeholder="No of CTL per ML"
+                                oninput="this.value = this.value.replace(/[^0-9]/g, '')">
                                 <label>No of CTL per ML</label>
                                 @error('nos_of_ctl_per_ml')<span class="text-danger">{{ $message }}</span>@enderror
                             </div>
@@ -115,7 +121,8 @@
 
                         <div class="col-md-4 mb-3">
                             <div class="form-floating">
-                                <input type="text" name="nos_of_ctl_required" value="{{ old('nos_of_ctl_required') }}" class="form-control @error('nos_of_ctl_required') is-invalid @enderror" placeholder="Nos of CTL Required">
+                                <input type="text" name="nos_of_ctl_required" value="{{ old('nos_of_ctl_required') }}" class="form-control @error('nos_of_ctl_required') is-invalid @enderror" placeholder="Nos of CTL Required"
+                                oninput="this.value = this.value.replace(/[^0-9]/g, '')">
                                 <label>Nos of CTL Required</label>
                                 @error('nos_of_ctl_required')<span class="text-danger">{{ $message }}</span>@enderror
                             </div>
@@ -123,7 +130,8 @@
 
                         <div class="col-md-4 mb-3">
                             <div class="form-floating">
-                                <input type="text" name="nos_of_ml_required" value="{{ old('nos_of_ml_required') }}" class="form-control @error('nos_of_ml_required') is-invalid @enderror" placeholder="Nos of ML Required">
+                                <input type="text" name="nos_of_ml_required" value="{{ old('nos_of_ml_required') }}" class="form-control @error('nos_of_ml_required') is-invalid @enderror" placeholder="Nos of ML Required"
+                                oninput="this.value = this.value.replace(/[^0-9]/g, '')">
                                 <label>Nos of ML Required</label>
                                 @error('nos_of_ml_required')<span class="text-danger">{{ $message }}</span>@enderror
                             </div>
@@ -131,7 +139,8 @@
 
                         <div class="col-md-4 mb-3">
                             <div class="form-floating">
-                                <input type="text" name="ctl_weight" value="{{ old('ctl_weight') }}" class="form-control @error('ctl_weight') is-invalid @enderror" placeholder="CTL Weight">
+                                <input type="text" name="ctl_weight" value="{{ old('ctl_weight') }}" class="form-control @error('ctl_weight') is-invalid @enderror" placeholder="CTL Weight"
+                                oninput="this.value = this.value.replace(/[^0-9]/g, '')">
                                 <label>CTL Weight</label>
                                 @error('ctl_weight')<span class="text-danger">{{ $message }}</span>@enderror
                             </div>
@@ -139,7 +148,8 @@
 
                         <div class="col-md-4 mb-3">
                             <div class="form-floating">
-                                <input type="text" name="ml_weight" value="{{ old('ml_weight') }}" class="form-control @error('ml_weight') is-invalid @enderror" placeholder="ML Weight">
+                                <input type="text" name="ml_weight" value="{{ old('ml_weight') }}" class="form-control @error('ml_weight') is-invalid @enderror" placeholder="ML Weight"
+                                oninput="this.value = this.value.replace(/[^0-9]/g, '')">
                                 <label>ML Weight</label>
                                 @error('ml_weight')<span class="text-danger">{{ $message }}</span>@enderror
                             </div>
@@ -147,7 +157,8 @@
 
                         <div class="col-md-4 mb-3">
                             <div class="form-floating">
-                                <input type="text" name="blade_thickness" value="{{ old('blade_thickness') }}" class="form-control @error('blade_thickness') is-invalid @enderror" placeholder="Blade Thickness">
+                                <input type="text" name="blade_thickness" value="{{ old('blade_thickness') }}" class="form-control @error('blade_thickness') is-invalid @enderror" placeholder="Blade Thickness"
+                                oninput="this.value = this.value.replace(/[^0-9]/g, '')">
                                 <label>Blade Thickness</label>
                                 @error('blade_thickness')<span class="text-danger">{{ $message }}</span>@enderror
                             </div>
@@ -155,7 +166,8 @@
 
                         <div class="col-md-4 mb-3">
                             <div class="form-floating">
-                                <input type="text" name="dust" value="{{ old('dust') }}" class="form-control @error('dust') is-invalid @enderror" placeholder="Dust">
+                                <input type="text" name="dust" value="{{ old('dust') }}" class="form-control @error('dust') is-invalid @enderror" placeholder="Dust"
+                                oninput="this.value = this.value.replace(/[^0-9]/g, '')">
                                 <label>Dust</label>
                                 @error('dust')<span class="text-danger">{{ $message }}</span>@enderror
                             </div>
@@ -163,7 +175,8 @@
 
                         <div class="col-md-4 mb-3">
                             <div class="form-floating">
-                                <input type="text" name="end_cut" value="{{ old('end_cut') }}" class="form-control @error('end_cut') is-invalid @enderror" placeholder="End Cut">
+                                <input type="text" name="end_cut" value="{{ old('end_cut') }}" class="form-control @error('end_cut') is-invalid @enderror" placeholder="End Cut"
+                                oninput="this.value = this.value.replace(/[^0-9]/g, '')">
                                 <label>End Cut</label>
                                 @error('end_cut')<span class="text-danger">{{ $message }}</span>@enderror
                             </div>
@@ -171,7 +184,8 @@
 
                         <div class="col-md-4 mb-3">
                             <div class="form-floating">
-                                <input type="text" name="loss_percentage" value="{{ old('loss_percentage') }}" class="form-control @error('loss_percentage') is-invalid @enderror" placeholder="Loss Percentage">
+                                <input type="text" name="loss_percentage" value="{{ old('loss_percentage') }}" class="form-control @error('loss_percentage') is-invalid @enderror" placeholder="Loss Percentage"
+                                oninput="this.value = this.value.replace(/[^0-9]/g, '')">
                                 <label>Loss Percentage</label>
                                 @error('loss_percentage')<span class="text-danger">{{ $message }}</span>@enderror
                             </div>
@@ -187,7 +201,8 @@
 
                         <div class="col-md-4 mb-3">
                             <div class="form-floating">
-                                <input type="text" name="quality_parameter" value="{{ old('quality_parameter') }}" class="form-control @error('quality_parameter') is-invalid @enderror" placeholder="Quality Parameter">
+                                <input type="text" name="quality_parameter" value="{{ old('quality_parameter') }}" class="form-control @error('quality_parameter') is-invalid @enderror" placeholder="Quality Parameter"
+                                oninput="this.value = this.value.replace(/[^0-9]/g, '')">
                                 <label>Quality Parameter</label>
                                 @error('quality_parameter')<span class="text-danger">{{ $message }}</span>@enderror
                             </div>
