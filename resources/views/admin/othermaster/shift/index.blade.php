@@ -31,46 +31,52 @@
 
 {{-- Filter/Search Form --}}
 <div class="row">
-    <div class="card-group mb-md-3">
-        <div class="card">
-            <div class="card-body myform">
-                <form id="shift-filter" action="{{ route('shift-filter') }}" method="get">
-                    <div class="d-flex justify-content-between align-items-center row">
+    <div class="col-lg-12">
+        <div class="card mb-3">
+            <div class="card-body">
+
+                <form action="{{ route('shift-filter') }}" method="GET">
+                    <div class="row g-3 align-items-end">
+
                         {{-- Shift Name --}}
-                        <div class="col-md-6">
-                            <div class="form-floating">
-                                <input id="shift-name" name="name" type="text" class="form-control" placeholder="Shift Name" value="{{ request('name') }}">
-                                <label for="shift-name">Shift Name</label>
-                            </div>
+                        <div class="col-md-5">
+                            <label class="form-label">Shift Name</label>
+                            <input type="text"
+                                   name="name"
+                                   class="form-control"
+                                   placeholder="Enter Shift Name"
+                                   value="{{ request('name') }}">
                         </div>
 
-                        {{-- Active Status --}}
-                        <div class="col-md-6">
-                            <div class="form-floating">
-                                <select class="form-control" name="is_active">
-                                    <option value="">Select Status</option>
-                                    <option value="1" @if(request('is_active')==='1') selected @endif>Active</option>
-                                    <option value="0" @if(request('is_active')==='0') selected @endif>Inactive</option>
-                                </select>
-                                <label>Status</label>
-                            </div>
+                        {{-- Status --}}
+                        <div class="col-md-4">
+                            <label class="form-label">Status</label>
+                            <select class="form-control" name="is_active">
+                                <option value="">Select Status</option>
+                                <option value="1" {{ request('is_active') == '1' ? 'selected' : '' }}>Active</option>
+                                <option value="0" {{ request('is_active') == '0' ? 'selected' : '' }}>Inactive</option>
+                            </select>
                         </div>
 
-                        {{-- Search / Reset Buttons --}}
-                        <div class="col-md-12 mt-3 row">
-                            <div class="col ps-2">
-                                <button type="submit" class="btn btn-info w-100">Search</button>
-                            </div>
-                            <div class="col ps-2">
-                                <a href="{{ route('shift') }}" class="btn btn-secondary w-100">Reset</a>
-                            </div>
+                        {{-- Buttons --}}
+                        <div class="col-md-3 d-flex gap-2">
+                            <button type="submit" class="btn btn-info w-100">
+                                Search
+                            </button>
+
+                            <a href="{{ route('shift') }}" class="btn btn-secondary w-100">
+                                Reset
+                            </a>
                         </div>
+
                     </div>
                 </form>
+
             </div>
         </div>
     </div>
 </div>
+
 
 {{-- Shift Table --}}
 <div class="row">

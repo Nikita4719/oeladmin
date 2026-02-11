@@ -34,7 +34,8 @@
 
                         <div class="col-md-4">
                             <label for="code" class="form-label">Code <span class="text-danger">*</span></label>
-                            <input type="text" name="code" id="code" class="form-control" value="{{ old('code', $material->code) }}" required>
+                            <input type="text" name="code" id="code" class="form-control" value="{{ old('code', $material->code) }}"
+                            oninput="this.value = this.value.replace(/[^0-9]/g, '')" required>
                         </div>
 
                         <div class="col-md-4">

@@ -23,11 +23,11 @@
                     @csrf
 
                     <div class="col-md-6">
-                        <label>Rack Code <span class="text-danger">*</span></label>
-                        <input type="text" name="rack_code" class="form-control" value="{{ old('rack_code') }}">
-                        @error('rack_code')
-                        <div class="text-danger">{{ $message }}</div>
-                        @enderror
+                        <input type="number"
+                        name="rack_code"
+                        class="form-control"
+                        value="{{ old('rack_code') }}"
+                        oninput="this.value = this.value.replace(/[^0-9]/g, '')">
                     </div>
 
                     <div class="col-md-6">

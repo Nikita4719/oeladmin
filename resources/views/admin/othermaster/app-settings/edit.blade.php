@@ -10,97 +10,123 @@
             </div>
 
             <div class="card-body">
-                <div class="wizard">
-                    <div class="tab-content">
-                        <div class="tab-pane fade show active">
 
-                            <div class="mb-4 title-section-adss">
-                                <h3>Edit App Settings</h3>
-                            </div>
-
-                            @if (session('success'))
-                            <div class="alert alert-success">
-                                {{ session('success') }}
-                            </div>
-                            @endif
-
-                            <form action="{{ route('appsettings.update', $setting->setting_id) }}" method="POST" enctype="multipart/form-data">
-                                @csrf
-                                @method('PUT')
-
-
-
-                                {{-- Vendor Code --}}
-                                <div class="col-md-12 input-group-adss">
-                                    <label>Vendor Code <span class="text-danger">*</span></label>
-                                    <input type="text"
-                                        class="form-control"
-                                        name="Vendor_Code"
-                                        value="{{ old('Vendor_Code', $setting->Vendor_Code) }}"
-                                        required>
-                                    @error('Vendor_Code')
-                                    <div class="text-danger">{{ $message }}</div>
-                                    @enderror
-                                </div>
-
-                                {{-- Referral Person --}}
-                                <div class="col-md-12 input-group-adss">
-                                    <label>Referral Person Name</label>
-                                    <input type="text"
-                                        class="form-control"
-                                        name="Referral_Person_Name"
-                                        value="{{ old('Referral_Person_Name', $setting->Referral_Person_Name) }}">
-                                </div>
-
-                                {{-- Mobile --}}
-                                <div class="col-md-12 input-group-adss">
-                                    <label>Mobile No</label>
-                                    <input type="text"
-                                        class="form-control"
-                                        name="Mob_No"
-                                        value="{{ old('Mob_No', $setting->Mob_No) }}">
-                                </div>
-
-                                {{-- Address --}}
-                                <div class="col-md-12 input-group-adss">
-                                    <label>Address</label>
-                                    <textarea class="form-control"
-                                        name="Address">{{ old('Address', $setting->Address) }}</textarea>
-                                </div>
-
-                                {{-- Logo --}}
-                                <div class="col-md-12 input-group-adss">
-                                    <label>Logo</label>
-                                    <input type="file" class="form-control" name="logo_path">
-
-                                    @if($setting->logo_path)
-                                    <img src="{{ asset('uploads/appsettings/'.$setting->logo_path) }}"
-                                        class="mt-2"
-                                        width="80">
-                                    @endif
-                                </div>
-
-                                {{-- Description --}}
-                                <div class="col-md-12 input-group-adss">
-                                    <label>Description</label>
-                                    <textarea class="form-control"
-                                        name="description">{{ old('description', $setting->description) }}</textarea>
-                                </div>
-
-                                {{-- Submit --}}
-                                <div class="col-12 d-flex justify-content-center mt-3">
-                                    <button type="submit" class="btn btn-info w-25">
-                                        Update
-                                    </button>
-                                </div>
-                            </form>
-
-
-                        </div>
-                    </div>
+                <div class="mb-4">
+                    <h5 class="fw-bold">Edit App Settings</h5>
                 </div>
-            </div>
 
+                @if (session('success'))
+                    <div class="alert alert-success">
+                        {{ session('success') }}
+                    </div>
+                @endif
+
+                <form action="{{ route('appsettings.update', $setting->setting_id) }}"
+                      method="POST"
+                      enctype="multipart/form-data">
+                    @csrf
+                    @method('PUT')
+
+                    <div class="row">
+
+                        {{-- Vendor Code --}}
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">
+                                Vendor Code <span class="text-danger">*</span>
+                            </label>
+                            <input type="text"
+                                   class="form-control @error('Vendor_Code') is-invalid @enderror"
+                                   name="Vendor_Code"
+                                   value="{{ old('Vendor_Code', $setting->Vendor_Code) }}"
+                                   oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+                                   required>
+                            @error('Vendor_Code')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        {{-- Mobile --}}
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Mobile No</label>
+                            <input type="text"
+                                   class="form-control @error('Mob_No') is-invalid @enderror"
+                                   name="Mob_No"
+                                   value="{{ old('Mob_No', $setting->Mob_No) }}"
+                                   maxlength="10"
+                                   oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+                            @error('Mob_No')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        {{-- Referral Person --}}
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Referral Person Name</label>
+                            <input type="text"
+                                   class="form-control @error('Referral_Person_Name') is-invalid @enderror"
+                                   name="Referral_Person_Name"
+                                   value="{{ old('Referral_Person_Name', $setting->Referral_Person_Name) }}">
+                            @error('Referral_Person_Name')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        {{-- Logo --}}
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Logo</label>
+                            <input type="file"
+                                   class="form-control @error('logo_path') is-invalid @enderror"
+                                   name="logo_path">
+                            @error('logo_path')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+
+                            @if($setting->logo_path)
+                                <div class="mt-2">
+                                    <img src="{{ asset('uploads/appsettings/'.$setting->logo_path) }}"
+                                         width="80"
+                                         class="border rounded p-1">
+                                </div>
+                            @endif
+                        </div>
+
+                        {{-- Address --}}
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Address</label>
+                            <textarea class="form-control @error('Address') is-invalid @enderror"
+                                      name="Address"
+                                      rows="3">{{ old('Address', $setting->Address) }}</textarea>
+                            @error('Address')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        {{-- Description --}}
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Description</label>
+                            <textarea class="form-control @error('description') is-invalid @enderror"
+                                      name="description"
+                                      rows="3">{{ old('description', $setting->description) }}</textarea>
+                            @error('description')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                    </div>
+
+                    {{-- Buttons --}}
+                    <div class="text-center mt-4">
+                        <button type="submit" class="btn btn-info px-5">
+                            Update
+                        </button>
+                        <a href="{{ route('appsettings.index') }}" class="btn btn-secondary ms-2 px-4">
+                            Cancel
+                        </a>
+                    </div>
+
+                </form>
+
+            </div>
         </div>
     </div>
 </div>
