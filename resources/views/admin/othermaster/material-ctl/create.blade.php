@@ -10,13 +10,13 @@
                             <a href="{{ route('dashboard') }}">Dashboard</a>
                         </li>
                         <li class="breadcrumb-item">
-                            <a href="{{ route('material.index') }}">Manage Material</a>
+                            <a href="{{ route('material-ctl') }}">Manage Material</a>
                         </li>
                         <li class="breadcrumb-item text-muted">Create Material</li>
                     </ol>
                 </div>
                 <div class="col-md-4">
-                    <a href="{{ route('material.index') }}" class="btn btn-secondary float-end">
+                    <a href="{{ route('material-ctl') }}" class="btn btn-secondary float-end">
                         <i class="las la-arrow-left"></i> Back to Material List
                     </a>
                 </div>
@@ -31,7 +31,7 @@
     <div class="col-md-12">
         <div class="card">
             <div class="card-body myform">
-                <form action="{{ route('store-material') }}" method="POST">
+                <form action="{{ route('store-material-ctl') }}" method="POST">
                     @csrf
                     <div class="row">
 
@@ -193,7 +193,7 @@
                         <button type="submit" class="btn btn-success">
                             <i class="las la-save"></i> Save Material
                         </button>
-                        <a href="{{ route('material.index') }}" class="btn btn-secondary">Cancel</a>
+                        <a href="{{ route('material-ctl') }}" class="btn btn-secondary">Cancel</a>
                     </div>
 
                 </form>

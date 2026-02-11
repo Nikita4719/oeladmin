@@ -148,8 +148,8 @@
                     "permission":"visa_type.view"
                 },
                 {
-                    "url": "/admin/visa-document-type",
-                    "name": "Visa Document Type",
+                    "url": "/admin/customer-ctl",
+                    "name": "Customer Ctl",
                     "slug": "admin-visa-document-type",
                     "permission":"visa_documents_type.view"
                 },

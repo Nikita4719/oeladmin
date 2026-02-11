@@ -540,15 +540,15 @@
 
 
 
-            // visa-type
-            Route::get('visa-type', [OtherMasterDataController::class, 'visa_type'])->name('visa-type');
-            Route::get('visa-type-filter', [OtherMasterDataController::class, 'visa_type'])->name('visa-type-filter');
-            Route::get('create-visa-type', [OtherMasterDataController::class, 'visa_type_create'])->name('create-visa-type');
-            Route::get('edit-visa-type/{id?}', [OtherMasterDataController::class, 'visa_type_edit'])->name('edit-visa-type');
-            Route::get('delete-visa-type/{id?}', [OtherMasterDataController::class, 'visa_type_delete'])->name('delete-visa-type');
-            Route::post('update-visa-type/{id?}', [OtherMasterDataController::class, 'visa_type_update'])->name('update-visa-type');
-            Route::post('store-visa-type', [OtherMasterDataController::class, 'visa_type_store'])->name('store-visa-type');
-            Route::get('delete-visa-type/{id?}', [OtherMasterDataController::class, 'visa_type_delete'])->name('delete-visa-type');
+            // Material Ctl
+            Route::get('material-ctl', [OtherMasterDataController::class, 'material_ctl'])->name('material-ctl');
+            Route::get('material-ctl-filter', [OtherMasterDataController::class, 'material_ctl'])->name('material-ctl-filter');
+            Route::get('create-material-ctl', [OtherMasterDataController::class, 'material_ctl_create'])->name('create-material-ctl');
+            Route::get('edit-material-ctl/{id?}', [OtherMasterDataController::class, 'material_ctl_edit'])->name('edit-material-ctl');
+            Route::get('delete-material-ctl/{id?}', [OtherMasterDataController::class, 'material_ctl_delete'])->name('delete-material-ctl');
+            Route::post('update-material-ctl/{id?}', [OtherMasterDataController::class, 'material_ctl_update'])->name('update-material-ctl');
+            Route::post('store-material-ctl', [OtherMasterDataController::class, 'material_ctl_store'])->name('store-material-ctl');
+            Route::get('delete-material-ctl/{id?}', [OtherMasterDataController::class, 'material_ctl_delete'])->name('delete-material-ctl');
             // faq
             Route::get('faqs', [OtherMasterDataController::class, 'faq'])->name('faq');
             Route::get('faq-filter', [OtherMasterDataController::class, 'faq'])->name('faq-filter');
@@ -568,16 +568,16 @@
             Route::post('store-vas-service', [OtherMasterDataController::class, 'vas_service_store'])->name('store-vas-service');
             Route::get('delete-vas-service/{id?}', [OtherMasterDataController::class, 'vas_service_delete'])->name('delete-vas-service');
 
-            //  other document type
+            //  customer ctl
 
-            Route::get('visa-document-type', [OtherMasterDataController::class, 'visa_document_type'])->name('visa-document-type');
-            Route::get('visa-document-type-filter', [OtherMasterDataController::class, 'visa_document_type'])->name('visa-document-type-filter');
-            Route::get('create-visa-document-type', [OtherMasterDataController::class, 'visa_document_type_create'])->name('create-visa-document-type');
-            Route::get('edit-visa-document-type/{id?}', [OtherMasterDataController::class, 'visa_document_type_edit'])->name('edit-visa-document-type');
-            Route::get('delete-visa-document-type/{id?}', [OtherMasterDataController::class, 'visa_document_type_delete'])->name('delete-visa-document-type');
-            Route::post('update-visa-document-type/{id?}', [OtherMasterDataController::class, 'visa_document_type_update'])->name('update-visa-document-type');
-            Route::post('store-visa-document-type', [OtherMasterDataController::class, 'visa_document_type_store'])->name('store-visa-document-type');
-            Route::get('delete-visa-document-type/{id?}', [OtherMasterDataController::class, 'visa_document_type_delete'])->name('delete-visa-document-type');
+            Route::get('customer-ctl', [OtherMasterDataController::class, 'customer_ctl'])->name('customer-ctl');
+            Route::get('customer-ctl-filter', [OtherMasterDataController::class, 'customer_ctl'])->name('customer-ctl-filter');
+            Route::get('create-customer-ctl', [OtherMasterDataController::class, 'customer_ctl_create'])->name('create-customer-ctl');
+            Route::get('edit-customer-ctl/{id?}', [OtherMasterDataController::class, 'customer_ctl_edit'])->name('edit-customer-ctl');
+            Route::get('delete-customer-ctl/{id?}', [OtherMasterDataController::class, 'customer_ctl_delete'])->name('delete-customer-ctl');
+            Route::post('update-customer-ctl/{id?}', [OtherMasterDataController::class, 'customer_ctl_update'])->name('update-customer-ctl');
+            Route::post('store-customer-ctl', [OtherMasterDataController::class, 'customer_ctl_store'])->name('store-customer-ctl');
+            Route::get('delete-customer-ctl/{id?}', [OtherMasterDataController::class, 'customer_ctl_delete'])->name('delete-customer-ctl');
 
 
             Route::get('visa-sub-document-type', [OtherMasterDataController::class, 'visa_sub_document_type'])->name('visa-sub-document-type');

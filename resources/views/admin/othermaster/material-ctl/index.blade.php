@@ -14,12 +14,13 @@
                         </li>
                     </ol>
                 </div>
-                @can('material_ctl.create')
+                
                 <div class="col-md-4">
-                    <a href="{{ route('create-material') }}" class="btn add-btn float-end">
+                    <a href="{{ route('create-material-ctl') }}" class="btn add-btn float-end">
                         <i class="las la-plus"></i>Create New Material</a>
                 </div>
-                @endcan
+               
+                
             </div>
         </div>
     </div>
@@ -32,7 +33,7 @@
     <div class="card-group mb-3">
         <div class="card">
             <div class="card-body myform">
-                <form action="{{ route('material.index') }}" method="get">
+                <form action="{{ route('material-ctl') }}" method="get">
                     <div class="d-flex justify-content-start align-items-center">
                         <div class="col-md-3 ps-md-3">
                             <div class="form-floating">
@@ -92,8 +93,8 @@
                         <th>loss_percentage</th>
                         <th>valuation_type</th>
                         <th>quality_parameter</th>
-                        @can('material_ctl.update') <th>Edit</th> @endcan
-                        @can('material_ctl.delete') <th>Delete</th> @endcan
+                         <th>Edit</th> 
+                        <th>Delete</th> 
                     </tr>
                 </thead>
                 <tbody>
@@ -120,9 +121,9 @@
                         <td>{{ $item->valuation_type }}</td>
                         <td>{{ $item->quality_parameter }}</td>
 
-                        <td><a href="{{ route('edit-material', $item->material_ctl_id) }}" class="btn btn-info"><i class="fa-solid fa-pen"></i></a></td>
+                        <td><a href="{{ route('edit-material-ctl', $item->material_ctl_id) }}" class="btn btn-info"><i class="fa-solid fa-pen"></i></a></td>
 
-                        <td><a href="{{ route('delete-material', $item->material_ctl_id) }}" class="btn btn-warning"><i class="fa-solid fa-trash"></i></a></td>
+                        <td><a href="{{ route('delete-material-ctl', $item->material_ctl_id) }}" class="btn btn-warning"><i class="fa-solid fa-trash"></i></a></td>
 
                     </tr>
                     @endforeach

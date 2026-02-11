@@ -10,6 +10,7 @@ class MaterialCtl extends Model
     // use HasFactory;
     protected $table = "material_ctl";
     protected $primaryKey = 'material_ctl_id';
+    public $timestamps = false;
     protected $fillable = [
 
         'material_id',

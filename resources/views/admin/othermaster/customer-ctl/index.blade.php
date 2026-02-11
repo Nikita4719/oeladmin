@@ -14,12 +14,12 @@
                         </li>
                     </ol>
                 </div>
-                @can('customer_ctl.create')
+
                 <div class="col-md-4">
-                    <a href="{{ route('create-customer-material') }}" class="btn add-btn float-end">
+                    <a href="{{ route('create-customer-ctl') }}" class="btn add-btn float-end">
                         <i class="las la-plus"></i>Create Customer Material</a>
                 </div>
-                @endcan
+
             </div>
         </div>
     </div>
@@ -32,7 +32,7 @@
     <div class="card-group mb-3">
         <div class="card">
             <div class="card-body myform">
-                <form action="{{ route('customer.index') }}" method="get">
+                <form action="{{ route('customer-ctl') }}" method="get">
                     <div class="d-flex flex-wrap align-items-center">
                         <div class="col-md-3 mb-2 ps-md-3">
                             <div class="form-floating">
@@ -66,7 +66,7 @@
 <div class="row">
     <div class="col-md-12">
         @if(session('success'))
-            <div class="alert alert-success">{{ session('success') }}</div>
+        <div class="alert alert-success">{{ session('success') }}</div>
         @endif
         <div class="table-responsive">
             <table class="table table-striped custom-table mb-0">
@@ -82,14 +82,14 @@
                         <th>Buffer Status</th>
                         <th>Comments</th>
                         <th>Active</th>
-                        @can('customer_ctl.update') <th>Edit</th> @endcan
-                        @can('customer_ctl.delete') <th>Delete</th> @endcan
+                        <th>Edit</th>
+                        <th>Delete</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($customers as $item)
+                    @foreach($customer_ctl as $item)
                     <tr>
-                        <td>{{ $loop->index + (($customers->currentPage() - 1) * $customers->perPage()) + 1 }}</td>
+                        <td>{{ $loop->index + (($customer_ctl->currentPage() - 1) * $customer_ctl->perPage()) + 1 }}</td>
                         <td>{{ $item->customer_id }}</td>
                         <td>{{ $item->material_id }}</td>
                         <td>{{ $item->material_ctl_id }}</td>
@@ -99,27 +99,28 @@
                         <td>{{ $item->buffer_status }}</td>
                         <td>{{ $item->comments }}</td>
                         <td>{{ $item->is_active ? 'Active' : 'Inactive' }}</td>
-                        @can('customer_ctl.update')
+                        
                         <td>
-                            <a href="{{ route('edit-customer-material', $item->customer_ctl_id) }}" class="btn btn-info">
+                            <a href="{{ route('edit-customer-ctl', $item->customer_ctl_id) }}" class="btn btn-info">
                                 <i class="fa-solid fa-pen"></i>
                             </a>
+                          
                         </td>
-                        @endcan
-                        @can('customer_ctl.delete')
+                        
                         <td>
-                            <a href="{{ route('delete-customer-material', $item->customer_ctl_id) }}" class="btn btn-warning">
+
+                            <a href="{{ route('delete-customer-ctl', $item->customer_ctl_id) }}" class="btn btn-warning">
                                 <i class="fa-solid fa-trash"></i>
                             </a>
                         </td>
-                        @endcan
+                       
                     </tr>
                     @endforeach
                 </tbody>
             </table>
 
             <div class="py-4">
-                {{ $customers->withQueryString()->links() }}
+                {{ $customer_ctl->withQueryString()->links() }}
             </div>
         </div>
     </div>

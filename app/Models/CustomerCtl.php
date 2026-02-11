@@ -10,6 +10,7 @@ class CustomerCtl extends Model
     // use HasFactory;
     protected $table = "customer_ctl";
     protected $primaryKey = 'customer_ctl_id';
+    public $timestamps = false;
     protected $fillable = [
 
         'customer_id',

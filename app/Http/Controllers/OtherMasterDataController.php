@@ -15,7 +15,8 @@ use App\Models\{
     VasService,
     VisaDocument,
     VisaSubDocument,
-    VisaType,
+    MaterialCtl,
+    CustomerCtl,
     LeadQuality,
     RackMaster,
     MaterialMaster,
@@ -539,7 +540,7 @@ class OtherMasterDataController extends Controller
             'shift_name' => 'required|string|max:255',
             'shift_description' => 'nullable|string|max:1000',
             'location' => 'nullable|string|max:255',
-            
+
         ]);
 
         $shift = Shift::findOrFail($id);
@@ -731,55 +732,137 @@ class OtherMasterDataController extends Controller
         }
     }
 
-    //  Visa Document type
-    public function visa_document_type(Request $request)
+    //  Material ctl
+    public function material_ctl(Request $request)
     {
-        $visa_document_type = VisaDocument::when($request->name, function ($query) use ($request) {
-            $query->where('name', 'like', '%' . $request->name . '%');
+        $materials = MaterialCtl::when($request->material_id, function ($query) use ($request) {
+            $query->where('material_id', 'like', '%' . $request->material_id . '%');
         })
-            ->latest()->paginate(12);
-        return view('admin.othermaster.visa-document.index', compact('visa_document_type'));
+            ->when($request->ctl_mat_no, function ($query) use ($request) {
+                $query->where('ctl_mat_no', 'like', '%' . $request->ctl_mat_no . '%');
+            })
+            ->when($request->grade, function ($query) use ($request) {
+                $query->where('grade', 'like', '%' . $request->grade . '%');
+            })
+            ->latest()
+            ->paginate(12);
+
+        return view('admin.othermaster.material-ctl.index', compact('materials'));
     }
-    public function visa_document_type_create()
+
+    public function material_ctl_create()
     {
-        return view('admin.othermaster.visa-document.create');
+        return view('admin.othermaster.material-ctl.create');
     }
-    public function visa_document_type_store(Request $request)
+    public function material_ctl_store(Request $request)
     {
         $request->validate([
-            'name' => 'required|max:200',
-            'status' => 'required',
+            'material_id' => 'required|max:200',
+
         ]);
         $input = $request->except('_token');
-        VisaDocument::create($input);
-        return redirect()->route('visa-document-type')
-            ->with('success', 'Visa Document Type created successfully.');
+        MaterialCtl::create($input);
+        return redirect()->route('material-ctl')
+            ->with('success', 'material ctl created successfully.');
     }
-    public function visa_document_type_edit($id)
+    public function material_ctl_edit($id)
     {
-        $visa_document_type = VisaDocument::find($id);
-        return view('admin.othermaster.visa-document.edit', compact('visa_document_type'));
+        $materials = MaterialCtl::findOrFail($id);
+
+        return view('admin.othermaster.material-ctl.edit', compact('materials'));
     }
-    public function visa_document_type_update(Request $request, $id)
+
+    public function material_ctl_update(Request $request, $id)
     {
         $input = $request->except('_token');
-        $visa_document_type = VisaDocument::find($id);
-        $visa_document_type->update($input);
-        return redirect()->route('visa-document-type')
-            ->with('success', 'Visa Document Type updated successfully');
+        $material_ctl = MaterialCtl::find($id);
+        $material_ctl->update($input);
+        return redirect()->route('material-ctl')
+            ->with('success', 'material ctl updated successfully');
     }
-    public function visa_document_type_delete(Request $request)
+    public function material_ctl_delete($id)
     {
-        $visa_document_type = VisaDocument::find($request->id);
-        if ($visa_document_type) {
-            $visa_document_type->delete();
-            return redirect()->route('visa-document-type')
-                ->with('success', 'Visa Document Type deleted successfully');
-        } else {
-            return redirect()->route('visa-document-type')
-                ->with('error', 'Visa Document Type not found');
-        }
+        $material = MaterialCtl::findOrFail($id);
+        $material->delete();
+
+        return redirect()->route('material-ctl')
+            ->with('success', 'Material deleted successfully');
     }
+
+
+    //    customer ctl
+    public function customer_ctl(Request $request)
+    {
+        $customer_ctl = CustomerCtl::when($request->customer_ctl_id, function ($query) use ($request) {
+            $query->where('customer_ctl_id', $request->customer_ctl_id);
+        })
+            ->orderBy('customer_ctl_id', 'desc')
+            ->paginate(12);
+
+
+        return view('admin.othermaster.customer-ctl.index', compact('customer_ctl'));
+    }
+
+
+    // CREATE PAGE
+    public function customer_ctl_create()
+    {
+        return view('admin.othermaster.customer-ctl.create');
+    }
+
+
+    // STORE
+    public function customer_ctl_store(Request $request)
+    {
+        $request->validate([
+            'customer_id' => 'required',
+            'material_id' => 'required',
+            'material_ctl_id' => 'required',
+            'min_maintain_buffer_qty' => 'required',
+            'max_maintain_buffer_qty' => 'required',
+            'available_buffer_qty' => 'required',
+            'buffer_status' => 'required',
+            'is_active' => 'required'
+        ]);
+
+        CustomerCtl::create($request->all());
+
+        return redirect()->route('customer-ctl')
+            ->with('success', 'Customer CTL created successfully.');
+    }
+
+
+    // EDIT PAGE
+    public function customer_ctl_edit($id)
+    {
+        $customer_ctl = CustomerCtl::findOrFail($id);
+
+        return view('admin.othermaster.customer-ctl.edit', compact('customer_ctl'));
+    }
+
+
+    // UPDATE
+    public function customer_ctl_update(Request $request, $id)
+    {
+        $customer_ctl = CustomerCtl::findOrFail($id);
+
+        $customer_ctl->update($request->all());
+
+        return redirect()->route('customer-ctl')
+            ->with('success', 'Customer CTL updated successfully.');
+    }
+
+
+    // DELETE
+    public function customer_ctl_delete($id)
+    {
+        $customer_ctl = CustomerCtl::findOrFail($id);
+        $customer_ctl->delete();
+
+        return redirect()->route('customer-ctl')
+            ->with('success', 'Customer CTL deleted successfully.');
+    }
+
 
 
     public function visa_sub_document_type(Request $request)
@@ -834,6 +917,10 @@ class OtherMasterDataController extends Controller
                 ->with('error', 'Visa Sub Document Type not found');
         }
     }
+
+
+
+
 
     public function master_service_create()
     {

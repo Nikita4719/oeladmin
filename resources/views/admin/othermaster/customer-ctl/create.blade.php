@@ -15,7 +15,7 @@
                     </ol>
                 </div>
                 <div class="col-md-4">
-                    <a href="{{ route('customer.index') }}" class="btn btn-secondary float-end">
+                    <a href="{{ route('customer-ctl') }}" class="btn btn-secondary float-end">
                         <i class="las la-arrow-left"></i> Back to List
                     </a>
                 </div>
@@ -30,7 +30,7 @@
     <div class="col-md-8">
         <div class="card">
             <div class="card-body myform">
-                <form action="{{ route('store-customer-material') }}" method="POST">
+                <form action="{{ route('store-customer-ctl') }}" method="POST">
                     @csrf
 
                     <div class="form-floating mb-3">
@@ -90,7 +90,7 @@
                         <button type="submit" class="btn btn-success">
                             <i class="las la-save"></i> Save
                         </button>
-                        <a href="{{ route('customer.index') }}" class="btn btn-secondary">Cancel</a>
+                        <a href="{{ route('customer-ctl') }}" class="btn btn-secondary">Cancel</a>
                     </div>
 
                 </form>
