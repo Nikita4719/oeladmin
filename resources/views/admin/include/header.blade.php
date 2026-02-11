@@ -1,88 +1,9 @@
 @php
-use Carbon\Carbon;
-use App\Models\University;
-use App\Models\Program;
-use App\Models\StudentByAgent;
-use App\Models\Payment;
-use App\Models\PaymentsLink;
-
-$user = Auth::user();
-$franchise = $user ? DB::table('agents')->where('email', $user->email)->first() : null;
-
-$oldUniversities = $oldPrograms = $duePayments = $todayLead = 0;
-
-if ($user) {
-
-    // ---------------- ADMIN / DATA OPERATOR ----------------
-    if (
-        $user->hasRole('Administrator') || 
-        $user->hasRole('data operator') || 
-        $user->hasRole('Sub Data-Operator')
-    ) {
-
-        $oldUniversities = University::whereDate('updated_at', '<', Carbon::now()->subMonths(3))->count();
-        $oldPrograms = Program::whereDate('updated_at', '<', Carbon::now()->subMonths(3))->count();
-
-        $duePayments = Payment::join('student', 'student.email', '=', 'payments.customer_email')
-            ->join('payments_link', 'payments_link.email', '=', 'payments.customer_email')
-            ->whereDate('payments_link.due_date', '<', Carbon::now())
-            ->distinct('student.email')
-            ->count();
-
-        // All leads
-        $todayLead = StudentByAgent::whereDate('updated_at', '<=', Carbon::today())
-            ->where('lead_status', 1)
-            ->count();
-
-            
+    $user = auth()->user();
+    if($user->hasRole('agent')){
+        $franchise = \App\Models\Franchise::where('user_id', $user->id)->first();
     }
-
-    // ------------------- AGENT -------------------
-    elseif ($user->hasRole('agent')) {
-
-        $agents = DB::select("SELECT id FROM users WHERE added_by = $user->id");
-        $commaList = "";
-        foreach ($agents as $a) {
-            $commaList .= $a->id . ",";
-        }
-        $users = $commaList . $user->id;
-
-        $todayLead = StudentByAgent::whereRaw("assigned_to IN($users)")
-            ->where('lead_status', 1)
-            ->count();
-
-            
-
-        $duePayments = Payment::join('student', 'student.email', '=', 'payments.customer_email')
-            ->join('payments_link', 'payments_link.email', '=', 'payments.customer_email')
-            ->whereDate('payments_link.due_date', '<', Carbon::now())
-            ->distinct('student.email')
-            ->count();
-    }
-
-    // ---------------- SUB-AGENT ----------------
-    else {
-
-        $oldUniversities = University::where('user_id', $user->id)
-            ->whereDate('updated_at', '<', Carbon::now()->subMonths(3))
-            ->count();
-
-        $oldPrograms = Program::where('user_id', $user->id)
-            ->whereDate('updated_at', '<', Carbon::now()->subMonths(3))
-            ->count();
-
-        $duePayments = PaymentsLink::where('user_id', $user->id)
-            ->whereDate('due_date', '<', Carbon::now())
-            ->count();
-
-        $todayLead = StudentByAgent::where('assigned_to', $user->id)
-            ->where('lead_status', 1)
-            ->whereDate('updated_at', '<=', Carbon::today())
-            ->count();
-    }
-}
 @endphp
-
 
 
 <!-- ================== HEADER START ================== -->
@@ -109,51 +30,7 @@ if ($user) {
   <ul class="nav user-menu">
 
   
-    @if($user)
-    <li class="nav-item dropdown">
-
-      <a href="#" class="dropdown-toggle nav-link d-flex align-items-center gap-3" data-bs-toggle="dropdown">
-
-        <i class="fa-regular fa-bell" style="font-size:20px;"></i>
-
-        <span class="badge bg-warning rounded-pill">{{ $oldUniversities }}</span>
-        <span class="badge bg-success rounded-pill">{{ $oldPrograms }}</span>
-
-        @if(
-            $user->hasRole('Administrator') || 
-            $user->hasRole('agent') ||
-            $user->hasRole('sub_agent')
-        )
-            <span class="badge bg-danger rounded-pill">{{ $todayLead }}</span>
-        @endif
-      </a>
-
-      <div class="dropdown-menu notifications">
-        <div class="topnav-dropdown-header">
-            <span class="notification-title">Notifications</span>
-        </div>
-
-        <div class="topnav-dropdown-footer">
-            <a href="{{ route('updation-program') }}">{{ $oldPrograms }} Old Programs</a>
-        </div>
-
-        <div class="topnav-dropdown-footer">
-            <a href="{{ route('update-university') }}">{{ $oldUniversities }} Old Universities</a>
-        </div>
-
-        @if(
-            $user->hasRole('Administrator') || 
-            $user->hasRole('agent') ||
-            $user->hasRole('sub_agent')
-        )
-        <div class="topnav-dropdown-footer">
-            <a href="{{ url('admin/leads-lists?lead_status=1')}}">{{ $todayLead }} Lead Today</a>
-        </div>
-        @endif
-
-      </div>
-    </li>
-    @endif
+   
 
     <!-- User -->
     <li class="nav-item dropdown has-arrow main-drop">

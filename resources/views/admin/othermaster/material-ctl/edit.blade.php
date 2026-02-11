@@ -38,8 +38,13 @@
 
                         <div class="col-md-4 mb-3">
                             <div class="form-floating">
-                                <input type="text" name="material_id" value="{{ old('material_id', $materials->material_id) }}" class="form-control @error('material_id') is-invalid @enderror" placeholder="Material ID"
-                                 oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+                                <select name="material_id" id="material_id" class="form-control @error('material_id') is-invalid @enderror">
+                                <option value="">Select Material</option>
+                                @foreach($allMaterials as $material)
+                                    <option value="{{ $material->material_id }}" {{ old('material_id', $materials->material_id) == $material->material_id ? 'selected' : '' }}>{{ $material->description }}</option>
+                                @endforeach
+                            </select>
+                              
                                 <label>Material ID</label>
                                 @error('material_id')<span class="text-danger">{{ $message }}</span>@enderror
                             </div>

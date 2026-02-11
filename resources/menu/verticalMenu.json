@@ -38,12 +38,6 @@
                     "name": "Bulk Upload",
                     "slug": "admin-bulk-upload",
                     "permission":"bulk_upload.view"
-                },
-                {
-                    "url": "/admin/pending-lead",
-                    "name": "Pending Lead",
-                    "slug": "admin-pending-lead",
-                    "permission":"pending_lead.view"
                 }
                
                 
@@ -58,37 +52,7 @@
             "permission":"impersonate.view"
         },
         
-        {
-            "name": "Student",
-            "icon": "menu-icon tf-icons fas fa-user-graduate",
-            "slug": "student",
-            "permission":["student.view","student_registration_fees.view","student_apply_question.view","student_assistance.view","student_assistance.view","student_enquiry_log.view","popular_student_guide.view","find_program_log.view"],
-            "submenu": [
-                {
-                    "url": "/admin/student-list",
-                    "name": "Student List",
-                    "slug": "admin-student-list",
-                    "permission":"student.view"
-                },
-                
-                {
-                    "url": "/admin/student-apply-question",
-                    "name": "Student Apply Questions",
-                    "slug": "admin-student-apply-question",
-                    "permission":"student_apply_question.view"
-                },
-                {
-                    "url": "/admin/student-assistance",
-                    "name": "Student Assistance",
-                    "slug": "admin-student-assistance",
-                    "permission":"student_assistance.view"
-                }
-               
-                
-                 
-            ]
-        },
-        
+       
        
         {
             "url": "/apply-program",
@@ -152,49 +116,9 @@
                     "name": "Customer Ctl",
                     "slug": "admin-visa-document-type",
                     "permission":"visa_documents_type.view"
-                },
-                {
-                    "url": "/admin/visa-sub-document-type",
-                    "name": "Visa SubDocument Type",
-                    "slug": "admin-visa-sub-document-type",
-                    "permission":"visa_sub_document_type.view"
-                },
-                {
-                    "url": "/admin/faqs",
-                    "name": "FAQs",
-                    "slug": "admin-faq",
-                    "permission":"faq.view"
-                },
-                {
-                    "url": "/admin/vas-services",
-                    "name": "Vas Services",
-                    "slug": "admin-vas-services",
-                    "permission":"vas_services.view"
-                },
-                {
-                    "url": "/admin/education-lane",
-                    "name": "Education Lane (Home Page)",
-                    "slug": "admin-education-lane",
-                    "permission":"education_lane.view"
-                },
-                {
-                    "url": "/admin/master-service",
-                    "name": "Master Service",
-                    "slug": "admin-master-service",
-                    "permission":"master_service.view"
-                },
-                {
-                    "url": "/admin/sub-service",
-                    "name": "Sub Service",
-                    "slug": "admin-sub-service",
-                    "permission":"sub_service.view"
-                },
-                {
-                    "url": "/admin/lead_quality",
-                    "name": "Lead Quality",
-                    "slug": "admin-lead-quality",
-                    "permission":"lead_quality.view"
                 }
+               
+               
             ]
             },
 
