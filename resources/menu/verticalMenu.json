@@ -5,157 +5,115 @@
             "name": "Dashboard",
             "icon": "menu-icon tf-icons la la-dashboard",
             "slug": "dashboard",
-            "permission":"dashboard.view"
+            "permission": "dashboard.view"
         },
-      
-    
-        {
-            "name": "Manage Leads",
-            "icon": "menu-icon tf-icons la la-user-secret",
-            "slug": "admin",
-            "permission":["leads_dashboard.view","add_leads.view","bulk_upload.view","pending_lead.view","assigned_lead.view","latest_updated_leads.view","oel_360.view","leads_lists.view"],
-            "submenu": [
-                {
-                    "url": "/admin/leads-dashboard",
-                    "name": "Leads Dashboard",
-                    "slug": "admin-leads-dashboard",
-                    "permission":"leads_dashboard.view"
-                },
-                {
-                    "url": "/admin/add-leads",
-                    "name": "Add Leads",
-                    "slug": "admin-add-leads",
-                    "permission":"add_leads.view"
-                },
-                {
-                    "url": "/admin/leads-lists",
-                    "name": "Leads List",
-                    "slug": "admin-leads-lists",
-                    "permission":"leads_lists.view"
-                },
-                {
-                    "url": "/admin/bulk-upload",
-                    "name": "Bulk Upload",
-                    "slug": "admin-bulk-upload",
-                    "permission":"bulk_upload.view"
-                }
-               
-                
-            ]
-        },
-       
         {
             "url": "/revert-to-admin",
             "name": "Back to Admin login",
             "icon": "menu-icon tf-icons fa fa-user-secret",
             "slug": "impersonate",
-            "permission":"impersonate.view"
-        },
-        
-       
-       
-        {
-            "url": "/apply-program",
-            "name": "Apply Program",
-            "icon": "menu-icon tf-icons fa-solid fa-circle-check",
-            "slug": "apply-program",
-            "permission":"apply_program.view"
+            "permission": "impersonate.view"
         },
         {
-            "url": "/student/applied-program",
-            "name": "Applied Programs",
-            "icon": "menu-icon tf-icons lab la-product-hunt",
-            "slug": "applied-program",
-            "permission":"applied_program.view"
-        },
-                {
             "name": "Master",
             "icon": "menu-icon tf-icons las la-tachometer-alt",
             "slug": "other-master-data",
-            "permission":["specializations.view","source.view","interested.view","country.view","province.view","visa_type.view"
-            ,"faq.view","education_lane.view","manage_blogs.view","vas_services.view","master_service.view","visa_documents_type.view","visa_sub_document_type.view" ,"lead_quality.view"],
+            "permission": [
+                "specializations.view",
+                "source.view",
+                "interested.view",
+                "country.view",
+                "province.view",
+                "visa_type.view",
+                "faq.view",
+                "education_lane.view",
+                "manage_blogs.view",
+                "vas_services.view",
+                "master_service.view",
+                "visa_documents_type.view",
+                "visa_sub_document_type.view",
+                "lead_quality.view"
+            ],
             "submenu": [
                 {
                     "url": "/admin/rack-master",
                     "name": "Rack master",
                     "slug": "admin-specializations",
-                    "permission":"specializations.view"
+                    "permission": "specializations.view"
                 },
                 {
                     "url": "/admin/material-master",
                     "name": "Material Master",
                     "slug": "admin-source",
-                    "permission":"source.view"
+                    "permission": "source.view"
                 },
                 {
                     "url": "/admin/work-center",
                     "name": "Work Center",
                     "slug": "admin-interested",
-                    "permission":"interested.view"
+                    "permission": "interested.view"
                 },
                 {
                     "url": "/admin/app-settings",
                     "name": "App Settings",
                     "slug": "admin-country",
-                    "permission":"country.view"
+                    "permission": "country.view"
                 },
                 {
                     "url": "/admin/shift",
                     "name": "Shift",
                     "slug": "admin-province",
-                    "permission":"province.view"
+                    "permission": "province.view"
                 },
                 {
                     "url": "/admin/material-ctl",
                     "name": "Material Ctl",
                     "slug": "admin-visa-type",
-                    "permission":"visa_type.view"
+                    "permission": "visa_type.view"
                 },
                 {
                     "url": "/admin/customer-ctl",
                     "name": "Customer Ctl",
                     "slug": "admin-visa-document-type",
-                    "permission":"visa_documents_type.view"
+                    "permission": "visa_documents_type.view"
                 }
-               
-               
             ]
-            },
-
+        },
         {
             "url": "/student/my-profile",
             "name": "My Profile",
             "icon": "menu-icon tf-icons la la-user",
             "slug": "my-profile",
-            "permission":"my_profile.view"
+            "permission": "my_profile.view"
         },
         {
             "url": "/student/edit-profile",
             "name": "Edit Profile",
             "icon": "menu-icon tf-icons la la-user",
             "slug": "edit-profile",
-            "permission":"my_profile.update"
+            "permission": "my_profile.update"
         },
-       
-     
         {
             "url": "admin/apply-oel-360",
             "name": "oel 360",
             "icon": "menu-icon tf-icons las la-tachometer-alt",
             "slug": "admin-apply-oel-360",
-            "permission":"oel_apply.view"
+            "permission": "oel_apply.view"
         },
         {
             "name": "Admin-Management",
             "icon": "menu-icon tf-icons la la-users",
             "slug": "admin-management",
-            "permission":["admin_user.view","role_permissions.view"],
+            "permission": [
+                "admin_user.view",
+                "role_permissions.view"
+            ],
             "submenu": [
                 {
                     "url": "/admin-management/users",
                     "name": "Admin User",
                     "slug": "admin-management-users",
-                    "permission":"admin_user.view"
+                    "permission": "admin_user.view"
                 },
                 {
                     "url": "/admin-management/roles-permissions",
@@ -166,4 +124,4 @@
             ]
         }
     ]
-  }
+}

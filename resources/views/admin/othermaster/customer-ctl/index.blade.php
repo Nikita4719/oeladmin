@@ -34,12 +34,7 @@
             <div class="card-body myform">
                 <form action="{{ route('customer-ctl') }}" method="get">
                     <div class="d-flex flex-wrap align-items-center">
-                        <div class="col-md-3 mb-2 ps-md-3">
-                            <div class="form-floating">
-                                <input type="text" name="customer_id" class="form-control" placeholder="Customer ID">
-                                <label>Customer ID</label>
-                            </div>
-                        </div>
+                       
                         <div class="col-md-3 mb-2 ps-md-3">
                             <div class="form-floating">
                                 <input type="text" name="material_id" class="form-control" placeholder="Material ID">
@@ -73,15 +68,14 @@
                 <thead>
                     <tr>
                         <th>S.N</th>
-                        <th>Customer ID</th>
-                        <th>Material ID</th>
+                                              <th>Material ID</th>
                         <th>Material CTL ID</th>
                         <th>Min Buffer Qty</th>
                         <th>Max Buffer Qty</th>
                         <th>Available Buffer Qty</th>
                         <th>Buffer Status</th>
                         <th>Comments</th>
-                        <th>Active</th>
+                      
                         <th>Edit</th>
                         <th>Delete</th>
                     </tr>
@@ -89,7 +83,7 @@
                 <tbody>
                     @foreach($customer_ctl as $item)
                     <tr>
-                        <td>{{ $loop->index + (($customer_ctl->currentPage() - 1) * $customer_ctl->perPage()) + 1 }}</td>
+                        
                         <td>{{ $item->customer_id }}</td>
                         <td>{{ $item->material_id }}</td>
                         <td>{{ $item->material_ctl_id }}</td>
@@ -98,8 +92,7 @@
                         <td>{{ $item->available_buffer_qty }}</td>
                         <td>{{ $item->buffer_status }}</td>
                         <td>{{ $item->comments }}</td>
-                        <td>{{ $item->is_active ? 'Active' : 'Inactive' }}</td>
-                        
+                      
                         <td>
                             <a href="{{ route('edit-customer-ctl', $item->customer_ctl_id) }}" class="btn btn-info">
                                 <i class="fa-solid fa-pen"></i>

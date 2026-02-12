@@ -16,9 +16,7 @@
                     <li class="breadcrumb-item active">Edit Shift</li>
                 </ol>
 
-                <a href="{{ route('shift') }}" class="btn btn-outline-secondary btn-sm">
-                    <i class="las la-arrow-left"></i> Back
-                </a>
+                
             </div>
         </div>
     </div>
@@ -76,18 +74,7 @@
                             @enderror
                         </div>
 
-                        {{-- Status --}}
-                        <div class="col-md-6 mb-3">
-                            <label class="form-label d-block">Status</label>
-                            <div class="form-check form-switch mt-2">
-                                <input class="form-check-input"
-                                       type="checkbox"
-                                       name="is_active"
-                                       value="1"
-                                       {{ old('is_active', $shift->is_active) ? 'checked' : '' }}>
-                                <label class="form-check-label">Active</label>
-                            </div>
-                        </div>
+                       
 
                     </div>
 
@@ -97,7 +84,7 @@
                             Cancel
                         </a>
                         <button type="submit" class="btn btn-success">
-                            <i class="las la-save"></i> Update Shift
+                            <i class="las la-save"></i> Update
                         </button>
                     </div>
 

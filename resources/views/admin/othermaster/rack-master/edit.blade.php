@@ -4,12 +4,10 @@
 <div class="row">
     <div class="col-lg-12">
         <div class="card">
-            <div class="card-header">
-                <h4 class="card-title mb-0">Rack Master</h4>
-            </div>
+        
 
             <div class="card-body">
-                <h3 class="mb-4">Edit Rack</h3>
+                <p class="mb-4">Edit Rack</p>
 
                 @if (session('success'))
                     <div class="alert alert-success">
@@ -61,29 +59,25 @@
                     </div>
 
                     <!-- Rack Type -->
-                    <div class="col-md-6">
-                        <label>Rack Type <span class="text-danger">*</span></label>
-                        <input type="text"
-                               name="rack_type"
-                               class="form-control"
-                               value="{{ old('rack_type', $rackMaster->rack_type) }}">
+                    <div class="col-md-6 mb-3">
+                        <label for="rack_type" class="form-label">Rack Type <span class="text-danger">*</span></label>
+                        <select name="rack_type" id="rack_type" class="form-select" required>
+                            <option value="">--Select Rack Type--</option>
+                            <option value="RAW_MATERIAL" @if ($rackMaster->rack_type == 'RAW_MATERIAL') selected @endif>RAW MATERIAL</option>
+                            <option value="BUFFER_STOCK" @if ($rackMaster->rack_type == 'BUFFER_STOCK') selected @endif>BUFFER STOCK</option>
+                        </select>
+
                         @error('rack_type')
-                            <div class="text-danger">{{ $message }}</div>
+                        <div class="text-danger mt-1">{{ $message }}</div>
                         @enderror
                     </div>
 
                     <!-- Status -->
-                    <div class="col-md-6">
-                        <label>Status <span class="text-danger">*</span></label>
-                        <select name="is_active" class="form-control">
-                            <option value="1" {{ $rackMaster->is_active == 1 ? 'selected' : '' }}>Active</option>
-                            <option value="0" {{ $rackMaster->is_active == 0 ? 'selected' : '' }}>Inactive</option>
-                        </select>
-                    </div>
+                    
 
                     <div class="col-12">
                         <button type="submit" class="btn btn-info">
-                            Update Rack
+                            Submit
                         </button>
                     </div>
                 </form>

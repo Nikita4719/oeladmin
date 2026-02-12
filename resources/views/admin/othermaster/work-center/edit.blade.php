@@ -5,12 +5,10 @@
     <div class="col-lg-12">
         <div class="card">
 
-            <div class="card-header">
-                <h4 class="card-title mb-0">Edit Work Center</h4>
-            </div>
+           
 
             <div class="card-body">
-
+<p>Edit Work Center</p>
                 @if (session('success'))
                     <div class="alert alert-success">
                         {{ session('success') }}
@@ -60,26 +58,7 @@
                             @enderror
                         </div>
 
-                        {{-- Status --}}
-                        <div class="col-md-6 mb-3">
-                            <label class="form-label">
-                                Status <span class="text-danger">*</span>
-                            </label>
-                            <select class="form-control @error('is_active') is-invalid @enderror"
-                                    name="is_active">
-                                <option value="1"
-                                    {{ old('is_active', $workCenter->is_active) == 1 ? 'selected' : '' }}>
-                                    Active
-                                </option>
-                                <option value="0"
-                                    {{ old('is_active', $workCenter->is_active) == 0 ? 'selected' : '' }}>
-                                    Inactive
-                                </option>
-                            </select>
-                            @error('is_active')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
+                       
 
                     </div>
 

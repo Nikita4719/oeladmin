@@ -58,15 +58,15 @@
         @endif
 
         <div class="table-responsive">
-            <table class="table table-striped table-bordered align-middle">
-                <thead class="table-dark">
+            <table class="table table-striped custom-table mb-0">
+                <thead >
                     <tr>
                         <th>#</th>
                         <th>Rack Code</th>
                         <th>Location</th>
                         <th>Capacity</th>
                         <th>Type</th>
-                        <th>Status</th>
+                      
                         <th>Edit</th>
                         <th>Delete</th>
                     </tr>
@@ -80,11 +80,7 @@
                             <td>{{ $rack->location }}</td>
                             <td>{{ $rack->capacity }}</td>
                             <td>{{ $rack->rack_type }}</td>
-                            <td>
-                                <span class="badge {{ $rack->is_active ? 'bg-success' : 'bg-danger' }}">
-                                    {{ $rack->is_active ? 'Active' : 'Inactive' }}
-                                </span>
-                            </td>
+                           
 
                             {{-- Edit Button --}}
                             <td>

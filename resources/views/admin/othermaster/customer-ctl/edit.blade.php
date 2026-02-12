@@ -18,11 +18,7 @@
                         </li>
                     </ol>
                 </div>
-                <div class="col-md-4 text-end">
-                    <a href="{{ route('customer-ctl') }}" class="btn btn-secondary">
-                        <i class="las la-arrow-left"></i> Back to List
-                    </a>
-                </div>
+               
             </div>
         </div>
     </div>
@@ -34,27 +30,15 @@
     <div class="col-md-12">
         <div class="card shadow-sm">
             <div class="card-body">
-
-                <form action="{{ route('store-customer-ctl') }}" method="POST">
+                <form action="{{ route('store-customer-ctl' ,$customer_ctl->customer_ctl_id) }}" method="POST">
                     @csrf
-
                     <div class="row g-3">
-
-
-
-                       
                         <div class="col-md-4">
                             <div class="form-floating">
-
-
-                             
-
                                 <select name="material_id" id="material_id" class="form-select @error('material_id') is-invalid @enderror">
                                     <option value="">Select Material </option>
-
                                     @foreach($allMaterials as $material)
-                                    
-                                    <option value="{{ $material->material_id }}" {{ old('material_id') == $material->material_id ? 'selected' : '' }}>{{ $material->description }}</option>
+                                    <option value="{{ $material->material_id }}" {{ $customer_ctl->material_id == $material->material_id ? 'selected' : '' }}>{{ $material->description }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -66,13 +50,10 @@
                         {{-- Material CTL ID --}}
                         <div class="col-md-4">
                             <div class="form-floating">
-
-                               
-
                                 <select name="material_ctl_id" id="material_ctl_id" class="form-select @error('material_ctl_id') is-invalid @enderror">
                                     <option value="">Select Material CTL</option>
                                     @foreach($material_ctls as $material_ctl)
-                                    <option value="{{ $material_ctl->material_ctl_id }}">{{ $material_ctl->ctl_mat_description }}</option>
+                                    <option value="{{ $material_ctl->material_ctl_id }}" {{  $customer_ctl->material_ctl_id == $material_ctl->material_ctl_id ? 'selected' : '' }}>{{ $material_ctl->ctl_mat_description }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -87,7 +68,7 @@
                                 <input type="number" name="min_maintain_buffer_qty"
                                     class="form-control @error('min_maintain_buffer_qty') is-invalid @enderror"
                                     placeholder="Min Maintain Buffer Qty"
-                                    value="{{ old('min_maintain_buffer_qty') }}">
+                                    value="{{ old('min_maintain_buffer_qty', $customer_ctl->min_maintain_buffer_qty) }}">
                                 <label>Min Maintain Buffer Qty</label>
                             </div>
                             @error('min_maintain_buffer_qty')
@@ -101,7 +82,7 @@
                                 <input type="number" name="max_maintain_buffer_qty"
                                     class="form-control @error('max_maintain_buffer_qty') is-invalid @enderror"
                                     placeholder="Max Maintain Buffer Qty"
-                                    value="{{ old('max_maintain_buffer_qty') }}">
+                                    value="{{ old('max_maintain_buffer_qty' , $customer_ctl->max_maintain_buffer_qty) }}">
                                 <label>Max Maintain Buffer Qty</label>
                             </div>
                             @error('max_maintain_buffer_qty')
@@ -115,7 +96,7 @@
                                 <input type="number" name="available_buffer_qty"
                                     class="form-control @error('available_buffer_qty') is-invalid @enderror"
                                     placeholder="Available Buffer Qty"
-                                    value="{{ old('available_buffer_qty') }}">
+                                    value="{{ old('available_buffer_qty' , $customer_ctl->available_buffer_qty) }}">
                                 <label>Available Buffer Qty</label>
                             </div>
                             @error('available_buffer_qty')
@@ -129,9 +110,9 @@
                                 <select name="buffer_status"
                                     class="form-select @error('buffer_status') is-invalid @enderror">
                                     <option value="">Select Status</option>
-                                    <option value="OK" {{ old('buffer_status') == 'OK' ? 'selected' : '' }}>OK</option>
-                                    <option value="LOW" {{ old('buffer_status') == 'LOW' ? 'selected' : '' }}>LOW</option>
-                                    <option value="CRITICAL" {{ old('buffer_status') == 'CRITICAL' ? 'selected' : '' }}>CRITICAL</option>
+                                    <option value="OK" {{  $customer_ctl->buffer_status == 'OK' ? 'selected' : '' }}>OK</option>
+                                    <option value="LOW" {{  $customer_ctl->buffer_status == 'LOW' ? 'selected' : '' }}>LOW</option>
+                                    <option value="CRITICAL" {{  $customer_ctl->buffer_status == 'CRITICAL' ? 'selected' : '' }}>CRITICAL</option>
                                 </select>
                                 <label>Buffer Status</label>
                             </div>
@@ -146,7 +127,7 @@
                                 <textarea name="comments"
                                     class="form-control @error('comments') is-invalid @enderror"
                                     placeholder="Comments"
-                                    style="height:100px">{{ old('comments') }}</textarea>
+                                    style="height:100px">{{ old('comments', $customer_ctl->comments) }}</textarea>
                                 <label>Comments</label>
                             </div>
                             @error('comments')
@@ -154,15 +135,7 @@
                             @enderror
                         </div>
 
-                        {{-- Active --}}
-                        <div class="col-md-12">
-                            <div class="form-check form-switch mt-2">
-                                <input class="form-check-input" type="checkbox"
-                                    name="is_active" value="1"
-                                    {{ old('is_active', 1) ? 'checked' : '' }}>
-                                <label class="form-check-label">Active</label>
-                            </div>
-                        </div>
+                        
 
                         {{-- Buttons --}}
                         <div class="col-md-12 d-flex justify-content-end gap-2 mt-3">

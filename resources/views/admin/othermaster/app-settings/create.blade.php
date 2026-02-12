@@ -5,15 +5,10 @@
     <div class="col-lg-12">
         <div class="card">
 
-            <div class="card-header">
-                <h4 class="card-title mb-0">App Settings</h4>
-            </div>
-
+          
             <div class="card-body">
 
-                <div class="mb-4">
-                    <h5 class="fw-bold">Add App Settings</h5>
-                </div>
+               <p>Add App Settings</p>
 
                 @if (session('success'))
                     <div class="alert alert-success">

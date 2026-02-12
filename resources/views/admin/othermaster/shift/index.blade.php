@@ -35,28 +35,20 @@
         <div class="card mb-3">
             <div class="card-body">
 
-                <form action="{{ route('shift-filter') }}" method="GET">
+                <form action="{{ route('shift') }}" method="GET">
                     <div class="row g-3 align-items-end">
 
                         {{-- Shift Name --}}
                         <div class="col-md-5">
                             <label class="form-label">Shift Name</label>
                             <input type="text"
-                                   name="name"
+                                   name="shift_name"
                                    class="form-control"
                                    placeholder="Enter Shift Name"
-                                   value="{{ request('name') }}">
+                                   value="{{ request('shift_name') }}">
                         </div>
 
-                        {{-- Status --}}
-                        <div class="col-md-4">
-                            <label class="form-label">Status</label>
-                            <select class="form-control" name="is_active">
-                                <option value="">Select Status</option>
-                                <option value="1" {{ request('is_active') == '1' ? 'selected' : '' }}>Active</option>
-                                <option value="0" {{ request('is_active') == '0' ? 'selected' : '' }}>Inactive</option>
-                            </select>
-                        </div>
+                        
 
                         {{-- Buttons --}}
                         <div class="col-md-3 d-flex gap-2">
@@ -93,7 +85,7 @@
                         <th>Shift Name</th>
                         <th>Shift Description</th>
                         <th>Location</th>
-                        <th>Status</th>
+                     
                         <th>Edit</th>
                         <th>Delete</th>
                     </tr>
@@ -106,11 +98,7 @@
                         <td>{{ $item->shift_description ?? '-' }}</td>
                         <td>{{ $item->location ?? '-' }}</td>
                         <td>{{ $item->is_active ? 'Active' : 'Inactive' }}</td>
-                        <td>
-                            <a href="{{ route('edit-shift', $item->shift_id) }}" class="btn btn-info">
-                                <i class="fa-solid fa-pen"></i>
-                            </a>
-                        </td>
+                     
                         <td>
                             <a href="{{ route('delete-shift', $item->shift_id) }}" class="btn btn-warning">
                                 <i class="fa-solid fa-trash"></i>
