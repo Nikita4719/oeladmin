@@ -1,131 +1,480 @@
 @extends('admin.include.app')
-
 @section('main-content')
-<div class="main-content">
-
-    <!-- Header -->
-    <div class="row">
-        <div class="card card-buttons mt-md-4">
-            <div class="card-body">
-                <div class="row">
+          <div class="main-content" >
+            <div class="row">
+              <div class="card card-buttons mt-md-4">
+                <div class="card-body">
+                  <div class="row">
                     <div class="col-md-9">
-                        <ol class="breadcrumb text-muted mb-0">
-                            <li class="breadcrumb-item">
-                                <a href="#">Welcome</a>
-                            </li>
-                            <li class="breadcrumb-item text-muted">Admin Dashboard</li>
-                        </ol>
+                      <ol class="breadcrumb text-muted mb-0">
+                        <li class="breadcrumb-item">
+                          <a href="#"> Welcome</a>
+                        </li>
+                        <li class="breadcrumb-item text-muted">Admin</li>
+                      </ol>
                     </div>
                     <div class="col-md-3">
-                        <p class="subheader_left">Overseas Education Lane</p>
+                      <p class="subheader_left"> Overseas Education Lane</p>
                     </div>
+                  </div>
                 </div>
+              </div>
             </div>
-        </div>
-    </div>
-
-    <!-- Dashboard Cards -->
-    <div class="row mt-4">
-
-        {{-- Total Members --}}
-        <div class="col-md-3">
-            <div class="card dash-widget text-center">
-                <h5>Total Members</h5>
-                <h3>250</h3>
-                <button class="btn btn-outline-primary btn-sm">Read More</button>
+          </div>
+          <!-- /Page Header -->
+          <div class="row">
+             <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
+              <div class="card dash-widget">
+                <div class="row">
+                    <div clas="col-md-12">
+                      <div class="totalno">
+                        <h5>Total member</h5>
+                      </div>
+                    </div>
+                    <div clas="col-md-12">
+                      <div class="blclr">
+                        <h5>
+                          <i class="la la-user clruser"></i> 301
+                        </h5>
+                      </div>
+                    </div>
+                    <div clas="col-md-12">
+                      <div class="submit-section btnpr">
+                        <button type="button" class="btn btn-outline-primary">Primary</button>
+                      </div>
+                    </div>
+                  </div><div class="card-body">
+                </div>
+              </div>
             </div>
-        </div>
 
-        {{-- Total Students --}}
-        <div class="col-md-3">
-            <div class="card dash-widget text-center">
-                <h5>Total Students</h5>
-                <h3>180</h3>
-                <button class="btn btn-outline-primary btn-sm">Read More</button>
+              <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
+              <div class="card dash-widget">
+                <div class="row">
+                    <div clas="col-md-12">
+                      <div class="totalno">
+                        <h5>Total member</h5>
+                      </div>
+                    </div>
+                    <div clas="col-md-12">
+                      <div class="blclr">
+                        <h5>
+                          <i class="la la-user clruser"></i> 301
+                        </h5>
+                      </div>
+                    </div>
+                    <div clas="col-md-12">
+                      <div class="submit-section btnpr">
+                        <button type="button" class="btn btn-outline-primary">Primary</button>
+                      </div>
+                    </div>
+                  </div><div class="card-body">
+                </div>
+              </div>
             </div>
-        </div>
 
-        {{-- Total Applied Programs --}}
-        <div class="col-md-3">
-            <div class="card dash-widget text-center">
-                <h5>Total Applied Programs</h5>
-                <h3>95</h3>
-                <button class="btn btn-outline-primary btn-sm">Read More</button>
+              <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
+              <div class="card dash-widget">
+                <div class="row">
+                    <div clas="col-md-12">
+                      <div class="totalno">
+                        <h5>Total member</h5>
+                      </div>
+                    </div>
+                    <div clas="col-md-12">
+                      <div class="blclr">
+                        <h5>
+                          <i class="la la-user clruser"></i> 301
+                        </h5>
+                      </div>
+                    </div>
+                    <div clas="col-md-12">
+                      <div class="submit-section btnpr">
+                        <button type="button" class="btn btn-outline-primary">Primary</button>
+                      </div>
+                    </div>
+                  </div><div class="card-body">
+                </div>
+              </div>
             </div>
-        </div>
 
-        {{-- Total Franchise --}}
-        <div class="col-md-3">
-            <div class="card dash-widget text-center">
-                <h5>Total Franchise</h5>
-                <h3>42</h3>
-                <button class="btn btn-outline-primary btn-sm">Read More</button>
+              <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
+              <div class="card dash-widget">
+                <div class="row">
+                    <div clas="col-md-12">
+                      <div class="totalno">
+                        <h5>Total member</h5>
+                      </div>
+                    </div>
+                    <div clas="col-md-12">
+                      <div class="blclr">
+                        <h5>
+                          <i class="la la-user clruser"></i> 301
+                        </h5>
+                      </div>
+                    </div>
+                    <div clas="col-md-12">
+                      <div class="submit-section btnpr">
+                        <button type="button" class="btn btn-outline-primary">Primary</button>
+                      </div>
+                    </div>
+                  </div><div class="card-body">
+                </div>
+              </div>
             </div>
-        </div>
 
-        {{-- Active Franchise --}}
-        <div class="col-md-3">
-            <div class="card dash-widget text-center">
-                <h5>Active Franchise</h5>
-                <h3>30</h3>
-                <button class="btn btn-outline-primary btn-sm">Read More</button>
+              <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
+              <div class="card dash-widget">
+                <div class="row">
+                    <div clas="col-md-12">
+                      <div class="totalno">
+                        <h5>Total member</h5>
+                      </div>
+                    </div>
+                    <div clas="col-md-12">
+                      <div class="blclr">
+                        <h5>
+                          <i class="la la-user clruser"></i> 301
+                        </h5>
+                      </div>
+                    </div>
+                    <div clas="col-md-12">
+                      <div class="submit-section btnpr">
+                        <button type="button" class="btn btn-outline-primary">Primary</button>
+                      </div>
+                    </div>
+                  </div><div class="card-body">
+                </div>
+              </div>
             </div>
-        </div>
 
-        {{-- Inactive Franchise --}}
-        <div class="col-md-3">
-            <div class="card dash-widget text-center">
-                <h5>Inactive Franchise</h5>
-                <h3>12</h3>
-                <button class="btn btn-outline-primary btn-sm">Read More</button>
+              <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
+              <div class="card dash-widget">
+                <div class="row">
+                    <div clas="col-md-12">
+                      <div class="totalno">
+                        <h5>Total member</h5>
+                      </div>
+                    </div>
+                    <div clas="col-md-12">
+                      <div class="blclr">
+                        <h5>
+                          <i class="la la-user clruser"></i> 301
+                        </h5>
+                      </div>
+                    </div>
+                    <div clas="col-md-12">
+                      <div class="submit-section btnpr">
+                        <button type="button" class="btn btn-outline-primary">Primary</button>
+                      </div>
+                    </div>
+                  </div><div class="card-body">
+                </div>
+              </div>
             </div>
-        </div>
 
-        {{-- Total Universities --}}
-        <div class="col-md-3">
-            <div class="card dash-widget text-center">
-                <h5>Total Universities</h5>
-                <h3>65</h3>
-                <button class="btn btn-outline-primary btn-sm">Read More</button>
+
+              <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
+              <div class="card dash-widget">
+                <div class="row">
+                    <div clas="col-md-12">
+                      <div class="totalno">
+                        <h5>Total member</h5>
+                      </div>
+                    </div>
+                    <div clas="col-md-12">
+                      <div class="blclr">
+                        <h5>
+                          <i class="la la-user clruser"></i> 301
+                        </h5>
+                      </div>
+                    </div>
+                    <div clas="col-md-12">
+                      <div class="submit-section btnpr">
+                        <button type="button" class="btn btn-outline-primary">Primary</button>
+                      </div>
+                    </div>
+                  </div><div class="card-body">
+                </div>
+              </div>
             </div>
-        </div>
-
-        {{-- Total Programs --}}
-        <div class="col-md-3">
-            <div class="card dash-widget text-center">
-                <h5>Total Programs</h5>
-                <h3>420</h3>
-                <button class="btn btn-outline-primary btn-sm">Read More</button>
+              <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
+              <div class="card dash-widget">
+                <div class="row">
+                    <div clas="col-md-12">
+                      <div class="totalno">
+                        <h5>Total member</h5>
+                      </div>
+                    </div>
+                    <div clas="col-md-12">
+                      <div class="blclr">
+                        <h5>
+                          <i class="la la-user clruser"></i> 301
+                        </h5>
+                      </div>
+                    </div>
+                    <div clas="col-md-12">
+                      <div class="submit-section btnpr">
+                        <button type="button" class="btn btn-outline-primary">Primary</button>
+                      </div>
+                    </div>
+                  </div><div class="card-body">
+                </div>
+              </div>
             </div>
-        </div>
 
-        {{-- Total Leads --}}
-        <div class="col-md-3">
-            <div class="card dash-widget text-center">
-                <h5>Total Leads</h5>
-                <h3>310</h3>
-                <button class="btn btn-outline-primary btn-sm">Read More</button>
+              <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
+              <div class="card dash-widget">
+                <div class="row">
+                    <div clas="col-md-12">
+                      <div class="totalno">
+                        <h5>Total member</h5>
+                      </div>
+                    </div>
+                    <div clas="col-md-12">
+                      <div class="blclr">
+                        <h5>
+                          <i class="la la-user clruser"></i> 301
+                        </h5>
+                      </div>
+                    </div>
+                    <div clas="col-md-12">
+                      <div class="submit-section btnpr">
+                        <button type="button" class="btn btn-outline-primary">Primary</button>
+                      </div>
+                    </div>
+                  </div><div class="card-body">
+                </div>
+              </div>
             </div>
-        </div>
 
-        {{-- Visa Punching --}}
-        <div class="col-md-3">
-            <div class="card dash-widget text-center">
-                <h5>Visa Punching</h5>
-                <h3>48</h3>
-                <button class="btn btn-outline-primary btn-sm">Read More</button>
+              <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
+              <div class="card dash-widget">
+                <div class="row">
+                    <div clas="col-md-12">
+                      <div class="totalno">
+                        <h5>Total member</h5>
+                      </div>
+                    </div>
+                    <div clas="col-md-12">
+                      <div class="blclr">
+                        <h5>
+                          <i class="la la-user clruser"></i> 301
+                        </h5>
+                      </div>
+                    </div>
+                    <div clas="col-md-12">
+                      <div class="submit-section btnpr">
+                        <button type="button" class="btn btn-outline-primary">Primary</button>
+                      </div>
+                    </div>
+                  </div><div class="card-body">
+                </div>
+              </div>
             </div>
-        </div>
 
-        {{-- Visa Pending --}}
-        <div class="col-md-3">
-            <div class="card dash-widget text-center">
-                <h5>Visa Pending</h5>
-                <h3>22</h3>
-                <button class="btn btn-outline-primary btn-sm">Read More</button>
+              <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
+              <div class="card dash-widget">
+                <div class="row">
+                    <div clas="col-md-12">
+                      <div class="totalno">
+                        <h5>Total member</h5>
+                      </div>
+                    </div>
+                    <div clas="col-md-12">
+                      <div class="blclr">
+                        <h5>
+                          <i class="la la-user clruser"></i> 301
+                        </h5>
+                      </div>
+                    </div>
+                    <div clas="col-md-12">
+                      <div class="submit-section btnpr">
+                        <button type="button" class="btn btn-outline-primary">Primary</button>
+                      </div>
+                    </div>
+                  </div><div class="card-body">
+                </div>
+              </div>
             </div>
-        </div>
 
-    </div>
-</div>
+              <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
+              <div class="card dash-widget">
+                <div class="row">
+                    <div clas="col-md-12">
+                      <div class="totalno">
+                        <h5>Total member</h5>
+                      </div>
+                    </div>
+                    <div clas="col-md-12">
+                      <div class="blclr">
+                        <h5>
+                          <i class="la la-user clruser"></i> 301
+                        </h5>
+                      </div>
+                    </div>
+                    <div clas="col-md-12">
+                      <div class="submit-section btnpr">
+                        <button type="button" class="btn btn-outline-primary">Primary</button>
+                      </div>
+                    </div>
+                  </div><div class="card-body">
+                </div>
+              </div>
+            </div>
+
+              <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
+              <div class="card dash-widget">
+                <div class="row">
+                    <div clas="col-md-12">
+                      <div class="totalno">
+                        <h5>Total member</h5>
+                      </div>
+                    </div>
+                    <div clas="col-md-12">
+                      <div class="blclr">
+                        <h5>
+                          <i class="la la-user clruser"></i> 301
+                        </h5>
+                      </div>
+                    </div>
+                    <div clas="col-md-12">
+                      <div class="submit-section btnpr">
+                        <button type="button" class="btn btn-outline-primary">Primary</button>
+                      </div>
+                    </div>
+                  </div><div class="card-body">
+                </div>
+              </div>
+            </div>
+              <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
+              <div class="card dash-widget">
+                <div class="row">
+                    <div clas="col-md-12">
+                      <div class="totalno">
+                        <h5>Total member</h5>
+                      </div>
+                    </div>
+                    <div clas="col-md-12">
+                      <div class="blclr">
+                        <h5>
+                          <i class="la la-user clruser"></i> 301
+                        </h5>
+                      </div>
+                    </div>
+                    <div clas="col-md-12">
+                      <div class="submit-section btnpr">
+                        <button type="button" class="btn btn-outline-primary">Primary</button>
+                      </div>
+                    </div>
+                  </div><div class="card-body">
+                </div>
+              </div>
+            </div>
+
+              <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
+              <div class="card dash-widget">
+                <div class="row">
+                    <div clas="col-md-12">
+                      <div class="totalno">
+                        <h5>Total member</h5>
+                      </div>
+                    </div>
+                    <div clas="col-md-12">
+                      <div class="blclr">
+                        <h5>
+                          <i class="la la-user clruser"></i> 301
+                        </h5>
+                      </div>
+                    </div>
+                    <div clas="col-md-12">
+                      <div class="submit-section btnpr">
+                        <button type="button" class="btn btn-outline-primary">Primary</button>
+                      </div>
+                    </div>
+                  </div><div class="card-body">
+                </div>
+              </div>
+            </div>
+              <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
+              <div class="card dash-widget">
+                <div class="row">
+                    <div clas="col-md-12">
+                      <div class="totalno">
+                        <h5>Total member</h5>
+                      </div>
+                    </div>
+                    <div clas="col-md-12">
+                      <div class="blclr">
+                        <h5>
+                          <i class="la la-user clruser"></i> 301
+                        </h5>
+                      </div>
+                    </div>
+                    <div clas="col-md-12">
+                      <div class="submit-section btnpr">
+                        <button type="button" class="btn btn-outline-primary">Primary</button>
+                      </div>
+                    </div>
+                  </div><div class="card-body">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- /Page Content -->
+      </div>
+      @
+      <!-- /Page Wrapper -->
+      <div class="settings-icon">
+			<span data-bs-toggle="offcanvas" data-bs-target="#theme-settings-offcanvas" aria-controls="theme-settings-offcanvas"><i class="las la-cog"></i></span>
+		</div>
+@endsection
+@section('offcanvas')
+    <div class="offcanvas offcanvas-end border-0" tabindex="-1" id="theme-settings-offcanvas">
+			<div class="sidebar-headerset">
+				<div class="sidebar-headersets">
+					<h2>Customizer</h2>
+					<h3>Customize your overview Page layout</h3>
+				</div>
+				<!-- <div class="sidebar-headerclose">
+					<a data-bs-dismiss="offcanvas" aria-label="Close"><img src="{{asset('assets/img/close.png')}}" alt="Close Icon"></a>
+				</div> -->
+        <div class="sidebar-headerclose">
+                <a data-bs-dismiss="offcanvas" aria-label="Close" class="close-icon">
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                </a>
+        </div>
+			</div>
+			<div class="offcanvas-body p-0">
+				<div data-simplebar="" class="h-100">
+					<div class="settings-mains">
+						<div class="layout-head">
+							<h5>Layout</h5>
+							<h6>Choose your layout</h6>
+						</div>
+						<div class="row">
+							<div class="col-6">
+								<div class="form-check card-radio p-0">
+									<input id="customizer-layout01" name="data-layout" type="radio" value="vertical" class="form-check-input">
+									<label class="form-check-label avatar-md w-100" for="customizer-layout01">
+										<img src="{{asset('assets/img/vertical.png')}}" alt="Layout Image">
+									</label>
+								</div>
+								<h5 class="fs-13 text-center mt-2">Vertical</h5>
+							</div>
+							<div class="col-6">
+								<div class="form-check card-radio p-0">
+								<input id="customizer-layout02" name="data-layout" type="radio" value="horizontal" class="form-check-input">
+									<label class="form-check-label  avatar-md w-100" for="customizer-layout02">
+										<img src="{{asset('assets/img/horizontal.png')}}" alt="Layout Image">
+									</label>
+								</div>
+								<h5 class="fs-13 text-center mt-2">Horizontal</h5>
+							</div>
+							</div>
+					</div>
+				</div>
+			</div>
+		</div>
 @endsection

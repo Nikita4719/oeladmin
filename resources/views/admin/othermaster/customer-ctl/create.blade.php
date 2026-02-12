@@ -15,11 +15,7 @@
                         </li>
                     </ol>
                 </div>
-                <div class="col-md-4 text-end">
-                    <a href="{{ route('customer-ctl') }}" class="btn btn-secondary">
-                        <i class="las la-arrow-left"></i> Back to List
-                    </a>
-                </div>
+               
             </div>
         </div>
     </div>
@@ -135,13 +131,7 @@
                         </div>
                     </div>
 
-                    <!-- Active Switch -->
-                    <div class="form-check form-switch mb-3">
-                        <input class="form-check-input" type="checkbox"
-                            name="is_active" id="is_active" value="1"
-                            {{ old('is_active') ? 'checked' : '' }}>
-                        <label class="form-check-label" for="is_active">Active</label>
-                    </div>
+                   
 
                     <!-- Buttons -->
                     <div class="d-flex justify-content-end gap-2">

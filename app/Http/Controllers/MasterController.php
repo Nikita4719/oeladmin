@@ -5,19 +5,11 @@ namespace App\Http\Controllers;
 
 use App\Models\{
     AppSettings,
-    EducationLane,
-    Faq,
     WorkCenter,
     MasterService,
-    Program,
     Shift,
-    SubService,
-    VasService,
-    VisaDocument,
-    VisaSubDocument,
     MaterialCtl,
     CustomerCtl,
-    LeadQuality,
     RackMaster,
     MaterialMaster,
 };
@@ -27,7 +19,7 @@ use Illuminate\Validation\Rule;
 use Validator;
 use DB;
 
-class OtherMasterDataController extends Controller
+class MasterController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -35,7 +27,7 @@ class OtherMasterDataController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    // Rackmaster by Nikita
+
     public function rack_master(Request $request)
     {
         $query = RackMaster::query();
@@ -69,7 +61,7 @@ class OtherMasterDataController extends Controller
             'location'  => 'required|max:100',
             'capacity'  => 'required|numeric',
             'rack_type' => 'required|max:50',
-            'is_active' => 'required|boolean',
+           
         ]);
 
         RackMaster::create([
@@ -77,7 +69,7 @@ class OtherMasterDataController extends Controller
             'location'  => $request->location,
             'capacity'  => $request->capacity,
             'rack_type' => $request->rack_type,
-            'is_active' => $request->is_active,
+           
         ]);
 
         return redirect()->route('rack-master')
@@ -103,7 +95,7 @@ class OtherMasterDataController extends Controller
             'location'  => 'required|max:100',
             'capacity'  => 'required|numeric',
             'rack_type' => 'required|max:50',
-            'is_active' => 'required|boolean',
+          
         ]);
 
         $rackMaster = RackMaster::findOrFail($id);
@@ -112,7 +104,7 @@ class OtherMasterDataController extends Controller
             'location'  => $request->location,
             'capacity'  => $request->capacity,
             'rack_type' => $request->rack_type,
-            'is_active' => $request->is_active,
+           
         ]);
 
         return redirect()->route('rack-master')
@@ -135,8 +127,9 @@ class OtherMasterDataController extends Controller
     // materialmaster by Nikita
     public function index(Request $request)
     {
-        $materials = MaterialMaster::when($request->code, function ($query) use ($request) {
-            $query->where('code', 'like', '%' . $request->code . '%');
+       
+        $materials = MaterialMaster::when($request->material_code, function ($query) use ($request) {
+            $query->where('code', 'like', '%' . $request->material_code . '%');
         })->paginate(12);
 
         return view('admin.othermaster.material-master.index', compact('materials'));
@@ -144,17 +137,15 @@ class OtherMasterDataController extends Controller
 
     public function create()
     {
-        // next material_id for display only
-        $nextId = \DB::table('material_master')->max('material_id') + 1;
-
-        return view('admin.othermaster.material-master.create', compact('nextId'));
+       
+        return view('admin.othermaster.material-master.create');
     }
 
 
     public function store(Request $request)
     {
         $request->validate([
-            'code' => 'required|integer|max:50|unique:material_master,code',
+            'code' => 'required|integer',
             'description' => 'required',
             'od' => 'required|numeric',
             'thickness' => 'required|numeric',
@@ -162,11 +153,11 @@ class OtherMasterDataController extends Controller
             'kg_per_meter' => 'required|numeric',
             'grade' => 'required',
             'material_group' => 'required',
-            'is_active' => 'required'
+           
         ]);
 
         // ignore material_id, DB will auto increment
-        MaterialMaster::create($request->except('material_id'));
+        MaterialMaster::create($request->all());
 
         return redirect()->route('material-master.index')
             ->with('success', 'Material added successfully');
@@ -183,7 +174,7 @@ class OtherMasterDataController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'code' => 'required||integer|max:50',
+            'code' => 'required|integer',
             'description' => 'required',
             'od' => 'required|numeric',
             'thickness' => 'required|numeric',
@@ -191,7 +182,7 @@ class OtherMasterDataController extends Controller
             'kg_per_meter' => 'required|numeric',
             'grade' => 'required',
             'material_group' => 'required',
-            'is_active' => 'required'
+           
         ]);
 
         $material = MaterialMaster::findOrFail($id);
@@ -246,16 +237,17 @@ class OtherMasterDataController extends Controller
     // STORE
     public function work_center_store(Request $request)
     {
+     
         $request->validate([
             'work_center_name' => 'required|max:255',
-            'is_active'        => 'required'
+           
         ]);
 
         $input = $request->only([
             'work_center_name',
             'work_center_description',
             'location',
-            'is_active'
+          
         ]);
 
         WorkCenter::create($input);
@@ -284,7 +276,7 @@ class OtherMasterDataController extends Controller
                 Rule::unique('work_center', 'work_center_name')
                     ->ignore($id, 'work_center_id'),
             ],
-            'is_active' => 'required'
+           
         ]);
 
         $workCenter = WorkCenter::findOrFail($id);
@@ -337,7 +329,7 @@ class OtherMasterDataController extends Controller
     public function app_settings_store(Request $request)
     {
         $request->validate([
-            'Vendor_Code' => 'required|integer|max:100',
+            'Vendor_Code' => 'required|integer',
             'Referral_Person_Name' => 'required',
             'Mob_No' => 'required',
         ]);
@@ -374,7 +366,7 @@ class OtherMasterDataController extends Controller
     public function app_settings_update(Request $request, $id)
     {
         $request->validate([
-            'Vendor_Code' => 'required|integer|max:100',
+            'Vendor_Code' => 'required|integer',
             'Referral_Person_Name' => 'required',
             'Mob_No' => 'required',
         ]);
@@ -415,9 +407,13 @@ class OtherMasterDataController extends Controller
     //  Shift by NIkita
 
     // Show Shift list
-    public function shift_index()
+    public function shift_index(Request $request)
     {
-        $shift = Shift::with('country')->paginate(10);
+       
+          $shift = Shift::when($request->shift_name, function ($query) use ($request) {
+            $query->where('shift_name', 'like', '%' . $request->shift_name . '%');
+        })->paginate(12);
+      
         $country = AppSettings::all();
 
         return view('admin.othermaster.shift.index', compact('shift', 'country'));
@@ -454,10 +450,10 @@ class OtherMasterDataController extends Controller
     {
         // Validate fields that actually exist in your model
         $request->validate([
-            'shift_name' => 'required|string|max:255',
-            'shift_description' => 'nullable|string|max:1000',
+            'shift_name' => 'required|string',
+            'shift_description' => 'nullable|string',
             'location' => 'nullable|string|max:255',
-            'is_active' => 'nullable|boolean',
+           
         ]);
 
         // Save Shift
@@ -465,7 +461,7 @@ class OtherMasterDataController extends Controller
             'shift_name' => $request->shift_name,
             'shift_description' => $request->shift_description,
             'location' => $request->location,
-            'is_active' => $request->has('is_active') ? 1 : 0,
+           
         ]);
 
         return redirect()->route('shift')->with('success', 'Shift created successfully.');
@@ -482,9 +478,9 @@ class OtherMasterDataController extends Controller
     public function shift_update(Request $request, $id)
     {
         $request->validate([
-            'shift_name' => 'required|string|max:255',
-            'shift_description' => 'nullable|string|max:1000',
-            'location' => 'nullable|string|max:255',
+            'shift_name' => 'required|string',
+            'shift_description' => 'nullable|string',
+            'location' => 'nullable|string',
 
         ]);
 
@@ -494,7 +490,7 @@ class OtherMasterDataController extends Controller
             'shift_name' => $request->shift_name,
             'shift_description' => $request->shift_description,
             'location' => $request->location,
-            'is_active' => $request->has('is_active') ? 1 : 0,
+           
         ]);
 
         return redirect()->route('shift')->with('success', 'Shift updated successfully.');
@@ -510,7 +506,7 @@ class OtherMasterDataController extends Controller
         return redirect()->route('shift')->with('success', 'Shift deleted successfully.');
     }
 
-   
+
 
     //  Material ctl by Nikita
     public function material_ctl(Request $request)
@@ -541,7 +537,7 @@ class OtherMasterDataController extends Controller
     {
 
         $request->validate([
-            'material_id' => 'required|integer|max:200',
+            'material_id' => 'required|integer',
 
         ]);
         $input = $request->except('_token');
@@ -560,7 +556,7 @@ class OtherMasterDataController extends Controller
     public function material_ctl_update(Request $request, $id)
     {
         $request->validate([
-            'material_id' => 'required|integer|max:200',
+            'material_id' => 'required|integer',
 
         ]);
         $input = $request->except('_token');
@@ -582,8 +578,8 @@ class OtherMasterDataController extends Controller
     //    customer ctl by Nikita
     public function customer_ctl(Request $request)
     {
-        $customer_ctl = CustomerCtl::when($request->customer_ctl_id, function ($query) use ($request) {
-            $query->where('customer_ctl_id', $request->customer_ctl_id);
+        $customer_ctl = CustomerCtl::when($request->material_ctl_id, function ($query) use ($request) {
+            $query->where('material_ctl_id', $request->material_ctl_id);
         })
             ->orderBy('customer_ctl_id', 'desc')
             ->paginate(12);
@@ -643,15 +639,16 @@ public function customer_ctl_filter(Request $request)
     // STORE
     public function customer_ctl_store(Request $request)
     {
+       
         $request->validate([
-            'customer_id' => 'required|integer|max:200',
-            'material_id' => 'required|integer|max:200',
-            'material_ctl_id' => 'required|integer|max:200',
+        
+            'material_id' => 'required|integer',
+            'material_ctl_id' => 'required|integer',
             'min_maintain_buffer_qty' => 'required|integer',
             'max_maintain_buffer_qty' => 'required|integer',
             'available_buffer_qty' => 'required|integer',
             'buffer_status' => 'required',
-            'is_active' => 'required'
+           
         ]);
 
         CustomerCtl::create($request->all());
@@ -676,15 +673,11 @@ public function customer_ctl_filter(Request $request)
     // UPDATE
     public function customer_ctl_update(Request $request, $id)
     {
+       
         $request->validate([
             'customer_id' => 'required|integer|max:200',
             'material_id' => 'required|integer|max:200',
-            'material_ctl_id' => 'required|integer|max:200',
-            'min_maintain_buffer_qty' => 'required|integer',
-            'max_maintain_buffer_qty' => 'required|integer',
-            'available_buffer_qty' => 'required|integer',
-            'buffer_status' => 'required',
-            'is_active' => 'required'
+
         ]);
         $customer_ctl = CustomerCtl::findOrFail($id);
 

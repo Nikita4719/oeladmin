@@ -15,11 +15,7 @@
                         <li class="breadcrumb-item text-muted">Edit Material</li>
                     </ol>
                 </div>
-                <div class="col-md-4">
-                    <a href="{{ route('material-ctl') }}" class="btn btn-secondary float-end">
-                        <i class="las la-arrow-left"></i> Back to Material List
-                    </a>
-                </div>
+                
             </div>
         </div>
     </div>
