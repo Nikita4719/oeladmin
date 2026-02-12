@@ -36,19 +36,14 @@
 
                     <!-- Row 1 -->
                     <div class="row mb-3">
-
-
                         <div class="col-md-4">
                             <label class="form-label">Material ID</label>
-
-
                             <select name="material_id" id="material_id" class="form-select @error('material_id') is-invalid @enderror">
-
+                                <option value="">Select Material </option>
                                 @foreach($allMaterials as $material)
-                                <option value="{{ $material->material_id }}" {{ old('material_id') == $material->material_id ? 'selected' : '' }}>{{ $material->description }}</option>
+                                <option value="{{ $material->material_id }}">{{ $material->description }}</option>
                                 @endforeach
                             </select>
-
                             @error('material_id')
                             <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -62,17 +57,16 @@
                                 <option value="{{ $material_ctl->material_ctl_id }}">{{ $material_ctl->ctl_mat_description }}</option>
                                 @endforeach
                             </select>
-
                             @error('material_ctl_id')
                             <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
+
                         <div class="col-md-4">
                             <label class="form-label">Min Maintain Buffer Qty</label>
                             <input type="number" name="min_maintain_buffer_qty"
                                 class="form-control @error('min_maintain_buffer_qty') is-invalid @enderror"
-                                value="{{ old('min_maintain_buffer_qty') }}"
-                                oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+                                pattern="[0-9]+" title="Only numbers allowed" required>
                             @error('min_maintain_buffer_qty')
                             <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -81,14 +75,11 @@
 
                     <!-- Row 2 -->
                     <div class="row mb-3">
-
-
                         <div class="col-md-4">
                             <label class="form-label">Max Maintain Buffer Qty</label>
                             <input type="number" name="max_maintain_buffer_qty"
                                 class="form-control @error('max_maintain_buffer_qty') is-invalid @enderror"
-                                value="{{ old('max_maintain_buffer_qty') }}"
-                                oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+                                pattern="[0-9]+" title="Only numbers allowed" required>
                             @error('max_maintain_buffer_qty')
                             <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -98,8 +89,7 @@
                             <label class="form-label">Available Buffer Qty</label>
                             <input type="number" name="available_buffer_qty"
                                 class="form-control @error('available_buffer_qty') is-invalid @enderror"
-                                value="{{ old('available_buffer_qty') }}"
-                                oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+                                pattern="[0-9]+" title="Only numbers allowed" required>
                             @error('available_buffer_qty')
                             <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -110,9 +100,9 @@
                             <select name="buffer_status"
                                 class="form-select @error('buffer_status') is-invalid @enderror">
                                 <option value="">Select Status</option>
-                                <option value="OK" {{ old('buffer_status') == 'OK' ? 'selected' : '' }}>OK</option>
-                                <option value="LOW" {{ old('buffer_status') == 'LOW' ? 'selected' : '' }}>LOW</option>
-                                <option value="CRITICAL" {{ old('buffer_status') == 'CRITICAL' ? 'selected' : '' }}>CRITICAL</option>
+                                <option value="OK">OK</option>
+                                <option value="LOW">LOW</option>
+                                <option value="CRITICAL">CRITICAL</option>
                             </select>
                             @error('buffer_status')
                             <div class="invalid-feedback">{{ $message }}</div>
@@ -122,13 +112,12 @@
 
                     <!-- Row 3 -->
                     <div class="row mb-3">
-
-
                         <div class="col-md-12">
                             <label class="form-label">Comments</label>
                             <textarea name="comments"
                                 class="form-control @error('comments') is-invalid @enderror"
-                                rows="3">{{ old('comments') }}</textarea>
+                                rows="3">
+                            </textarea>
                             @error('comments')
                             <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -138,8 +127,7 @@
                     <!-- Active Switch -->
                     <div class="form-check form-switch mb-3">
                         <input class="form-check-input" type="checkbox"
-                            name="is_active" id="is_active" value="1"
-                            {{ old('is_active') ? 'checked' : '' }}>
+                            name="is_active" id="is_active" value="1">
                         <label class="form-check-label" for="is_active">Active</label>
                     </div>
 

@@ -339,7 +339,7 @@ class OtherMasterDataController extends Controller
         $request->validate([
             'Vendor_Code' => 'required|integer|max:100',
             'Referral_Person_Name' => 'required',
-            'Mob_No' => 'required',
+            'Mob_No' => 'required|integer',
         ]);
 
         $data = $request->only([
@@ -376,7 +376,7 @@ class OtherMasterDataController extends Controller
         $request->validate([
             'Vendor_Code' => 'required|integer|max:100',
             'Referral_Person_Name' => 'required',
-            'Mob_No' => 'required',
+            'Mob_No' => 'required|integer',
         ]);
         $setting = AppSettings::findOrFail($id);
 
@@ -510,7 +510,7 @@ class OtherMasterDataController extends Controller
         return redirect()->route('shift')->with('success', 'Shift deleted successfully.');
     }
 
-   
+
 
     //  Material ctl by Nikita
     public function material_ctl(Request $request)
@@ -592,41 +592,39 @@ class OtherMasterDataController extends Controller
         return view('admin.othermaster.customer-ctl.index', compact('customer_ctl'));
     }
 
-   use App\Models\CustomerCtl;
+    public function customer_ctl_filter(Request $request)
+    {
+        $query = CustomerCtl::query();
 
-public function customer_ctl_filter(Request $request)
-{
-    $query = CustomerCtl::query();
+        // Customer ID filter
+        if ($request->customer_id) {
+            $query->where('customer_id', $request->customer_id);
+        }
 
-    // Customer ID filter
-    if ($request->customer_id) {
-        $query->where('customer_id', $request->customer_id);
+        // Material ID filter
+        if ($request->material_id) {
+            $query->where('material_id', $request->material_id);
+        }
+
+        // Material CTL ID filter
+        if ($request->material_ctl_id) {
+            $query->where('material_ctl_id', $request->material_ctl_id);
+        }
+
+        // // Buffer Status filter
+        // if ($request->buffer_status) {
+        //     $query->where('buffer_status', $request->buffer_status);
+        // }
+
+        // // Active filter
+        // if ($request->is_active !== null && $request->is_active !== '') {
+        //     $query->where('is_active', $request->is_active);
+        // }
+
+        $customer_ctl = $query->paginate(10);
+
+        return view('admin.customer_ctl.index', compact('customer_ctl'));
     }
-
-    // Material ID filter
-    if ($request->material_id) {
-        $query->where('material_id', $request->material_id);
-    }
-
-    // Material CTL ID filter
-    if ($request->material_ctl_id) {
-        $query->where('material_ctl_id', $request->material_ctl_id);
-    }
-
-    // Buffer Status filter
-    if ($request->buffer_status) {
-        $query->where('buffer_status', $request->buffer_status);
-    }
-
-    // Active filter
-    if ($request->is_active !== null && $request->is_active !== '') {
-        $query->where('is_active', $request->is_active);
-    }
-
-    $customer_ctl = $query->paginate(10);
-
-    return view('admin.customer_ctl.index', compact('customer_ctl'));
-}
 
 
 

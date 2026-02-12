@@ -21,7 +21,7 @@
                       action="{{ route('rack-master.update', $rackMaster->rack_id) }}"
                       method="POST">
                     @csrf
-                    @method('PUT') <!-- Update ke liye PUT method -->
+                    @method('PUT')
 
                     <!-- Rack Code -->
                     <div class="col-md-6">
@@ -30,7 +30,7 @@
                                name="rack_code"
                                class="form-control"
                                value="{{ old('rack_code', $rackMaster->rack_code) }}"
-                                oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+                                >
                         @error('rack_code')
                             <div class="text-danger">{{ $message }}</div>
                         @enderror

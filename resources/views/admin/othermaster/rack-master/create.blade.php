@@ -26,13 +26,13 @@
                         <input type="number"
                         name="rack_code"
                         class="form-control"
-                        value="{{ old('rack_code') }}"
-                        oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+                       
+                        >
                     </div>
 
                     <div class="col-md-6">
                         <label>Location <span class="text-danger">*</span></label>
-                        <input type="text" name="location" class="form-control" value="{{ old('location') }}">
+                        <input type="text" name="location" class="form-control">
                         @error('location')
                         <div class="text-danger">{{ $message }}</div>
                         @enderror
@@ -40,7 +40,7 @@
 
                     <div class="col-md-6">
                         <label>Capacity <span class="text-danger">*</span></label>
-                        <input type="number" name="capacity" class="form-control" value="{{ old('capacity') }}">
+                        <input type="number" name="capacity" class="form-control">
                         @error('capacity')
                         <div class="text-danger">{{ $message }}</div>
                         @enderror
@@ -50,8 +50,8 @@
                         <label for="rack_type" class="form-label">Rack Type <span class="text-danger">*</span></label>
                         <select name="rack_type" id="rack_type" class="form-select" required>
                             <option value="">--Select Rack Type--</option>
-                            <option value="RAW_MATERIAL" {{ old('rack_type') == 'RAW_MATERIAL' ? 'selected' : '' }}>RAW MATERIAL</option>
-                            <option value="BUFFER_STOCK" {{ old('rack_type') == 'BUFFER_STOCK' ? 'selected' : '' }}>BUFFER STOCK</option>
+                            <option value="RAW_MATERIAL" >RAW MATERIAL</option>
+                            <option value="BUFFER_STOCK" >BUFFER STOCK</option>
                         </select>
 
                         @error('rack_type')
@@ -63,8 +63,8 @@
                     <div class="col-md-6">
                         <label>Status <span class="text-danger">*</span></label>
                         <select name="is_active" class="form-control">
-                            <option value="1" {{ old('is_active') == '1' ? 'selected' : '' }}>Active</option>
-                            <option value="0" {{ old('is_active') == '0' ? 'selected' : '' }}>Inactive</option>
+                            <option value="1" >Active</option>
+                            <option value="0" >Inactive</option>
                         </select>
                     </div>
 

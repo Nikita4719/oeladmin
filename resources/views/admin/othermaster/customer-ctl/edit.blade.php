@@ -37,135 +37,117 @@
 
                 <form action="{{ route('store-customer-ctl') }}" method="POST">
                     @csrf
-
-                    <div class="row g-3">
-
-
-
-                       
+                    <!-- row 1 -->
+                    <div class="row mb-3">
                         <div class="col-md-4">
-                            <div class="form-floating">
-
-
-                             
-
-                                <select name="material_id" id="material_id" class="form-select @error('material_id') is-invalid @enderror">
-                                    <option value="">Select Material </option>
-
-                                    @foreach($allMaterials as $material)
-                                    
-                                    <option value="{{ $material->material_id }}" {{ old('material_id') == $material->material_id ? 'selected' : '' }}>{{ $material->description }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            @error('material_id')
-                            <span class="text-danger">{{ $message }}</span>
-                            @enderror
+                            <label class="form-label">Material ID</label>
+                            <select name="material_id" id="material_id" class="form-select @error('material_id') is-invalid @enderror">
+                                <option value="">Select Material </option>
+                                @foreach($allMaterials as $material)
+                                <option value="{{ $material->material_id }}" {{ old('material_id') == $material->material_id ? 'selected' : '' }}>{{ $material->description }}</option>
+                                @endforeach
+                            </select>
                         </div>
+                        @error('material_id')
+                        <span class="text-danger">{{ $message }}</span>
+                        @enderror
+
 
                         {{-- Material CTL ID --}}
                         <div class="col-md-4">
-                            <div class="form-floating">
-
-                               
-
-                                <select name="material_ctl_id" id="material_ctl_id" class="form-select @error('material_ctl_id') is-invalid @enderror">
-                                    <option value="">Select Material CTL</option>
-                                    @foreach($material_ctls as $material_ctl)
-                                    <option value="{{ $material_ctl->material_ctl_id }}">{{ $material_ctl->ctl_mat_description }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            @error('material_ctl_id')
-                            <span class="text-danger">{{ $message }}</span>
-                            @enderror
+                            <label class="form-label">Material CTL ID</label>
+                            <select name="material_ctl_id" id="material_ctl_id" class="form-select @error('material_ctl_id') is-invalid @enderror">
+                                <option value="">Select Material CTL</option>
+                                @foreach($material_ctls as $material_ctl)
+                                <option value="{{ $material_ctl->material_ctl_id }}">{{ $material_ctl->ctl_mat_description }}</option>
+                                @endforeach
+                            </select>
                         </div>
+                        @error('material_ctl_id')
+                        <span class="text-danger">{{ $message }}</span>
+                        @enderror
+
 
                         {{-- Min Buffer --}}
                         <div class="col-md-4">
-                            <div class="form-floating">
-                                <input type="number" name="min_maintain_buffer_qty"
-                                    class="form-control @error('min_maintain_buffer_qty') is-invalid @enderror"
-                                    placeholder="Min Maintain Buffer Qty"
-                                    value="{{ old('min_maintain_buffer_qty') }}">
-                                <label>Min Maintain Buffer Qty</label>
-                            </div>
-                            @error('min_maintain_buffer_qty')
-                            <span class="text-danger">{{ $message }}</span>
-                            @enderror
+                            <label class="form-label">Min Maintain Buffer Qty</label>
+                            <input type="number" name="min_maintain_buffer_qty"
+                                class="form-control @error('min_maintain_buffer_qty') is-invalid @enderror"
+                                placeholder="Min Maintain Buffer Qty"
+                                value="{{ old('min_maintain_buffer_qty') }}"
+                                pattern="[0-9]+" title="Only numbers allowed" required>
                         </div>
+                        @error('min_maintain_buffer_qty')
+                        <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
 
-                        {{-- Max Buffer --}}
+                    <!-- row 2 -->
+
+                    <div class="row mb-3">
                         <div class="col-md-4">
-                            <div class="form-floating">
-                                <input type="number" name="max_maintain_buffer_qty"
-                                    class="form-control @error('max_maintain_buffer_qty') is-invalid @enderror"
-                                    placeholder="Max Maintain Buffer Qty"
-                                    value="{{ old('max_maintain_buffer_qty') }}">
-                                <label>Max Maintain Buffer Qty</label>
-                            </div>
-                            @error('max_maintain_buffer_qty')
-                            <span class="text-danger">{{ $message }}</span>
-                            @enderror
+                            <label class="form-label">Max Maintain Buffer Qty</label>
+                            <input type="number" name="max_maintain_buffer_qty"
+                                class="form-control @error('max_maintain_buffer_qty') is-invalid @enderror"
+                                placeholder="Max Maintain Buffer Qty"
+                                value="{{ old('max_maintain_buffer_qty') }}"
+                                pattern="[0-9]+" title="Only numbers allowed" required>
                         </div>
+                        @error('max_maintain_buffer_qty')
+                        <span class="text-danger">{{ $message }}</span>
+                        @enderror
 
-                        {{-- Available Buffer --}}
                         <div class="col-md-4">
-                            <div class="form-floating">
-                                <input type="number" name="available_buffer_qty"
-                                    class="form-control @error('available_buffer_qty') is-invalid @enderror"
-                                    placeholder="Available Buffer Qty"
-                                    value="{{ old('available_buffer_qty') }}">
-                                <label>Available Buffer Qty</label>
-                            </div>
-                            @error('available_buffer_qty')
-                            <span class="text-danger">{{ $message }}</span>
-                            @enderror
+                            <label class="form-label">Available Buffer Qty</label>
+                            <input type="number" name="available_buffer_qty"
+                                class="form-control @error('available_buffer_qty') is-invalid @enderror"
+                                placeholder="Available Buffer Qty"
+                                value="{{ old('available_buffer_qty') }}"
+                               pattern="[0-9]+" title="Only numbers allowed" required>
                         </div>
+                        @error('available_buffer_qty')
+                        <span class="text-danger">{{ $message }}</span>
+                        @enderror
 
-                        {{-- Buffer Status --}}
                         <div class="col-md-4">
-                            <div class="form-floating">
-                                <select name="buffer_status"
-                                    class="form-select @error('buffer_status') is-invalid @enderror">
-                                    <option value="">Select Status</option>
-                                    <option value="OK" {{ old('buffer_status') == 'OK' ? 'selected' : '' }}>OK</option>
-                                    <option value="LOW" {{ old('buffer_status') == 'LOW' ? 'selected' : '' }}>LOW</option>
-                                    <option value="CRITICAL" {{ old('buffer_status') == 'CRITICAL' ? 'selected' : '' }}>CRITICAL</option>
-                                </select>
-                                <label>Buffer Status</label>
-                            </div>
-                            @error('buffer_status')
-                            <span class="text-danger">{{ $message }}</span>
-                            @enderror
+                            <label class="form-label">Buffer Status</label>
+                            <select name="buffer_status"
+                                class="form-select @error('buffer_status') is-invalid @enderror">
+                                <option value="">Select Status</option>
+                                <option value="OK" {{ old('buffer_status') == 'OK' ? 'selected' : '' }}>OK</option>
+                                <option value="LOW" {{ old('buffer_status') == 'LOW' ? 'selected' : '' }}>LOW</option>
+                                <option value="CRITICAL" {{ old('buffer_status') == 'CRITICAL' ? 'selected' : '' }}>CRITICAL</option>
+                            </select>
                         </div>
+                        @error('buffer_status')
+                        <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
 
-                        {{-- Comments --}}
+                    <!-- row 3 -->
+                    <div class="row mb-3">
                         <div class="col-md-12">
-                            <div class="form-floating">
-                                <textarea name="comments"
-                                    class="form-control @error('comments') is-invalid @enderror"
-                                    placeholder="Comments"
-                                    style="height:100px">{{ old('comments') }}</textarea>
-                                <label>Comments</label>
-                            </div>
-                            @error('comments')
-                            <span class="text-danger">{{ $message }}</span>
-                            @enderror
+                            <label class="form-label">Comments</label>
+                            <textarea name="comments"
+                                class="form-control @error('comments') is-invalid @enderror"
+                                placeholder="Comments"
+                                style="height:100px">{{ old('comments') }}</textarea>
+                        </div>
+                        @error('comments')
+                        <span class="text-danger">{{ $message }}</span>
+                        @enderror
+
+                        <div class="form-check form-switch mb-2">
+                            <input class="form-check-input" type="checkbox"
+                                name="is_active" value="1"
+                                {{ old('is_active', 1) ? 'checked' : '' }}
+                                pattern="[0-9]+" title="Only numbers allowed" required>
+                            <label class="form-check-label">Active</label>
                         </div>
 
-                        {{-- Active --}}
-                        <div class="col-md-12">
-                            <div class="form-check form-switch mt-2">
-                                <input class="form-check-input" type="checkbox"
-                                    name="is_active" value="1"
-                                    {{ old('is_active', 1) ? 'checked' : '' }}>
-                                <label class="form-check-label">Active</label>
-                            </div>
-                        </div>
 
                         {{-- Buttons --}}
-                        <div class="col-md-12 d-flex justify-content-end gap-2 mt-3">
+                        <div class=" d-flex justify-content-end gap-2">
                             <a href="{{ route('customer-ctl') }}" class="btn btn-secondary">Cancel</a>
                             <button type="submit" class="btn btn-success">
                                 <i class="las la-save"></i> Save
